@@ -10,7 +10,7 @@ const LeftPart = (props: TLeftPart) => {
     <>
       <div className='left__accordion-part flex-1'>
         <h2 className='text-acu-purple-100 text-4xl font-bold mb-3'>{title}</h2>
-        <p className='font-miller text-xl max-w-[45ch] sm:max-w-[17ch]'>
+        <p className='font-miller text-xl max-w-[45ch] sm:max-w-[18ch]'>
           {subtitle}
         </p>
         {img && (
