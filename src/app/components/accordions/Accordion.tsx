@@ -22,7 +22,7 @@ const Accordion = (props: TAccordionProps) => {
     <div className={`flex-1 ${leftPart ? 'sm:flex-[4]' : ''}`}>
       <div className='border-t last-of-type:border-b border-gray-200 text-gray-700'>
         <div
-          className='w-full py-5 text-left focus:outline-dotted outline-2 outline-offset-4 outline-purple-100 cursor-pointer'
+          className='w-full py-5 text-left focus:outline-dotted outline-2 outline-offset-4 outline-acu-purple-100 cursor-pointer'
           onClick={() => toggleAccordion(titleRef)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
