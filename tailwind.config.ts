@@ -16,7 +16,8 @@ const config: Config = {
       },
       colors: {
         'acu-gray': '#6c6c6c',
-        'purple-100': '#3c1053',
+        'acu-purple-100': '#3c1053',
+        'acu-red-100': '#ed0c00',
         'black-40': 'rgba(0, 0, 0, 0.4)',
       },
       fontFamily: {
