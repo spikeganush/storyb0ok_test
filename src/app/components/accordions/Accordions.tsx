@@ -1,3 +1,4 @@
+import React from 'react';
 import Accordion from './Accordion';
 import { TAccordionsProps } from './type';
 

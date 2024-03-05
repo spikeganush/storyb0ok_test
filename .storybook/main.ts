@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
-    '@storybook/addon-mdx-gfm',
+    '@storybook/addon-webpack5-compiler-swc',
   ],
   framework: {
     name: '@storybook/nextjs',
@@ -21,5 +21,11 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   staticDirs: ['../public'],
+  webpackFinal(config, options) {
+    // TS is not happy with this, but it works
+    // @ts-ignore
+    options.cache.set = () => Promise.resolve();
+    return config;
+  },
 };
 export default config;

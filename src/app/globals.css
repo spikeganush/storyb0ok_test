@@ -3,9 +3,31 @@
 @tailwind utilities;
 
 #storybook-root {
-  padding-top: 15px;
+  padding-block: 15px;
 }
 
 .docs-story > div > div {
   overflow: hidden;
+}
+
+.cta--right-arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+.cta--right-arrow:hover {
+  text-decoration: underline;
+}
+.cta--right-arrow::after {
+  content: '\2192';
+  margin-inline-start: 5px;
+  color: black;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.cta--right-arrow:hover::after {
+  text-decoration: none;
 }
