@@ -10,7 +10,6 @@ const meta: Meta<typeof ColumnsCta> = {
   parameters: {
     layout: 'fullscreen',
     docs: {
-      // Here you add the description that appears in the Docs page
       description: {
         component:
           'Use the `ColumnsCta` component to display a call to action within a three-column layout. This component supports top and bottom separators for visual distinction, a customizable title, and a call to action. Each column can be individually configured with content, making it versatile for various use cases.',

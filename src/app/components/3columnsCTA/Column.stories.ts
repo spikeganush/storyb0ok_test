@@ -6,6 +6,12 @@ const meta = {
   component: Column,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Use the `Column` component to display a column within a three-column layout. This component supports an image, a title, and a subtitle. Each column can be individually configured with content, making it versatile for various use cases.',
+      },
+    },
   },
   argTypes: {
     position: {
