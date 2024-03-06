@@ -1,5 +1,3 @@
-import { title } from 'process';
-
 export const primary = {
   topSeparator: true,
   bottomSeparator: true,
@@ -62,6 +60,34 @@ export const secondary = {
       titleBold: true,
       subtitle: '(2030-2033)',
       subtitleBold: true,
+    },
+  ],
+};
+
+export const primaryLongTextNoCtaNoTitle = {
+  topSeparator: true,
+  bottomSeparator: true,
+  columns: [
+    {
+      position: 'left',
+      img: 'https://vision2033.acu.edu.au/-/media/vision2023/icons/flourishing-lives.svg?la=en&hash=DD759D33B5718C998054C69B8E44BF39',
+      title: 'Flourishing lives',
+      subtitle:
+        'To flourish, individuals require intellectual growth, a sense of wellbeing and moral purpose. This enables them to find fulfilment in their personal and professional lives.',
+    },
+    {
+      position: 'center',
+      img: 'https://vision2033.acu.edu.au/-/media/vision2023/icons/thriving-communities.svg?la=en&hash=F9F56F7A509F45A5A36FD752E32539F2',
+      title: 'Thriving communities',
+      subtitle:
+        'Thriving communities are healthy, secure and inclusive. They nurture social connection and provide opportunities for all.',
+    },
+    {
+      position: 'right',
+      img: 'https://vision2033.acu.edu.au/-/media/vision2023/icons/ethical-future.ash',
+      title: 'Ethical future',
+      subtitle:
+        'An ethical future is one that promotes human dignity and the common good above all other considerations.',
     },
   ],
 };

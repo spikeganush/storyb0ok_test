@@ -1,13 +1,60 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ColumnsCta from './ColumnsCta';
 import { ColumnProps } from './type';
-import { primary, secondary } from './Column.data';
+import { primary, primaryLongTextNoCtaNoTitle, secondary } from './Column.data';
 
-const meta = {
+const meta: Meta<typeof ColumnsCta> = {
   title: 'Example/3ColumnsCTA/ColumnsCta',
   component: ColumnsCta,
   parameters: {
     layout: 'fullscreen',
+  },
+  argTypes: {
+    topSeparator: {
+      control: 'boolean',
+      description:
+        'Displays a separator line at the top of the component. Useful for visually distinguishing this component from content above it.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    bottomSeparator: {
+      control: 'boolean',
+      description:
+        'Displays a separator line at the bottom of the component. Helps in setting a clear boundary with subsequent content.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    title: {
+      control: 'object',
+      description:
+        'The title object for the Columns CTA component. It can include text, styles, and other relevant properties to render a title.',
+      table: {
+        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    columns: {
+      control: 'object',
+      description:
+        'An array of column objects. Each column can contain its own set of properties like images, texts, and links to render individual columns within the CTA component.',
+      table: {
+        type: { summary: 'ColumnProps[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
+    cta: {
+      control: 'object',
+      description:
+        'An object representing the call to action. It can include properties for the CTA text, link, and styling options to guide users towards a primary action.',
+      table: {
+        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof ColumnsCta>;
@@ -31,5 +78,13 @@ export const Secondary: Story = {
     bottomSeparator: secondary.bottomSeparator,
     title: secondary.title,
     columns: secondary.columns as ColumnProps[],
+  },
+};
+
+export const PrimaryLongTextNoCtaNoTitle: Story = {
+  args: {
+    topSeparator: primaryLongTextNoCtaNoTitle.topSeparator,
+    bottomSeparator: primaryLongTextNoCtaNoTitle.bottomSeparator,
+    columns: primaryLongTextNoCtaNoTitle.columns as ColumnProps[],
   },
 };

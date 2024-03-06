@@ -30,7 +30,7 @@ export type ColumnProps = {
 /**
  * @param topSeparator - boolean
  * @param bottomSeparator - boolean
- * @param title - string
+ * @param title - {mainTitle: string, subtitle: string, cta: cta}
  * @param columns - ColumnProps[]
  * @param cta - string
  * @returns React.FC
@@ -40,7 +40,11 @@ export type ColumnProps = {
  * <ColumnsCta
  * topSeparator={true}
  * bottomSeparator={true}
- * title='Our vision'
+ * title={
+ * mainTitle: 'Our vision',
+ * subtitle: 'Our vision is to foster thriving communities, enable flourishing lives and build an ethical future.',
+ * cta: {url: 'https://vision2033.acu.edu.au/', text: 'Learn more'}
+ * }
  * columns={[
  *  {
  *   position: 'left',
@@ -67,12 +71,14 @@ export type ColumnProps = {
 export type ColumnsCtaProps = {
   topSeparator?: boolean;
   bottomSeparator?: boolean;
-  title: {
-    mainTitle: string;
-    subtitle?: string;
-    cta?: cta;
-  };
+  title?: ColumnCtaTitleProps;
   columns: ColumnProps[];
+  cta?: cta;
+};
+
+export type ColumnCtaTitleProps = {
+  mainTitle?: string;
+  subtitle?: string;
   cta?: cta;
 };
 
