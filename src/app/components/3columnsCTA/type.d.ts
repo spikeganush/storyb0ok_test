@@ -2,7 +2,9 @@
  * @param position - 'left' | 'center' | 'right'
  * @param img - string
  * @param title - string
+ * @param titleBold - boolean
  * @param subtitle - string
+ * @param subtitleBold - boolean
  * @returns React.FC
  * @description
  * Column component
@@ -11,14 +13,18 @@
  * position='left'
  * img='https://vision2033.acu.edu.au/-/media/vision2023/icons/flourishing-lives.svg?la=en&hash=DD759D33B5718C998054C69B8E44BF39'
  * title='Flourishing lives'
+ * titleBold={false}
  * subtitle='We will enable flourishing lives.'
+ * subtitleBold={false}
  * />
  */
 export type ColumnProps = {
   position: 'left' | 'center' | 'right';
   img: string;
   title: string;
+  titleBold?: boolean;
   subtitle: string;
+  subtitleBold?: boolean;
 };
 
 /**
@@ -61,10 +67,16 @@ export type ColumnProps = {
 export type ColumnsCtaProps = {
   topSeparator?: boolean;
   bottomSeparator?: boolean;
-  title: string;
-  columns: ColumnProps[];
-  cta?: {
-    url: string;
-    text: string;
+  title: {
+    mainTitle: string;
+    subtitle?: string;
+    cta?: cta;
   };
+  columns: ColumnProps[];
+  cta?: cta;
+};
+
+export type cta = {
+  url: string;
+  text: string;
 };

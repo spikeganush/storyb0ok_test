@@ -15,8 +15,10 @@ const ColumnsCta = (props: ColumnsCtaProps) => {
       {topSeparator && (
         <div className='absolute h-[1px] bg-gray-400 left-5 right-5 top-0' />
       )}
-      <h2 className='text-4xl text-acu-purple-100 font-bold'>{title}</h2>
-      <div className='flex flex-wrap flex-col md:flex-row cards-container pb-0 pt-4'>
+      <h2 className='text-4xl text-acu-purple-100 font-bold pb-2'>
+        {title.mainTitle}
+      </h2>
+      <div className='@container flex flex-wrap flex-col md:flex-row cards-container pb-0 pt-4'>
         {columns.map((column, index) => (
           <>
             <Column key={index} {...column} />

@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-#storybook-root {
+#storybook-root,
+.sb-story {
   padding-block: 15px;
 }
 
