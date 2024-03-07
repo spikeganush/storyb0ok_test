@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+a,
+.acu-focus {
+  @apply outline-2 outline-offset-4 outline-acu-purple-100 focus:outline-dotted;
+}
+
 #storybook-root,
 .sb-story {
   padding-block: 15px;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 .docs-story > div > div {
