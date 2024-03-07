@@ -3,7 +3,7 @@ import Accordions from './Accordions';
 import { accordionsWithIcon, accordionsWithoutIcon } from './Accordion.data';
 
 const meta = {
-  title: 'Example/Accordions/accordions',
+  title: 'Components/Accordions/accordions',
   component: Accordions,
   parameters: {
     layout: 'fullscreen',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ButtonCTA from './CTA';
 
 const meta = {
-  title: 'Example/Buttons/CTA',
+  title: 'Components/Buttons/CTA',
   component: ButtonCTA,
   parameters: {
     layout: 'centered',

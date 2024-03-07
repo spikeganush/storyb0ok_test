@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Column from './Column';
 
 const meta = {
-  title: 'Example/3ColumnsCTA/Column',
+  title: 'Components/3ColumnsCTA/Column',
   component: Column,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
     docs: {
       description: {
         component:

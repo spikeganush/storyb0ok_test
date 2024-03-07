@@ -4,7 +4,7 @@ import { ColumnProps } from './type';
 import { primary, primaryLongTextNoCtaNoTitle, secondary } from './Column.data';
 
 const meta: Meta<typeof ColumnsCta> = {
-  title: 'Example/3ColumnsCTA/ColumnsCta',
+  title: 'Components/3ColumnsCTA/ColumnsCta',
 
   component: ColumnsCta,
   parameters: {
