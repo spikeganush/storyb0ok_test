@@ -48,7 +48,7 @@ const ColorSwatch = ({ name, color }: { name: string; color: string }) => (
 );
 
 export default {
-  title: 'Design System/Colors',
+  title: 'Design System/Colours',
   // Description of the component
   parameters: {
     layout: 'fullscreen',
