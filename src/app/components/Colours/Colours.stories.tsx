@@ -49,7 +49,17 @@ const ColorSwatch = ({ name, color }: { name: string; color: string }) => (
 
 export default {
   title: 'Design System/Colors',
+  // Description of the component
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'The color palette used in the ACU Design System.',
+      },
+    },
+  },
   component: ColorSwatch,
+  tags: ['autodocs'],
 };
 
 export const ColorPalette = () => (
