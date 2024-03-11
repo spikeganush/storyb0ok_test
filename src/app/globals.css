@@ -10,7 +10,6 @@ a,
 #storybook-root,
 .sb-story {
   padding-block: 15px;
-  min-height: 100vh;
   overflow: hidden;
 }
 

@@ -8,11 +8,12 @@ type TLink = {
 };
 type HeaderProps = {
   links: TLink[];
+  inStorybook?: boolean;
 };
 
 const Header = (props: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { links } = props;
+  const { links, inStorybook } = props;
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const toggleMobileMenu = () => {
@@ -29,7 +30,7 @@ const Header = (props: HeaderProps) => {
               key={link.title}
               href={link.href}
               title={link.title}
-              className={`mr-0 px-6 py-4 lg:mr-5 lg:px-0 lg:px-0 lg:py-0 lg:py-0 lg:last-of-type:mr-0`}
+              className={`mr-0 px-6 py-4 lg:mr-5 lg:px-0 lg:py-0 lg:last-of-type:mr-0`}
               rel={`${link.targetOut ? 'noopener noreferrer' : ''}`}
               target={`${link.targetOut ? '_blank' : ''}`}
               tabIndex={isMobileMenuOpen ? 0 : -1}
@@ -42,7 +43,9 @@ const Header = (props: HeaderProps) => {
   };
 
   return (
-    <header className="container mx-auto py-5">
+    <header
+      className={`container mx-auto py-5 ${inStorybook && isMobileMenuOpen ? 'h-[450px]' : ''}`}
+    >
       <nav className="relative w-full" id="header-nav">
         <div
           className="container relative mx-auto flex items-center justify-between py-4"
@@ -59,11 +62,9 @@ const Header = (props: HeaderProps) => {
             />
           </a>
           <div
-            className={`absolute top-full flex w-auto flex-col bg-white p-5 shadow-md lg:relative lg:top-auto lg:flex lg:w-auto lg:flex-row lg:bg-transparent lg:p-0 lg:shadow-none ${
-              isMobileMenuOpen ? 'right-0' : 'right-[-130px] lg:right-0'
-            } transform transition-transform duration-300 ease-in-out lg:block ${
-              isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            } lg:translate-x-0`}
+            className={`absolute right-0 top-full flex w-auto flex-col bg-white p-5 shadow-md lg:relative lg:top-auto lg:flex lg:w-auto lg:flex-row lg:bg-transparent lg:p-0 lg:shadow-none ${
+              isMobileMenuOpen ? '-translate-x-0' : 'translate-x-[120%] lg:-translate-x-0'
+            } transform transition-transform duration-300 ease-in-out lg:block lg:translate-x-0`}
           >
             <Links />
           </div>

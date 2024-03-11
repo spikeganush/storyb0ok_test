@@ -29,7 +29,7 @@ const meta = {
   title: 'Components/Header',
   component: Header,
   parameters: {
-    layout: 'padded',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Header>;
@@ -40,5 +40,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     links,
+    inStorybook: true,
   },
 };

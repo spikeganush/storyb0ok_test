@@ -1,5 +1,5 @@
-import type { Preview } from "@storybook/react";
-import "../src/app/globals.css";
+import type { Preview } from '@storybook/react';
+import '../src/app/globals.css';
 
 const preview: Preview = {
   parameters: {
@@ -8,6 +8,11 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    options: {
+      storySort: {
+        order: ['Components', ['Header', '3ColumnsCTA', 'Accordions', 'Buttons'], 'Design System'],
       },
     },
   },
