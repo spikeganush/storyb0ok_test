@@ -46,6 +46,7 @@ const config: Config = {
         'acu-yellow': {
           100: '#F2BB0A', // ACU Online
         },
+        // If update the following, also update the COLOURS object in src/app/utils/constants.ts
       },
       fontFamily: {
         miller: ['Miller Font', 'serif'],
@@ -55,6 +56,12 @@ const config: Config = {
       },
     },
   },
+  safelist: [
+    'font-miller',
+    {
+      pattern: /(bg|text|border)-(acu)-/,
+    },
+  ],
   plugins: [require('@tailwindcss/container-queries')],
 };
 export default config;

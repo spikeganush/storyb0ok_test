@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TwoClWith3ClRight from './TwoClWith3ClRight';
 import { primary, primaryWithExample } from './TwoClWith3ClRight.data';
+import { processColors } from '../../utils/helper';
+import { COLOURS } from '../../utils/constants';
+
+const colorOptions = processColors(COLOURS);
+
+const presetColors = colorOptions.map((color) => color.color);
 
 const meta: Meta<typeof TwoClWith3ClRight> = {
   title: 'Components/2columnsWith3ColumnsRight',
@@ -8,12 +14,14 @@ const meta: Meta<typeof TwoClWith3ClRight> = {
   component: TwoClWith3ClRight,
   parameters: {
     layout: 'fullscreen',
-    // docs: {
-    //   description: {
-    //     component:
-    //       'Use the `ColumnsCta` component to display a call to action within a three-column layout. This component supports top and bottom separators for visual distinction, a customizable title, and a call to action. Each column can be individually configured with content, making it versatile for various use cases.',
-    //   },
-    // },
+    deepControls: { enabled: true },
+  },
+  argTypes: {
+    //@ts-ignore - TS is not happy with this, but it works
+    'left.titleColor': {
+      control: 'select',
+      options: presetColors,
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof TwoClWith3ClRight>;
