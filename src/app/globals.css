@@ -13,6 +13,9 @@ a,
   overflow: hidden;
 }
 
+.innerZoomElementWrapper {
+  @apply @container/main;
+}
 .docs-story > div > div {
   overflow: hidden;
 }

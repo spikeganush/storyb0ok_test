@@ -44,7 +44,7 @@ const Header = (props: HeaderProps) => {
 
   return (
     <header
-      className={`container mx-auto py-5 ${inStorybook && isMobileMenuOpen ? 'h-[450px]' : ''}`}
+      className={`container mx-auto py-5 ${inStorybook && isMobileMenuOpen ? 'h-[450px]' : 'h-auto'}`}
     >
       <nav className="relative w-full" id="header-nav">
         <div
@@ -63,7 +63,7 @@ const Header = (props: HeaderProps) => {
           </a>
           <div
             className={`absolute right-0 top-full flex w-auto flex-col bg-white p-5 shadow-md lg:relative lg:top-auto lg:flex lg:w-auto lg:flex-row lg:bg-transparent lg:p-0 lg:shadow-none ${
-              isMobileMenuOpen ? '-translate-x-0' : 'translate-x-[120%] lg:-translate-x-0'
+              isMobileMenuOpen ? '-translate-x-0' : 'translate-x-[200%] lg:-translate-x-0'
             } transform transition-transform duration-300 ease-in-out lg:block lg:translate-x-0`}
           >
             <Links />

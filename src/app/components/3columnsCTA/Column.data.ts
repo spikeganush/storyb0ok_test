@@ -1,4 +1,6 @@
-export const primary = {
+import { ColumnsCtaProps } from './type';
+
+export const primary: ColumnsCtaProps = {
   topSeparator: true,
   bottomSeparator: true,
   title: {
@@ -27,7 +29,7 @@ export const primary = {
   cta: { text: 'Find out more', url: 'https://www.acu.edu.au/' },
 };
 
-export const secondary = {
+export const secondary: ColumnsCtaProps = {
   topSeparator: true,
   bottomSeparator: true,
   title: {
@@ -64,7 +66,7 @@ export const secondary = {
   ],
 };
 
-export const primaryLongTextNoCtaNoTitle = {
+export const primaryLongTextNoCtaNoTitle: ColumnsCtaProps = {
   topSeparator: true,
   bottomSeparator: true,
   columns: [

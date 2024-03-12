@@ -34,6 +34,7 @@ const colors = {
   'acu-stone': '#8c857b',
   'acu-sand': '#e8e3db',
   'acu-white': '#ffffff',
+  'acu-gold': '#ad915d',
   'acu-yellow': {
     100: '#F2BB0A', // ACU Online
   },

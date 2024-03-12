@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ColumnsCta from './ColumnsCta';
-import { ColumnProps } from './type';
 import { primary, primaryLongTextNoCtaNoTitle, secondary } from './Column.data';
 
 const meta: Meta<typeof ColumnsCta> = {
@@ -71,27 +70,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    topSeparator: primary.topSeparator,
-    bottomSeparator: primary.bottomSeparator,
-    title: primary.title,
-    columns: primary.columns as ColumnProps[],
-    cta: primary.cta,
+    ...primary,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    topSeparator: secondary.topSeparator,
-    bottomSeparator: secondary.bottomSeparator,
-    title: secondary.title,
-    columns: secondary.columns as ColumnProps[],
+    ...secondary,
   },
 };
 
 export const PrimaryLongTextNoCtaNoTitle: Story = {
   args: {
-    topSeparator: primaryLongTextNoCtaNoTitle.topSeparator,
-    bottomSeparator: primaryLongTextNoCtaNoTitle.bottomSeparator,
-    columns: primaryLongTextNoCtaNoTitle.columns as ColumnProps[],
+    ...primaryLongTextNoCtaNoTitle,
   },
 };
