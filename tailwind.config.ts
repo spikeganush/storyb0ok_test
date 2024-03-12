@@ -9,10 +9,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
       colors: {
         'acu-red': {
           120: '#d00a00',
@@ -46,6 +42,7 @@ const config: Config = {
         'acu-stone': '#8c857b',
         'acu-sand': '#e8e3db',
         'acu-white': '#ffffff',
+        'acu-gold': '#ad915d',
         'acu-yellow': {
           100: '#F2BB0A', // ACU Online
         },

@@ -3,7 +3,6 @@ import '../src/app/globals.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on.*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -12,7 +11,11 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Components', ['Header', '3ColumnsCTA', 'Accordions', 'Buttons'], 'Design System'],
+        order: [
+          'Components',
+          ['Header', '3ColumnsCTA', '2columnsWith3ColumnsRight', 'Accordions', 'Buttons'],
+          'Design System',
+        ],
       },
     },
   },
