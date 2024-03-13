@@ -30,7 +30,13 @@ const meta: Meta<typeof TwoClWith3ClRight> = {
     //@ts-ignore - TS is not happy with this, but it works
     'left.contentColor': {
       control: 'select',
-      options: ['original', ...textPresetColors],
+      options: [
+        'original',
+        'text-acu-black-80',
+        'text-acu-black-120',
+        'text-acu-charcoal-100',
+        'text-acu-charcoal-120',
+      ],
     },
     //@ts-ignore - TS is not happy with this, but it works
     'right.titleColor': {
@@ -45,7 +51,13 @@ const meta: Meta<typeof TwoClWith3ClRight> = {
     //@ts-ignore - TS is not happy with this, but it works
     'right.contentColor': {
       control: 'select',
-      options: ['original', ...textPresetColors],
+      options: [
+        'original',
+        'text-acu-black-80',
+        'text-acu-black-120',
+        'text-acu-charcoal-100',
+        'text-acu-charcoal-120',
+      ],
     },
   },
   tags: ['autodocs'],
