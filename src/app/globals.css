@@ -21,23 +21,23 @@ a,
 }
 
 .cta--right-arrow {
-  display: flex;
-  align-items: center;
+  position: relative;
+  display: inline-block;
   cursor: pointer;
   transition: 0.3s ease;
   text-decoration: none;
+  margin-top: 0.5rem;
 }
 .cta--right-arrow:hover {
   text-decoration: underline;
 }
 .cta--right-arrow::after {
   content: '\2192';
-  margin-inline-start: 5px;
   color: black;
   font-size: 1.5rem;
-  line-height: 1.4;
-}
-
-.cta--right-arrow:hover::after {
-  text-decoration: none;
+  height: fit-content;
+  position: absolute;
+  right: -25px;
+  top: 47%;
+  transform: translateY(-50%);
 }

@@ -1,8 +1,17 @@
 import Image from 'next/image';
 import React from 'react';
 import ButtonCTA from '../Buttons/CTA';
+import { cn } from '../../utils/helper';
 
 export type TwoColumnsCtaWithImgProps = {
+  /** The top line seperator is visible or not
+   * @default true
+   */
+  topSeparator?: boolean;
+  /** The bottom line seperator is visible or not
+   * @default true
+   */
+  bottomSeparator?: boolean;
   /** The URL of the image */
   imageUrl: string;
   /** The title of the section */
@@ -20,6 +29,8 @@ export type TwoColumnsCtaWithImgProps = {
 };
 
 const TwoColumnsCtaWithImg = ({
+  topSeparator = true,
+  bottomSeparator = true,
   imageUrl,
   title,
   titleColor,
@@ -29,13 +40,10 @@ const TwoColumnsCtaWithImg = ({
   ctaText,
 }: TwoColumnsCtaWithImgProps) => {
   return (
-    <div className="w-full px-5">
-      {/* if top bar divider is needed, change pb-5 to space-y-5 and vice-versa */}
-      <div className={`relative flex flex-col space-x-0 pt-7 md:flex-row`}>
-        {/* Uncomment next line to add the top bar divider */}
-        {/* <div className="bar-divider-h__top extra-padding">&nbsp;</div> */}
+    <div className="w-full px-5 @container">
+      <div className="relative flex flex-col px-5 py-[4.375rem] md:flex-row">
+        {topSeparator && <div className="absolute left-5 right-5 top-0 h-[1px] bg-gray-400" />}
         <div className="w-full md:w-1/2">
-          {/* Change the image URL to the correct one */}
           <Image
             alt="Decoration image"
             src={imageUrl}
@@ -50,12 +58,22 @@ const TwoColumnsCtaWithImg = ({
             clipPath: 'polygon(100% 0, 100% calc(100% - 3rem), calc(100% - 3rem) 100%, 0 100%, 0 0',
           }}
         >
-          <h1 className={`mb-4 text-5xl font-bold text-acu-purple-100 ${titleColor}`}>{title}</h1>
-          <p className={`w-4/5 font-semibold text-acu-black-80 ${descriptionColor}`}>
+          <h1
+            className={cn(
+              'mb-4 text-5xl font-bold text-acu-purple-100 @[940px]:max-w-[5ch]',
+              titleColor,
+            )}
+          >
+            {title}
+          </h1>
+          <p className={cn('font-semibold text-acu-black-80 @[940px]:w-4/5', descriptionColor)}>
             {description}
           </p>
           <ButtonCTA text={ctaText} url={ctaUrl} />
         </div>
+        {bottomSeparator && (
+          <div className="absolute bottom-0 left-5 right-5 h-[1px] bg-gray-400" />
+        )}
       </div>
     </div>
   );
