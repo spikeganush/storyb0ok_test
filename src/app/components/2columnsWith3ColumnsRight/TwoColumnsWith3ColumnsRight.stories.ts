@@ -6,7 +6,7 @@ import { COLOURS } from '../../utils/constants';
 
 const colorOptions = processColors(COLOURS);
 
-const presetColors = colorOptions.map((color) => color.color);
+const textPresetColors = colorOptions.map((color) => `text-${color.color}`);
 
 const meta: Meta<typeof TwoClWith3ClRight> = {
   title: 'Components/2columnsWith3ColumnsRight',
@@ -20,7 +20,32 @@ const meta: Meta<typeof TwoClWith3ClRight> = {
     //@ts-ignore - TS is not happy with this, but it works
     'left.titleColor': {
       control: 'select',
-      options: presetColors,
+      options: ['original', ...textPresetColors],
+    },
+    //@ts-ignore - TS is not happy with this, but it works
+    'left.subTitleColor': {
+      control: 'select',
+      options: ['original', ...textPresetColors],
+    },
+    //@ts-ignore - TS is not happy with this, but it works
+    'left.contentColor': {
+      control: 'select',
+      options: ['original', ...textPresetColors],
+    },
+    //@ts-ignore - TS is not happy with this, but it works
+    'right.titleColor': {
+      control: 'select',
+      options: ['original', ...textPresetColors],
+    },
+    //@ts-ignore - TS is not happy with this, but it works
+    'right.contentTitleColor': {
+      control: 'select',
+      options: ['original', ...textPresetColors],
+    },
+    //@ts-ignore - TS is not happy with this, but it works
+    'right.contentColor': {
+      control: 'select',
+      options: ['original', ...textPresetColors],
     },
   },
   tags: ['autodocs'],
@@ -32,6 +57,10 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     ...primary,
+    left: {
+      ...primary.left,
+      titleColor: 'text-acu-gold',
+    },
   },
 };
 

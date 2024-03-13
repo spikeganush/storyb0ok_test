@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-webpack5-compiler-swc',
+    'storybook-addon-deep-controls',
   ],
   framework: {
     name: '@storybook/nextjs',

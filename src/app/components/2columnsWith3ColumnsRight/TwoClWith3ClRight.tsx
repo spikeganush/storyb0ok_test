@@ -3,9 +3,7 @@ import React from 'react';
 
 type RightContent = {
   title: string;
-  titleColor?: string;
   content: string;
-  contentColor?: string;
 };
 
 export type TwoClWith3ClRightProps = {
@@ -26,6 +24,8 @@ export type TwoClWith3ClRightProps = {
     imgAlt: string;
     title: string;
     titleColor?: string;
+    contentTitleColor?: string;
+    contentColor?: string;
     content: [RightContent, RightContent, RightContent];
   };
 };
@@ -37,18 +37,45 @@ const TwoClWith3ClRight = ({
   bottomSeparator,
 }: TwoClWith3ClRightProps) => {
   // Default colors for left content
-  const defaultLeftColors = {
+  const defaultColors = {
     titleColor: 'text-acu-purple-100',
     subTitleColor: 'text-acu-purple-100',
     contentColor: 'text-acu-black-80',
   };
-  const { titleColor, subTitleColor, contentColor } = { ...defaultLeftColors, ...left };
-
-  // Function to return default colors for right.content based on index
-  const getDefaultRightColor = (index: number, type: 'title' | 'content') => {
-    const defaults = ['text-acu-gold', 'text-acu-black-80'];
-    return type === 'title' ? defaults[0] : defaults[1];
+  const mergedLeft = {
+    ...defaultColors,
+    ...left,
+    titleColor:
+      left.titleColor === 'original' || !left.titleColor
+        ? defaultColors.titleColor
+        : left.titleColor,
+    subTitleColor:
+      left.subTitleColor === 'original' || !left.subTitleColor
+        ? defaultColors.subTitleColor
+        : left.subTitleColor,
+    contentColor:
+      left.contentColor === 'original' || !left.contentColor
+        ? defaultColors.contentColor
+        : left.contentColor,
   };
+  const { titleColor, subTitleColor, contentColor } = mergedLeft;
+
+  const mergedContentRight = {
+    rightTitleColor:
+      right.titleColor === 'original' || !right.titleColor
+        ? defaultColors.titleColor
+        : right.titleColor,
+    rightContentTitleColor:
+      right.contentTitleColor === 'original' || !right.contentTitleColor
+        ? 'text-acu-gold'
+        : right.contentTitleColor,
+    rightContentColor:
+      right.contentColor === 'original' || !right.contentColor
+        ? defaultColors.contentColor
+        : right.contentColor,
+  };
+
+  const { rightTitleColor, rightContentTitleColor, rightContentColor } = mergedContentRight;
 
   return (
     <section className="container relative mx-auto px-5 py-[4.375rem] @container/main">
@@ -65,20 +92,16 @@ const TwoClWith3ClRight = ({
         <div className="mt-6 flex-1 @[728px]/main:mt-0 @[728px]/main:flex-[4] @[1240px]/main:flex-[5]">
           {/* Right content */}
           <Image src={right.img} alt={right.imgAlt} width={100} height={100} />
-          <h2 className={`text-3xl font-bold ${right.titleColor || 'text-acu-purple-100'}`}>
+          <h2 className={`text-3xl font-bold ${rightTitleColor || 'text-acu-purple-100'}`}>
             {right.title}
           </h2>
           <div className="flex flex-col md:flex-row md:space-x-4">
             {right.content.map((content, index) => (
               <div key={index} className="flex-1">
-                <h3
-                  className={`pt-2 text-[1.3rem] font-bold ${content.titleColor || getDefaultRightColor(index, 'title')}`}
-                >
+                <h3 className={`pt-2 text-[1.3rem] font-bold ${rightContentTitleColor}`}>
                   {content.title}
                 </h3>
-                <p className={`${content.contentColor || getDefaultRightColor(index, 'content')}`}>
-                  {content.content}
-                </p>
+                <p className={`${rightContentColor}`}>{content.content}</p>
               </div>
             ))}
           </div>
