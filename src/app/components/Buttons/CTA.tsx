@@ -1,3 +1,4 @@
+import { cn } from '../../utils/helper';
 import React from 'react';
 
 type ButtonCTAProps = {
@@ -12,7 +13,7 @@ const ButtonCTA = ({ url, text, style }: ButtonCTAProps) => {
       href={url}
       rel="noopener noreferrer"
       target="_blank"
-      className={`cta--right-arrow font-semibold text-acu-red-100 ${style}`}
+      className={cn('cta--right-arrow font-semibold text-acu-red-100', style)}
     >
       {text}
     </a>

@@ -1,4 +1,6 @@
+import { twMerge } from 'tailwind-merge';
 import { AcuColors } from './constants';
+import { clsx, ClassValue } from 'clsx';
 
 export const processColors = (colors: AcuColors) => {
   const colorEntries: { color: string; hex: string }[] = [];
@@ -14,4 +16,8 @@ export const processColors = (colors: AcuColors) => {
     }
   });
   return colorEntries;
+};
+
+export const cn = (...inputs: ClassValue[]) => {
+  return twMerge(clsx(inputs));
 };

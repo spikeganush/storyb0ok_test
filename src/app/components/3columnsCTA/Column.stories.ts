@@ -3,7 +3,7 @@ import Column from './Column';
 import { primary, secondary } from './Column.data';
 
 const meta = {
-  title: 'Components/3ColumnsCTA/Column',
+  title: 'Components/CTA/3ColumnsCTA/Column',
   component: Column,
   parameters: {
     layout: 'padded',

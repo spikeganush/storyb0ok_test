@@ -3,7 +3,7 @@ import ColumnsCta from './ColumnsCta';
 import { primary, primaryLongTextNoCtaNoTitle, secondary } from './Column.data';
 
 const meta: Meta<typeof ColumnsCta> = {
-  title: 'Components/3ColumnsCTA/ColumnsCta',
+  title: 'Components/CTA/3ColumnsCTA/ColumnsCta',
 
   component: ColumnsCta,
   parameters: {
