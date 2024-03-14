@@ -21,6 +21,7 @@ const meta: Meta<typeof TwoClWith3ClRight> = {
     'left.titleColor': {
       control: 'select',
       options: ['original', ...textPresetColors],
+      description: 'Color of the title',
     },
     //@ts-ignore - TS is not happy with this, but it works
     'left.subTitleColor': {

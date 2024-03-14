@@ -1,9 +1,19 @@
-export type ColorShades = {
-  [shade: number]: string;
-};
+type AcuRedShades = 120 | 100 | 80 | 60 | 40 | 20;
+type AcuPurpleShades = 120 | 115 | 100 | 80 | 60 | 40 | 20;
+type AcuBlackShades = 80 | 40 | 30 | 20 | 15 | 10;
+type AcuCharcoalShades = 120 | 100;
+type AcuYellowShades = 100;
 
 export type AcuColors = {
-  [colorName: string]: ColorShades | string;
+  'acu-red': Record<AcuRedShades, string>;
+  'acu-purple': Record<AcuPurpleShades, string>;
+  'acu-charcoal': Record<AcuCharcoalShades, string>;
+  'acu-black': Record<AcuBlackShades, string>;
+  'acu-stone': string;
+  'acu-sand': string;
+  'acu-white': string;
+  'acu-gold': string;
+  'acu-yellow': Record<AcuYellowShades, string>;
 };
 
 export const COLOURS: AcuColors = {

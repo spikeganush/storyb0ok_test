@@ -1,19 +1,17 @@
-import Image from 'next/image';
+import { cn } from '../../utils/helper';
 import React, { useRef } from 'react';
-import { TAccordionItem } from './type';
 
 const AccordionTitle = ({
+  titleObject,
   isOpen,
   setIsOpen,
-  accordion,
 }: {
+  titleObject: { title: string; subtitle: string; subtitleColor?: string };
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  accordion: TAccordionItem;
 }) => {
+  const { title, subtitle, subtitleColor } = titleObject;
   const titleRef = useRef<HTMLDivElement>(null);
-
-  const accordionImg = accordion.img;
 
   const toggleAccordion = (ref: React.RefObject<HTMLDivElement>) => {
     const titleDiv = ref.current;
@@ -24,9 +22,10 @@ const AccordionTitle = ({
       titleDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
   return (
     <div
-      className='w-full py-5 text-left focus:outline-dotted outline-2 outline-offset-4 outline-acu-purple-100 cursor-pointer'
+      className="dotted-focus group flex w-full cursor-pointer justify-between"
       onClick={() => toggleAccordion(titleRef)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
@@ -37,37 +36,27 @@ const AccordionTitle = ({
       tabIndex={0}
       ref={titleRef}
     >
-      <div className='flex justify-between items-start w-full'>
-        <div className='flex'>
-          {accordionImg && (
-            <Image
-              alt='Accordion Icon'
-              src={accordionImg}
-              width={70}
-              height={70}
-              className='w-[70px] aspect-square mr-6'
-            />
-          )}
-          <div className='title'>
-            <h2
-              className={`${accordionImg ? 'text-4xl text-acu-purple-100' : 'text-2xl text-acu-red-100'} font-bold`}
-            >
-              {accordion.title}
-            </h2>
-            <h3
-              className={`${accordionImg ? 'text-2xl font-miller my-2' : 'text-[2.025rem] leading-8 text-acu-purple-100 font-bold min-w-[90%] max-w-[770px]'}`}
-            >
-              {accordion.subtitle}
-            </h3>
-          </div>
-        </div>
-        <span
-          className={`text-2xl font-bold transform transition-transform duration-300 ${
-            isOpen ? 'rotate-180' : 'rotate-0'
-          }`}
+      <div className="">
+        <h1 className="text-2xl font-bold text-acu-purple-100 group-hover:underline">{title}</h1>
+        <h2 className={cn('text-base font-semibold text-acu-black-80', subtitleColor)}>
+          {subtitle}
+        </h2>
+      </div>
+      <div className="chevron">
+        <svg
+          className={cn('h-6 w-6 duration-500', isOpen ? 'rotate-180 transform' : '')}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          {isOpen ? '-' : '+'}
-        </span>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
       </div>
     </div>
   );

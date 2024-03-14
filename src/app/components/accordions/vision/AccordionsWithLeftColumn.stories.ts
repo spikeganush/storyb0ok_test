@@ -8,7 +8,7 @@ import {
 } from './Accordion.data';
 
 const meta = {
-  title: 'Components/Accordions/accordions-with-left-column',
+  title: 'Components/Accordions/Vision2033/accordions-with-left-column',
   component: AccordionsWithLeftColumn,
   parameters: {
     layout: 'fullscreen',
