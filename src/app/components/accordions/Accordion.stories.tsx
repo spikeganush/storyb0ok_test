@@ -5,7 +5,7 @@ import { COLOURS } from '../../utils/constants';
 import { getTWNameWithPrefix } from '../../utils/helper';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordions/accordion',
+  title: 'Components/Accordions/Accordions/accordion',
   component: Accordion,
   parameters: {
     layout: 'fullscreen',

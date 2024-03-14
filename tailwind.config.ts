@@ -54,6 +54,9 @@ const config: Config = {
       transitionProperty: {
         height: 'height',
       },
+      boxShadow: {
+        accordion: '0.1rem 0.1rem 0.5rem rgba(0,0,0,0.1)',
+      },
     },
   },
   safelist: [
