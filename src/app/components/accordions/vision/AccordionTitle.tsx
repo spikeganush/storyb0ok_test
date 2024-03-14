@@ -15,7 +15,13 @@ const AccordionTitle = ({
 
   const accordionImg = accordion.img;
 
-  const toggleAccordion = (ref: React.RefObject<HTMLDivElement>) => {
+  const toggleAccordion = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
+    ref: React.RefObject<HTMLDivElement>,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     const titleDiv = ref.current;
     if (!titleDiv) return;
     titleDiv.blur();
@@ -24,14 +30,14 @@ const AccordionTitle = ({
       titleDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
   return (
     <div
       className="dotted-focus w-full cursor-pointer py-5 text-left focus:outline-dotted"
-      onClick={() => toggleAccordion(titleRef)}
+      onClick={(e) => toggleAccordion(e, titleRef)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-          e.preventDefault();
-          toggleAccordion(titleRef);
+          toggleAccordion(e, titleRef);
         }
       }}
       tabIndex={0}

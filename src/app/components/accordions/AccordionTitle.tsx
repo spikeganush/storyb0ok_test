@@ -13,7 +13,13 @@ const AccordionTitle = ({
   const { title, subtitle, subtitleColor } = titleObject;
   const titleRef = useRef<HTMLDivElement>(null);
 
-  const toggleAccordion = (ref: React.RefObject<HTMLDivElement>) => {
+  const toggleAccordion = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
+    ref: React.RefObject<HTMLDivElement>,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     const titleDiv = ref.current;
     if (!titleDiv) return;
     titleDiv.blur();
@@ -26,11 +32,10 @@ const AccordionTitle = ({
   return (
     <div
       className="dotted-focus group flex w-full cursor-pointer justify-between"
-      onClick={() => toggleAccordion(titleRef)}
+      onMouseDown={(e) => toggleAccordion(e, titleRef)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-          e.preventDefault();
-          toggleAccordion(titleRef);
+          toggleAccordion(e, titleRef);
         }
       }}
       tabIndex={0}
