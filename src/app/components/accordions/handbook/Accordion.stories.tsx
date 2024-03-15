@@ -26,6 +26,7 @@ const meta: Meta<typeof Accordion> = {
         getTWNameWithPrefix('text', COLOURS['acu-red'][100]),
       ],
       defaultValue: getTWNameWithPrefix('text', COLOURS['acu-black'][80]),
+      description: `Default color: ${getTWNameWithPrefix('text', COLOURS['acu-black'][80])}`,
     },
     open: {
       control: 'boolean',
