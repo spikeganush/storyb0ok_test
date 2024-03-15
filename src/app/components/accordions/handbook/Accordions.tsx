@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { TAccordionsProps } from './type';
 import Accordion from './Accordion';
-import { handleEventAndBlur } from '../../utils/helper';
+import { handleEventAndBlur } from '../../../utils/helper';
 
 const Accordions = (props: TAccordionsProps) => {
   const { title, accordion } = props;

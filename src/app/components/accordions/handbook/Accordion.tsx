@@ -1,4 +1,4 @@
-import { cn } from '../../utils/helper';
+import { cn } from '../../../utils/helper';
 import React, { useEffect, useRef, useState } from 'react';
 import AccordionTitle from './AccordionTitle';
 import { TAccordionProps } from './type';
@@ -23,7 +23,7 @@ const Accordion = ({
   }, [open]);
 
   return (
-    <div className="shadow-accordion mb-8 w-full">
+    <div className="mb-8 w-full shadow-accordion">
       <AccordionTitle
         titleObject={titleObject}
         isOpen={isOpen}

@@ -57,6 +57,9 @@ const config: Config = {
       boxShadow: {
         accordion: '0.1rem 0.1rem 0.5rem rgba(0,0,0,0.1)',
       },
+      gridTemplateColumns: {
+        'unit-info': '7rem auto 5rem',
+      },
     },
   },
   safelist: [

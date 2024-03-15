@@ -1,4 +1,4 @@
-import { cn, handleEventAndBlur } from '../../utils/helper';
+import { cn, handleEventAndBlur } from '../../../utils/helper';
 import React, { useRef } from 'react';
 import { TAccordionTitleProps } from './type';
 

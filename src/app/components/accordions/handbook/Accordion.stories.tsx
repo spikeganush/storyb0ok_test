@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Accordion from './Accordion';
 import React from 'react';
-import { COLOURS } from '../../utils/constants';
-import { getTWNameWithPrefix } from '../../utils/helper';
+import { COLOURS } from '../../../utils/constants';
+import { getTWNameWithPrefix } from '../../../utils/helper';
+import UnitInfo from '../../Unit/UnitInfo';
+import { primaryData } from '../../Unit/UnitInfo.data';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordions/Accordions/accordion',
+  title: 'Components/Accordions/Handbook/accordion',
   component: Accordion,
   parameters: {
     layout: 'fullscreen',
@@ -21,6 +23,10 @@ const meta: Meta<typeof Accordion> = {
         getTWNameWithPrefix('text', COLOURS['acu-charcoal'][100]),
       ],
       defaultValue: getTWNameWithPrefix('text', COLOURS['acu-black'][80]),
+    },
+    open: {
+      control: 'boolean',
+      defaultValue: false,
     },
   },
   tags: ['autodocs'],
@@ -41,6 +47,6 @@ export const Primary: Story = {
   args: {
     title: 'Part A',
     subtitle: 'Arts Majors',
-    children: 'Content',
+    children: <UnitInfo {...primaryData} />,
   },
 };
