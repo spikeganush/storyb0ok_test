@@ -5,6 +5,7 @@ import { COLOURS } from '../../../utils/constants';
 import { getTWNameWithPrefix } from '../../../utils/helper';
 import UnitInfo from '../../Unit/UnitInfo';
 import { primaryData } from '../../Unit/UnitInfo.data';
+import { get } from 'http';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordions/Handbook/accordion',
@@ -21,6 +22,8 @@ const meta: Meta<typeof Accordion> = {
       options: [
         getTWNameWithPrefix('text', COLOURS['acu-black'][80]),
         getTWNameWithPrefix('text', COLOURS['acu-charcoal'][100]),
+        getTWNameWithPrefix('text', COLOURS['acu-charcoal'][120]),
+        getTWNameWithPrefix('text', COLOURS['acu-red'][100]),
       ],
       defaultValue: getTWNameWithPrefix('text', COLOURS['acu-black'][80]),
     },
