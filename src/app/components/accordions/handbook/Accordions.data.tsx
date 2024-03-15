@@ -8,5 +8,12 @@ export const primaryData: TAccordionsProps = {
   accordion: [
     { title: 'Part A', subtitle: 'Arts Majors', children: <UnitInfo {...primaryDataUnitInfo} /> },
     { title: 'Part F', subtitle: 'Inquire units', children: <UnitInfo {...secondaryData} /> },
+    {
+      title: 'Not unit info',
+      subtitle: 'Some text',
+      children: (
+        <p className="text-4xl text-acu-purple-100">Can be anything inside the accordion</p>
+      ),
+    },
   ],
 };
