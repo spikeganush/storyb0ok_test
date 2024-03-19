@@ -11,11 +11,25 @@ const meta: Meta<typeof Cards> = {
   },
   argTypes: {
     numberOfCards: {
+      name: 'Number of cards',
       options: [2, 3, 4],
       control: {
         type: 'select',
       },
     },
+    showImg: {
+      name: 'Image visible',
+    },
+    mainTitle: {
+      name: 'Main title',
+    },
+    showMainTitle: {
+      name: 'Show main title',
+    },
+  },
+  args: {
+    showImg: true,
+    numberOfCards: 4,
   },
   tags: ['autodocs'],
   decorators: [
@@ -34,16 +48,12 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     cards: Array.from({ length: 4 }, () => ({ ...primary })),
-    numberOfCards: 4,
-    showImg: true,
   },
 };
 
 export const PrimaryWithContent: Story = {
   args: {
     cards: primaryCardsWithContent,
-    numberOfCards: 4,
-    showImg: true,
     mainTitle: 'Discover more',
     showMainTitle: true,
   },

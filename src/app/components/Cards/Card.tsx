@@ -21,6 +21,7 @@ const Card = ({ imgUrl, showImg = true, title, content, ctaText, ctaUrl }: TCard
           alt={title}
           width={700}
           height={400}
+          role="img"
         />
       )}
       <h3
@@ -34,6 +35,7 @@ const Card = ({ imgUrl, showImg = true, title, content, ctaText, ctaUrl }: TCard
       <a
         href={ctaUrl}
         className="row-[5/6] mt-8  grid w-fit items-center bg-acu-red-100 px-4 py-2 text-sm font-semibold text-white"
+        aria-label={ctaText}
       >
         {ctaText}
       </a>

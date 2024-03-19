@@ -10,7 +10,7 @@ export type TCardsProps = {
   showMainTitle?: boolean;
 };
 const Cards = (props: TCardsProps) => {
-  const { cards, numberOfCards = 1, showImg, mainTitle, showMainTitle } = props;
+  const { cards, numberOfCards = 2, showImg, mainTitle, showMainTitle = true } = props;
   return (
     <>
       {showMainTitle && mainTitle && (
