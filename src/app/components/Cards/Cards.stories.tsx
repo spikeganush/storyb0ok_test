@@ -14,7 +14,7 @@ const meta: Meta<typeof Cards> = {
     numberOfCards: {
       control: {
         type: 'range',
-        min: 1,
+        min: 2,
         max: 4,
         step: 1,
       },
