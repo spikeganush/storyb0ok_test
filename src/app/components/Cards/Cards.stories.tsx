@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import Cards from './Cards';
 import { primary, primaryCardsWithContent } from './Card.data';
-import { TCardProps } from './Card';
 
 const meta: Meta<typeof Cards> = {
   title: 'Components/Cards/Cards',
@@ -12,11 +11,9 @@ const meta: Meta<typeof Cards> = {
   },
   argTypes: {
     numberOfCards: {
+      options: [2, 3, 4],
       control: {
-        type: 'range',
-        min: 2,
-        max: 4,
-        step: 1,
+        type: 'select',
       },
     },
   },
@@ -47,5 +44,7 @@ export const PrimaryWithContent: Story = {
     cards: primaryCardsWithContent,
     numberOfCards: 4,
     showImg: true,
+    mainTitle: 'Discover more',
+    showMainTitle: true,
   },
 };
