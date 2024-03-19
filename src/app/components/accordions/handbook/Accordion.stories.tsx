@@ -5,7 +5,6 @@ import { COLOURS } from '../../../utils/constants';
 import { getTWNameWithPrefix } from '../../../utils/helper';
 import UnitInfo from '../../Unit/UnitInfo';
 import { primaryData } from '../../Unit/UnitInfo.data';
-import { get } from 'http';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordions/Handbook/accordion',
