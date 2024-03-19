@@ -1,18 +1,12 @@
 import React from 'react';
-import Card, { TCardProps } from './Card';
-import { cn } from '../../utils/helper';
+import Card from './Card';
+import { cn } from '../../../utils/helper';
+import { TCardsProps } from './type';
 
-export type TCardsProps = {
-  cards: TCardProps[];
-  numberOfCards?: number;
-  showImg?: boolean;
-  mainTitle?: string;
-  showMainTitle?: boolean;
-};
 const Cards = (props: TCardsProps) => {
   const { cards, numberOfCards = 2, showImg, mainTitle, showMainTitle = true } = props;
   return (
-    <>
+    <div className="container mx-auto">
       {showMainTitle && mainTitle && (
         <div className="mb-12 text-4xl font-bold text-acu-purple-100">{mainTitle}</div>
       )}
@@ -32,7 +26,7 @@ const Cards = (props: TCardsProps) => {
             .slice(0, numberOfCards)
             .map((card, index) => <Card key={index} {...card} showImg={showImg} />)}
       </div>
-    </>
+    </div>
   );
 };
 

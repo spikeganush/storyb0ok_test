@@ -1,15 +1,7 @@
-import { cn } from '../../utils/helper';
+import { cn } from '../../../utils/helper';
 import Image from 'next/image';
 import React from 'react';
-
-export type TCardProps = {
-  imgUrl: string;
-  showImg?: boolean;
-  title: string;
-  content: string;
-  ctaText: string;
-  ctaUrl: string;
-};
+import { TCardProps } from './type';
 
 const Card = ({ imgUrl, showImg = true, title, content, ctaText, ctaUrl }: TCardProps) => {
   return (

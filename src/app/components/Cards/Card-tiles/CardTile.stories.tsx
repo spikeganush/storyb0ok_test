@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import Card from './Card';
-import { primary, primaryWithContent } from './Card.data';
+import CardTile from './CardTile';
 
-const meta: Meta<typeof Card> = {
-  title: 'Components/Cards/Card',
-  component: Card,
+const meta: Meta<typeof CardTile> = {
+  title: 'Components/Cards/Tile/Card',
+  component: CardTile,
   parameters: {
     layout: 'fullscreen',
   },
@@ -25,12 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    ...primary,
-  },
-};
-
-export const PrimaryWithContent: Story = {
-  args: {
-    ...primaryWithContent,
+    title: 'Card Tile',
+    url: 'https://www.google.com',
   },
 };
