@@ -4,9 +4,7 @@ import ButtonCTA from './CTA';
 const meta = {
   title: 'Components/Buttons/CTA',
   component: ButtonCTA,
-  parameters: {
-    layout: 'centered',
-  },
+
   tags: ['autodocs'],
 } satisfies Meta<typeof ButtonCTA>;
 
