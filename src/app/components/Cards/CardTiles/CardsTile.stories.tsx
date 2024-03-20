@@ -4,7 +4,7 @@ import CardsTile from './CardsTile';
 import { primaryData } from './CardsTile.data';
 
 const meta: Meta<typeof CardsTile> = {
-  title: 'Components/Cards/Tile/Cards',
+  title: 'Components/Cards/Tile',
   component: CardsTile,
   parameters: {
     layout: 'fullscreen',

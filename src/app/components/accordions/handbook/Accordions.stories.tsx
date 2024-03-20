@@ -4,7 +4,7 @@ import React from 'react';
 import { primaryData } from './Accordions.data';
 
 const meta: Meta<typeof Accordions> = {
-  title: 'Components/Accordions/Handbook/accordions',
+  title: 'Components/Accordions/Handbook',
   component: Accordions,
   parameters: {
     layout: 'fullscreen',
