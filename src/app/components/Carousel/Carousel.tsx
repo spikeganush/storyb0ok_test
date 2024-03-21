@@ -1,17 +1,21 @@
-import { cn } from '../../utils/helper';
-import React, { useState, useEffect, useRef } from 'react';
+import { cn, handleEventAndBlur } from '../../utils/helper';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import CardCarousel, { TCardCarousel } from '../Cards/Carousel/CardCarousel';
+import Button from './CarouselButtons';
 
 export type TCarouselProps = {
   cards: TCardCarousel[];
   title?: string;
+  tagsAll?: boolean;
 };
 
 const Carousel = (props: TCarouselProps) => {
-  const { cards, title } = props;
+  const { cards, title, tagsAll = false } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
   const [translateX, setTranslateX] = useState(0);
+  const [tags, setTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string | null>(tagsAll ? 'All' : null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
   // This function updates the number of visible cards based on screen size
@@ -33,18 +37,16 @@ const Carousel = (props: TCarouselProps) => {
     return () => window.removeEventListener('resize', updateVisibleCards);
   }, []);
 
-  // Navigation functions will go here
-  const navigate = (direction: number) => {
-    setCurrentIndex((prevIndex) => {
-      let newIndex = prevIndex + direction * visibleCards;
-      // Prevent navigating beyond the start and end of the cards array
-      newIndex =
-        cards && cards.length && Math.max(0, Math.min(newIndex, cards.length - visibleCards));
-      return newIndex;
-    });
-  };
+  useEffect(() => {
+    // @ts-ignore
+    let updatedTags = [...new Set(cards.map((card) => card.tag))];
+    if (tagsAll) {
+      updatedTags = ['All', ...updatedTags];
+    }
+    setTags(updatedTags);
+  }, [cards, tagsAll]);
 
-  const updateTranslateX = () => {
+  const updateTranslateX = useCallback(() => {
     if (carouselRef.current) {
       // Get the computed style of the carousel container
       const computedStyle = getComputedStyle(carouselRef.current);
@@ -59,10 +61,11 @@ const Carousel = (props: TCarouselProps) => {
       const gapSize = parseInt(computedStyle.gap, 10);
       const cardWidth = (containerWidth - gapSize * (visibleCards - 1)) / visibleCards;
       const totalTranslateX = (cardWidth + gapSize) * currentIndex;
+      console.log(currentIndex, totalTranslateX);
 
       setTranslateX(totalTranslateX);
     }
-  };
+  }, [currentIndex, visibleCards]);
 
   useEffect(() => {
     updateTranslateX();
@@ -73,55 +76,71 @@ const Carousel = (props: TCarouselProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, visibleCards]);
 
-  const Button = ({ direction }: { direction: 'prev' | 'next' }) => {
-    return (
-      <button
-        type="button"
-        onClick={() => navigate(direction === 'prev' ? -1 : 1)}
-        className={cn(
-          'dotted-focus absolute z-10 row-[1/2] flex aspect-square w-12 items-center justify-center rounded-[50%] bg-acu-red-100 text-acu-white',
-          {
-            'rotate-180': direction === 'next',
-            hidden:
-              (direction === 'prev' && currentIndex === 0) ||
-              (direction === 'next' && currentIndex === (cards && cards.length - visibleCards)),
-            '-left-16': direction === 'prev',
-            '-right-16': direction === 'next',
-          },
-        )}
-      >
-        <svg
-          width="26"
-          height="46"
-          viewBox="0 0 26 46"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="white"
-          className={cn('h-4/6', {
-            'mr-2': direction === 'next',
-          })}
-        >
-          <path d="M24.998,40.094c1.338,1.352,1.338,3.541,0,4.893c-1.338,1.35-3.506,1.352-4.846,0L1.004,25.447  c-1.338-1.352-1.338-3.543,0-4.895L20.152,1.014c1.34-1.352,3.506-1.352,4.846,0c1.338,1.352,1.338,3.541,0,4.893L9.295,23  L24.998,40.094z" />
-        </svg>
-      </button>
-    );
+  const filteredCards =
+    selectedTag === 'All' ? cards : cards.filter((card) => card.tag === selectedTag);
+
+  const buttonProps = {
+    currentIndex,
+    cards: filteredCards,
+    visibleCards,
+    setCurrentIndex,
   };
+
+  const buttonTagsRef = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const handleTagClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLButtonElement>,
+    index: number,
+    tag: string,
+  ) => {
+    const buttonRef = buttonTagsRef.current[index];
+    handleEventAndBlur(e, { current: buttonRef }, () => {
+      setCurrentIndex(0);
+      setSelectedTag(tag);
+    });
+  };
+
   return (
     <div className="container mx-auto">
+      <div className="mb-4 flex w-full items-center justify-between px-2">
+        {title && <h2 className="text-[2.625rem] font-bold text-acu-purple-100">{title}</h2>}
+        <div className="flex gap-2">
+          {tags &&
+            tags.map((tag, index) => (
+              <button
+                ref={(element) => (buttonTagsRef.current[index] = element)}
+                key={index}
+                onMouseDown={(e) => handleTagClick(e, index, tag)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
+                    handleTagClick(e, index, tag);
+                  }
+                }}
+                className={cn(
+                  'dotted-focus border border-acu-red-100 px-4 py-2 text-sm font-bold text-acu-red-100',
+                  selectedTag === tag ? 'bg-acu-red-100 text-acu-white' : 'bg-acu-gray-100',
+                )}
+              >
+                {tag}
+              </button>
+            ))}
+        </div>
+      </div>
       <div className="relative flex h-auto w-full items-center">
-        <Button direction="prev" />
+        <Button {...buttonProps} direction="prev" />
         <div className="flex w-full items-center justify-center overflow-x-hidden overflow-y-visible">
           <div
             className="flex w-full justify-start gap-[30px] px-2 pt-4 transition-transform duration-500"
             style={{ transform: `translateX(-${translateX}px)` }}
             ref={carouselRef}
           >
-            {cards &&
-              cards.map((card, index) => (
+            {filteredCards &&
+              filteredCards.map((card, index) => (
                 <CardCarousel key={index} card={card} visibleCards={visibleCards} />
               ))}
           </div>
         </div>
-        <Button direction="next" />
+        <Button {...buttonProps} direction="next" />
       </div>
     </div>
   );

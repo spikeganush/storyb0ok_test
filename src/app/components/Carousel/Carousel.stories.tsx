@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import Carousel from './Carousel';
+import { title } from 'process';
 
 const meta: Meta<typeof Carousel> = {
   title: 'Components/Carousel',
@@ -11,7 +12,7 @@ const meta: Meta<typeof Carousel> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className="p-5">
+      <div className="p-5 @container">
         <Story />
       </div>
     ),
@@ -23,6 +24,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const primaryData = {
+  title: 'Carousel Title',
+  tagsAll: true,
   cards: [
     {
       title: 'Card 1',
