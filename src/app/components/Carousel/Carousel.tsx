@@ -100,9 +100,10 @@ const Carousel = (props: TCarouselProps) => {
       setSelectedTag(tag);
     });
   };
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+
+  const handleSelectChange = (tag: string) => {
     setCurrentIndex(0);
-    setSelectedTag(event.target.value);
+    setSelectedTag(tag);
   };
 
   return (
@@ -130,7 +131,7 @@ const Carousel = (props: TCarouselProps) => {
               </button>
             ))}
         </div>
-        <CarouselDropdown tags={tags} selectedTag={selectedTag} onSelectTag={setSelectedTag} />
+        <CarouselDropdown tags={tags} selectedTag={selectedTag} onSelectTag={handleSelectChange} />
       </div>
       <div className="relative flex h-auto w-full items-center">
         <Button {...buttonProps} direction="prev" />

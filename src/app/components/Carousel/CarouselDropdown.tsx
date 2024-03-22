@@ -66,10 +66,18 @@ const CarouselDropdown = ({
       >
         {tags.map((tag, index) => (
           <div
+            tabIndex={0}
             key={index}
             onClick={() => {
               onSelectTag(tag);
               setIsOpen(false);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
+                e.preventDefault();
+                onSelectTag(tag);
+                setIsOpen(false);
+              }
             }}
             className="cursor-pointer border-b-2 px-4 py-2 text-left text-sm font-bold last-of-type:border-b-0 hover:bg-acu-red-100 hover:text-acu-white"
           >
