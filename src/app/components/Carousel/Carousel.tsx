@@ -15,6 +15,9 @@ const Carousel = (props: TCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
   const [translateX, setTranslateX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTag, setSelectedTag] = useState<string | null>(tagsAll ? 'All tags' : null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -106,6 +109,43 @@ const Carousel = (props: TCarouselProps) => {
     setSelectedTag(tag);
   };
 
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      setIsDragging(true);
+      setStartX(e.pageX - carouselRef.current!.offsetLeft);
+      setCurrentTranslate(translateX);
+    },
+    [translateX],
+  );
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!isDragging) return;
+      const x = e.pageX - carouselRef.current!.offsetLeft;
+      const moveTranslate = currentTranslate - (x - startX);
+      setTranslateX(moveTranslate);
+    },
+    [isDragging, startX, currentTranslate],
+  );
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    } else {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
   return (
     <div className="container mx-auto">
       <div className="mb-4 flex w-full flex-wrap items-center justify-between px-2">
@@ -135,9 +175,21 @@ const Carousel = (props: TCarouselProps) => {
       </div>
       <div className="relative flex h-auto w-full items-center">
         <Button {...buttonProps} direction="prev" />
-        <div className="flex w-full items-center justify-center overflow-x-hidden overflow-y-visible">
+        <div
+          onMouseDown={handleMouseDown}
+          className={cn(
+            'flex w-full items-center justify-center overflow-x-hidden overflow-y-visible',
+            {
+              'cursor-grab': !isDragging,
+              'cursor-grabbing': isDragging,
+              'select-none': isDragging,
+            },
+          )}
+        >
           <div
-            className="flex w-full justify-start gap-[30px] px-2 pt-4 transition-transform duration-500"
+            className={cn(
+              'flex w-full justify-start gap-[30px] px-2 pt-4 transition-transform duration-500',
+            )}
             style={{ transform: `translateX(-${translateX}px)` }}
             ref={carouselRef}
           >
