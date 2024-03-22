@@ -2,6 +2,7 @@ import { cn, handleEventAndBlur } from '../../utils/helper';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import CardCarousel, { TCardCarousel } from '../Cards/Carousel/CardCarousel';
 import Button from './CarouselButtons';
+import CarouselDropdown from './CarouselDropdown';
 
 export type TCarouselProps = {
   cards: TCardCarousel[];
@@ -15,7 +16,7 @@ const Carousel = (props: TCarouselProps) => {
   const [visibleCards, setVisibleCards] = useState(1);
   const [translateX, setTranslateX] = useState(0);
   const [tags, setTags] = useState<string[]>([]);
-  const [selectedTag, setSelectedTag] = useState<string | null>(tagsAll ? 'All' : null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(tagsAll ? 'All tags' : null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
   // This function updates the number of visible cards based on screen size
@@ -41,7 +42,7 @@ const Carousel = (props: TCarouselProps) => {
     // @ts-ignore
     let updatedTags = [...new Set(cards.map((card) => card.tag))];
     if (tagsAll) {
-      updatedTags = ['All', ...updatedTags];
+      updatedTags = ['All tags', ...updatedTags];
     }
     setTags(updatedTags);
   }, [cards, tagsAll]);
@@ -61,8 +62,6 @@ const Carousel = (props: TCarouselProps) => {
       const gapSize = parseInt(computedStyle.gap, 10);
       const cardWidth = (containerWidth - gapSize * (visibleCards - 1)) / visibleCards;
       const totalTranslateX = (cardWidth + gapSize) * currentIndex;
-      console.log(currentIndex, totalTranslateX);
-
       setTranslateX(totalTranslateX);
     }
   }, [currentIndex, visibleCards]);
@@ -77,7 +76,9 @@ const Carousel = (props: TCarouselProps) => {
   }, [currentIndex, visibleCards]);
 
   const filteredCards =
-    selectedTag === 'All' ? cards : cards.filter((card) => card.tag === selectedTag);
+    selectedTag === 'All tags' || selectedTag === null
+      ? cards
+      : cards.filter((card) => card.tag === selectedTag);
 
   const buttonProps = {
     currentIndex,
@@ -99,12 +100,16 @@ const Carousel = (props: TCarouselProps) => {
       setSelectedTag(tag);
     });
   };
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrentIndex(0);
+    setSelectedTag(event.target.value);
+  };
 
   return (
     <div className="container mx-auto">
-      <div className="mb-4 flex w-full items-center justify-between px-2">
+      <div className="mb-4 flex w-full flex-wrap items-center justify-between px-2">
         {title && <h2 className="text-[2.625rem] font-bold text-acu-purple-100">{title}</h2>}
-        <div className="flex gap-2">
+        <div className="hidden gap-2 md:flex">
           {tags &&
             tags.map((tag, index) => (
               <button
@@ -125,6 +130,7 @@ const Carousel = (props: TCarouselProps) => {
               </button>
             ))}
         </div>
+        <CarouselDropdown tags={tags} selectedTag={selectedTag} onSelectTag={setSelectedTag} />
       </div>
       <div className="relative flex h-auto w-full items-center">
         <Button {...buttonProps} direction="prev" />

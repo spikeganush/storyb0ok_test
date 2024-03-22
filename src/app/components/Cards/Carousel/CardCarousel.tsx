@@ -5,6 +5,7 @@ export type TCardCarousel = {
   tag: string;
   imgUrl: string;
   title: string;
+  subtitle?: string;
   date: string;
   content: string;
   url: string;
@@ -16,7 +17,7 @@ export type TCardCarouselProps = {
 };
 
 const CardCarousel = ({ card, visibleCards }: TCardCarouselProps) => {
-  const { tag, imgUrl, title, date, content, url } = card;
+  const { tag, imgUrl, title, subtitle, date, content, url } = card;
   return (
     <a
       href={url}
@@ -28,11 +29,24 @@ const CardCarousel = ({ card, visibleCards }: TCardCarouselProps) => {
       >
         {tag}
       </span>
-      <Image src={imgUrl} alt={title} width={262} height={160} className="aspect-[131/80] w-full" />
+      <div className="relative">
+        <Image
+          src={imgUrl}
+          alt={title}
+          width={262}
+          height={160}
+          className="aspect-[131/80] w-full object-cover"
+        />
+        {subtitle && (
+          <span className="absolute bottom-0 left-0 w-full bg-acu-purple-100 bg-opacity-75 px-4 py-1 font-bold text-acu-white">
+            {subtitle}
+          </span>
+        )}
+      </div>
       <div className="p-4">
-        <h1 className="font-semibold text-acu-charcoal-120">{title}</h1>
+        <h1 className="mb-1 font-bold text-acu-charcoal-120">{title}</h1>
         <small>{date}</small>
-        <p>{content}</p>
+        <p className="mt-2">{content}</p>
       </div>
     </a>
   );
