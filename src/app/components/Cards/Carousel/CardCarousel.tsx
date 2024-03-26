@@ -1,3 +1,4 @@
+import { cn } from '../../../utils/helper';
 import Image from 'next/image';
 import React from 'react';
 
@@ -14,14 +15,36 @@ export type TCardCarousel = {
 export type TCardCarouselProps = {
   card: TCardCarousel;
   visibleCards: number;
+  onMouseDown: (
+    e:
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      | React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => void;
 };
 
-const CardCarousel = ({ card, visibleCards }: TCardCarouselProps) => {
+const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) => {
   const { tag, imgUrl, title, subtitle, date, content, url } = card;
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault(); // Prevent default action (dragging images or following links)
+    e.stopPropagation(); // Stop the event from propagating to the carousel's onMouseDown handler
+
+    onMouseDown(e);
+  };
+
   return (
     <a
+      onMouseDown={handleMouseDown}
       href={url}
-      className={`relative top-0 mb-8 flex-none shadow-[0px_5px_10px_0px_rgba(0,0,0,0.1)] transition-[top] duration-300 hover:-top-4 ${visibleCards === 1 ? 'w-full' : visibleCards === 2 ? 'w-[calc(50%-15px)]' : visibleCards === 3 ? 'w-[calc(33.3333333%-20px)]' : 'w-[calc(25%-22.5px)]'}`}
+      className={cn(
+        'relative top-0 mb-8 flex-none shadow-[0px_5px_10px_0px_rgba(0,0,0,0.1)] transition-[top] duration-300 hover:-top-4',
+        {
+          'w-full': visibleCards === 1,
+          'w-[calc(50%-15px)]': visibleCards === 2,
+          'w-[calc(33.3333333%-20px)]': visibleCards === 3,
+          'w-[calc(25%-22.5px)]': visibleCards === 4,
+        },
+      )}
     >
       <div className="relative">
         <span
