@@ -110,7 +110,11 @@ const Carousel = (props: TCarouselProps) => {
   };
 
   const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (
+      e:
+        | React.MouseEvent<HTMLDivElement, MouseEvent>
+        | React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    ) => {
       setIsDragging(true);
       setStartX(e.pageX - carouselRef.current!.offsetLeft);
       setCurrentTranslate(translateX);
@@ -140,6 +144,7 @@ const Carousel = (props: TCarouselProps) => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDragging]);
 
   return (
@@ -191,7 +196,12 @@ const Carousel = (props: TCarouselProps) => {
           >
             {filteredCards &&
               filteredCards.map((card, index) => (
-                <CardCarousel key={index} card={card} visibleCards={visibleCards} />
+                <CardCarousel
+                  key={index}
+                  card={card}
+                  visibleCards={visibleCards}
+                  onMouseDown={handleMouseDown}
+                />
               ))}
           </div>
         </div>

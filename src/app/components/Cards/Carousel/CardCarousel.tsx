@@ -15,14 +15,21 @@ export type TCardCarousel = {
 export type TCardCarouselProps = {
   card: TCardCarousel;
   visibleCards: number;
+  onMouseDown: (
+    e:
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      | React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => void;
 };
 
-const CardCarousel = ({ card, visibleCards }: TCardCarouselProps) => {
+const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) => {
   const { tag, imgUrl, title, subtitle, date, content, url } = card;
 
   const handleMouseDown = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault(); // Prevent default action (dragging images or following links)
     e.stopPropagation(); // Stop the event from propagating to the carousel's onMouseDown handler
+
+    onMouseDown(e);
   };
 
   return (
