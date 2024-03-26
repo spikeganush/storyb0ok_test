@@ -20,9 +20,10 @@ export type TCardCarouselProps = {
       | React.MouseEvent<HTMLAnchorElement, MouseEvent>
       | React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
+  onTouchStart: (e: React.TouchEvent<HTMLAnchorElement>) => void;
 };
 
-const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) => {
+const CardCarousel = ({ card, visibleCards, onMouseDown, onTouchStart }: TCardCarouselProps) => {
   const { tag, imgUrl, title, subtitle, date, content, url } = card;
 
   const handleMouseDown = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -35,6 +36,7 @@ const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) =
   return (
     <a
       onMouseDown={handleMouseDown}
+      onTouchStart={onTouchStart}
       href={url}
       className={cn(
         'relative top-0 mb-8 flex-none shadow-[0px_5px_10px_0px_rgba(0,0,0,0.1)] transition-[top] duration-300 hover:-top-4',

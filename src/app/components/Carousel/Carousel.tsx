@@ -122,6 +122,16 @@ const Carousel = (props: TCarouselProps) => {
     [translateX],
   );
 
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement>) => {
+      const touch = e.touches[0];
+      setIsDragging(true);
+      setStartX(touch.pageX - carouselRef.current!.offsetLeft);
+      setCurrentTranslate(translateX);
+    },
+    [translateX],
+  );
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
@@ -178,6 +188,7 @@ const Carousel = (props: TCarouselProps) => {
         <Button {...buttonProps} direction="prev" />
         <div
           onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
           className={cn(
             'flex w-full items-center justify-center overflow-x-hidden overflow-y-visible',
             {
@@ -201,6 +212,7 @@ const Carousel = (props: TCarouselProps) => {
                   card={card}
                   visibleCards={visibleCards}
                   onMouseDown={handleMouseDown}
+                  onTouchStart={handleTouchStart}
                 />
               ))}
           </div>
