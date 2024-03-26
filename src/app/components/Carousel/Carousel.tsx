@@ -125,12 +125,29 @@ const Carousel = (props: TCarouselProps) => {
   const handleTouchStart = useCallback(
     (e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement>) => {
       const touch = e.touches[0];
+      console.log(e);
       setIsDragging(true);
       setStartX(touch.pageX - carouselRef.current!.offsetLeft);
       setCurrentTranslate(translateX);
     },
     [translateX],
   );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement> | TouchEvent) => {
+      e.preventDefault();
+      if (!isDragging) return; // Only proceed if a drag operation is active
+      const touch = e.touches[0]; // Get the first touch point
+      const moveTranslate =
+        currentTranslate - (touch.pageX - carouselRef.current!.offsetLeft - startX);
+      setTranslateX(moveTranslate); // Update the translateX state to move the carousel
+    },
+    [isDragging, currentTranslate, startX],
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -156,6 +173,21 @@ const Carousel = (props: TCarouselProps) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDragging]);
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('touchmove', (e) => handleTouchMove(e));
+      document.addEventListener('touchend', handleTouchEnd);
+    } else {
+      document.removeEventListener('touchmove', (e) => handleTouchMove(e));
+      document.removeEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isDragging, handleTouchMove, handleTouchEnd]);
 
   return (
     <div className="container mx-auto">
