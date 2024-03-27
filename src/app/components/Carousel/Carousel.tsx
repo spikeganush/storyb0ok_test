@@ -77,7 +77,7 @@ const Carousel = (props: TCarouselProps) => {
             className={cn(
               'flex w-full justify-start gap-[30px] px-2 pt-4 transition-transform duration-500',
             )}
-            style={{ transform: `translateX(-${translateX}px)` }}
+            style={{ transform: `translateX(${translateX}px)` }}
             ref={carouselRef}
           >
             {filteredCards &&

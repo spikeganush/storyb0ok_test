@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, use } from 'react';
 import { TCardCarousel } from '../Cards/Carousel/CardCarousel';
 import { easeOut, handleEventAndBlur } from '../../utils/helper';
 
@@ -59,11 +59,14 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
     return { cardWidth: 0, gapSize: 0 };
   }, [visibleCards]);
 
-  const updateTranslateX = useCallback(() => {
+  const updateTranslateX = () => {
     const { cardWidth, gapSize } = getCardWidth();
-    setTranslateX((cardWidth + gapSize) * currentIndex);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentIndex, visibleCards]);
+    const newTranslateX =
+      (cardWidth + gapSize) * currentIndex < 0
+        ? (cardWidth + gapSize) * currentIndex
+        : (cardWidth + gapSize) * currentIndex * -1;
+    setTranslateX(newTranslateX);
+  };
 
   useEffect(() => {
     updateTranslateX();
@@ -122,98 +125,70 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
     [translateX, initDrag],
   );
 
-  const handleMove = useCallback(
-    (moveX: number) => {
-      if (isDragging) {
-        requestAnimationFrame(() => {
-          const velocity = moveX - prevMoveX;
-          setPrevMoveX(moveX);
-          setTranslateX(currentTranslate - moveX + startX + velocity);
-        });
-      }
-    },
-    [isDragging, currentTranslate, startX, prevMoveX],
-  );
-
   const finalizeDrag = useCallback(() => {
     setIsDragging(false);
 
     requestAnimationFrame(() => {
-      let newTranslateX = translateX + velocity * friction;
-
       // Ensure dimensions are up-to-date before index calculation
       const { cardWidth, gapSize } = getCardWidth();
 
       // Calculate target index based on final position
-      let newIndex = Math.round(newTranslateX / (cardWidth + gapSize));
-      console.log(newTranslateX, cardWidth + gapSize, newTranslateX / (cardWidth + gapSize));
-      // newIndex = Math.max(0, Math.min(newIndex, cards.length - visibleCards));
-
-      // Adjust for momentum overshoot if necessary
-      if (newIndex === currentIndex) {
-        console.log('Same index');
-        newTranslateX = -(newIndex * (cardWidth + gapSize)); // Snap to current card
-      } else {
-        console.log('Different index');
-        // Calculate distance to the target card based on the calculated index
-        const targetPosition = -(newIndex * (cardWidth + gapSize));
-        const distance = newTranslateX - targetPosition;
-        newTranslateX = targetPosition + easeOut(distance);
-
-        // Adjust newTranslateX if momentum caused overshoot.
-        if (newTranslateX > targetPosition) {
-          newTranslateX = targetPosition;
-        } else if (newTranslateX < targetPosition - cardWidth) {
-          newTranslateX = targetPosition - cardWidth;
-        }
-      }
-
-      setTranslateX(newTranslateX);
-      setVelocity(velocity * friction);
+      let newIndex = Math.round((translateX * -1) / (cardWidth + gapSize));
+      newIndex = Math.max(0, Math.min(newIndex, cards.length - visibleCards));
       setCurrentIndex(newIndex);
-
-      if (Math.abs(velocity) < threshold) {
-        setIsDragging(false);
-      }
     });
-  }, [cards.length, visibleCards, translateX, getCardWidth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [translateX, currentIndex]);
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging) return;
+    requestAnimationFrame(() => {
+      const initialTranslate = currentTranslate;
+      const x = e.pageX;
+      const distanceFromStart = x - startX;
+      let moveTranslate =
+        distanceFromStart < 0
+          ? initialTranslate + distanceFromStart
+          : initialTranslate - distanceFromStart;
+      setVelocity(velocity);
+      setPrevMoveX(x);
+      console.log({
+        initialTranslate,
+        x,
+        startX,
+        moveTranslate,
+      });
+      setTranslateX(moveTranslate);
+    });
+  };
+
+  const handleMouseUp = () => {
+    finalizeDrag();
+    removeEventListener();
+  };
+  const handleTouchMove = (
+    e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement> | TouchEvent,
+  ) => {
+    e.preventDefault();
+    if (!isDragging) return; // Only proceed if a drag operation is active
+    const touch = e.touches[0]; // Get the first touch point
+    const moveTranslate =
+      currentTranslate - (touch.pageX - carouselRef.current!.offsetLeft - startX);
+    setTranslateX(moveTranslate); // Update the translateX state to move the carousel
+  };
+  const handleTouchEnd = () => {
+    finalizeDrag();
+    removeEventListener();
+  };
+
+  const removeEventListener = () => {
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.removeEventListener('touchend', handleTouchEnd);
+  };
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging) return;
-      requestAnimationFrame(() => {
-        const x = e.pageX - carouselRef.current!.offsetLeft;
-        const moveTranslate = currentTranslate - (x - startX);
-        setTranslateX(moveTranslate);
-      });
-    };
-
-    const handleMouseUp = () => {
-      finalizeDrag();
-      removeEventListener();
-    };
-    const handleTouchMove = (
-      e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement> | TouchEvent,
-    ) => {
-      e.preventDefault();
-      if (!isDragging) return; // Only proceed if a drag operation is active
-      const touch = e.touches[0]; // Get the first touch point
-      const moveTranslate =
-        currentTranslate - (touch.pageX - carouselRef.current!.offsetLeft - startX);
-      setTranslateX(moveTranslate); // Update the translateX state to move the carousel
-    };
-    const handleTouchEnd = () => {
-      finalizeDrag();
-      removeEventListener();
-    };
-
-    const removeEventListener = () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-    };
-
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
@@ -223,7 +198,7 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
 
     return removeEventListener;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDragging, handleMove]);
+  }, [isDragging]);
 
   return {
     tags,
