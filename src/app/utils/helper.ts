@@ -77,3 +77,7 @@ export const handleEventAndBlur = (
   ref.current?.blur();
   callback(); // Execute any additional logic specific to the caller
 };
+
+export const easeOut = (x: number) => {
+  return 1 - Math.pow(1 - x, 3);
+};

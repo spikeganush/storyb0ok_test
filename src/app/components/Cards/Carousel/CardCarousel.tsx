@@ -1,6 +1,7 @@
 import { cn } from '../../../utils/helper';
 import Image from 'next/image';
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export type TCardCarousel = {
   tag: string;
@@ -25,6 +26,12 @@ export type TCardCarouselProps = {
 
 const CardCarousel = ({ card, visibleCards, onMouseDown, onTouchStart }: TCardCarouselProps) => {
   const { tag, imgUrl, title, subtitle, date, content, url } = card;
+  const [ref, inView] = useInView({
+    threshold: 0.2, // Trigger when 20% of element is visible
+    triggerOnce: true, // Only trigger the effect once
+  });
+
+  const imgSrc = inView ? imgUrl : '/images/placeholder.png';
 
   const handleMouseDown = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault(); // Prevent default action (dragging images or following links)
@@ -56,7 +63,8 @@ const CardCarousel = ({ card, visibleCards, onMouseDown, onTouchStart }: TCardCa
           {tag}
         </span>
         <Image
-          src={imgUrl}
+          ref={ref}
+          src={imgSrc}
           alt={title}
           width={262}
           height={160}
