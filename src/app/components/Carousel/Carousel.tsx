@@ -20,8 +20,7 @@ const Carousel = (props: TCarouselProps) => {
     selectedTag,
     handleSelectChange,
     buttonProps,
-    handleMouseDown,
-    handleTouchStart,
+    handleDragStart,
     isDragging,
     translateX,
     carouselRef,
@@ -62,8 +61,8 @@ const Carousel = (props: TCarouselProps) => {
       <div className="relative flex h-auto w-full items-center">
         <Button {...buttonProps} direction="prev" />
         <div
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
+          onMouseDown={handleDragStart}
+          onTouchStart={handleDragStart}
           className={cn(
             'flex w-full items-center justify-center overflow-x-hidden overflow-y-visible',
             {
@@ -86,8 +85,8 @@ const Carousel = (props: TCarouselProps) => {
                   key={index}
                   card={card}
                   visibleCards={visibleCards}
-                  onMouseDown={handleMouseDown}
-                  onTouchStart={handleTouchStart}
+                  onMouseDown={handleDragStart}
+                  onTouchStart={handleDragStart}
                 />
               ))}
           </div>

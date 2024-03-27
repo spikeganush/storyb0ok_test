@@ -65,11 +65,9 @@ export const getTWNameWithPrefix = (prefix: TPrefix, value: string): string => {
 
 export const handleEventAndBlur = (
   e:
-    | React.MouseEvent<HTMLDivElement, MouseEvent>
-    | React.KeyboardEvent<HTMLDivElement>
-    | React.MouseEvent<HTMLButtonElement, MouseEvent>
-    | React.KeyboardEvent<HTMLButtonElement>,
-  ref: React.RefObject<HTMLDivElement> | React.RefObject<HTMLButtonElement>,
+    | React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
+    | React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
+  ref: React.RefObject<HTMLDivElement | HTMLButtonElement>,
   callback: () => void, // Additional actions to perform after the shared behavior
 ) => {
   e.preventDefault();

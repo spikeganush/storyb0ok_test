@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback, use } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { TCardCarousel } from '../Cards/Carousel/CardCarousel';
-import { easeOut, handleEventAndBlur } from '../../utils/helper';
+import { handleEventAndBlur } from '../../utils/helper';
 
 type UseCarouselParams = {
   cards: TCardCarousel[];
@@ -18,8 +18,6 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);
-  const [velocity, setVelocity] = useState(0);
-  const [prevMoveX, setPrevMoveX] = useState(0);
 
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTag, setSelectedTag] = useState<string | null>(tagsAll ? 'All tags' : null);
@@ -101,29 +99,23 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
   // Initialize dragging state
   const initDrag = useCallback((pageX: number, initialTranslate: number) => {
     setIsDragging(true);
-    setStartX(pageX - (carouselRef.current?.offsetLeft ?? 0));
+    setStartX(pageX);
     setCurrentTranslate(initialTranslate);
-    setVelocity(0);
   }, []);
 
-  const handleMouseDown = useCallback(
-    (
-      e:
-        | React.MouseEvent<HTMLDivElement, MouseEvent>
-        | React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    ) => {
-      initDrag(e.pageX - carouselRef.current!.offsetLeft, translateX);
-    },
-    [translateX, initDrag],
-  );
-
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement>) => {
-      const touch = e.touches[0];
-      initDrag(touch.pageX - carouselRef.current!.offsetLeft, translateX);
-    },
-    [translateX, initDrag],
-  );
+  const handleDragStart = (
+    e:
+      | React.MouseEvent<HTMLDivElement | HTMLAnchorElement, MouseEvent>
+      | React.TouchEvent<HTMLDivElement | HTMLAnchorElement>,
+  ) => {
+    if ('touches' in e) {
+      const initialPosition = e.touches[0].pageX;
+      initDrag(initialPosition, translateX);
+    } else {
+      const initialPosition = e.pageX;
+      initDrag(initialPosition, translateX);
+    }
+  };
 
   const finalizeDrag = useCallback(() => {
     setIsDragging(false);
@@ -140,60 +132,51 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [translateX, currentIndex]);
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMove = (
+    e:
+      | MouseEvent
+      | React.TouchEvent<HTMLDivElement>
+      | React.TouchEvent<HTMLAnchorElement>
+      | TouchEvent,
+  ) => {
     if (!isDragging) return;
-    requestAnimationFrame(() => {
-      const initialTranslate = currentTranslate;
-      const x = e.pageX;
-      const distanceFromStart = x - startX;
-      let moveTranslate =
-        distanceFromStart < 0
-          ? initialTranslate + distanceFromStart
-          : initialTranslate - distanceFromStart;
-      setVelocity(velocity);
-      setPrevMoveX(x);
-      console.log({
-        initialTranslate,
-        x,
-        startX,
+    const initialTranslate = currentTranslate;
+    const x = 'touches' in e ? e.touches[0].pageX : e.pageX;
+    const distanceFromStart = x - startX;
+    let moveTranslate =
+      distanceFromStart < 0
+        ? initialTranslate + distanceFromStart
+        : initialTranslate - distanceFromStart * -1;
+    // The value can go beyond the bounds of the carousel
+    moveTranslate = Math.min(
+      Math.max(
         moveTranslate,
-      });
-      setTranslateX(moveTranslate);
-    });
+        -1 * (cards.length - 1) * (getCardWidth().cardWidth + getCardWidth().gapSize),
+      ),
+      0,
+    );
+
+    setTranslateX(moveTranslate);
   };
 
-  const handleMouseUp = () => {
+  const handleDragRealease = () => {
+    setIsDragging(false);
     finalizeDrag();
-    removeEventListener();
-  };
-  const handleTouchMove = (
-    e: React.TouchEvent<HTMLDivElement> | React.TouchEvent<HTMLAnchorElement> | TouchEvent,
-  ) => {
-    e.preventDefault();
-    if (!isDragging) return; // Only proceed if a drag operation is active
-    const touch = e.touches[0]; // Get the first touch point
-    const moveTranslate =
-      currentTranslate - (touch.pageX - carouselRef.current!.offsetLeft - startX);
-    setTranslateX(moveTranslate); // Update the translateX state to move the carousel
-  };
-  const handleTouchEnd = () => {
-    finalizeDrag();
-    removeEventListener();
   };
 
   const removeEventListener = () => {
-    document.removeEventListener('mousemove', handleMouseMove);
-    document.removeEventListener('mouseup', handleMouseUp);
-    document.removeEventListener('touchmove', handleTouchMove);
-    document.removeEventListener('touchend', handleTouchEnd);
+    document.removeEventListener('mousemove', handleMove);
+    document.removeEventListener('mouseup', handleDragRealease);
+    document.removeEventListener('touchmove', handleMove);
+    document.removeEventListener('touchend', handleDragRealease);
   };
 
   useEffect(() => {
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      document.addEventListener('touchmove', handleTouchMove, { passive: false });
-      document.addEventListener('touchend', handleTouchEnd);
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('mouseup', handleDragRealease);
+      document.addEventListener('touchmove', handleMove, { passive: false });
+      document.addEventListener('touchend', handleDragRealease);
     }
 
     return removeEventListener;
@@ -212,8 +195,7 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
       visibleCards,
       setCurrentIndex,
     },
-    handleMouseDown,
-    handleTouchStart,
+    handleDragStart,
     isDragging,
     translateX,
     carouselRef,

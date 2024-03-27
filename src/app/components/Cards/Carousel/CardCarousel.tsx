@@ -16,11 +16,7 @@ export type TCardCarousel = {
 export type TCardCarouselProps = {
   card: TCardCarousel;
   visibleCards: number;
-  onMouseDown: (
-    e:
-      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
-      | React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => void;
+  onMouseDown: (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
   onTouchStart: (e: React.TouchEvent<HTMLAnchorElement>) => void;
 };
 
