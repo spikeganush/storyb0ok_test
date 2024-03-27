@@ -141,12 +141,13 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
   ) => {
     if (!isDragging) return;
     const initialTranslate = currentTranslate;
+    const touches = 'touches' in e ? true : false;
     const x = 'touches' in e ? e.touches[0].pageX : e.pageX;
     const distanceFromStart = x - startX;
     let moveTranslate =
       distanceFromStart < 0
-        ? initialTranslate + distanceFromStart
-        : initialTranslate - distanceFromStart * -1;
+        ? initialTranslate + (touches ? distanceFromStart * 1.5 : distanceFromStart)
+        : initialTranslate - (touches ? distanceFromStart * 1.5 * -1 : distanceFromStart * -1);
     // The value can go beyond the bounds of the carousel
     moveTranslate = Math.min(
       Math.max(
