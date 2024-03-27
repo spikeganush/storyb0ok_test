@@ -117,20 +117,19 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
     }
   };
 
-  const finalizeDrag = useCallback(() => {
+  const finalizeDrag = () => {
     setIsDragging(false);
 
-    requestAnimationFrame(() => {
-      // Ensure dimensions are up-to-date before index calculation
-      const { cardWidth, gapSize } = getCardWidth();
+    // Ensure dimensions are up-to-date before index calculation
+    const { cardWidth, gapSize } = getCardWidth();
+    const fullCardWidth = cardWidth + gapSize;
 
-      // Calculate target index based on final position
-      let newIndex = Math.round((translateX * -1) / (cardWidth + gapSize));
-      newIndex = Math.max(0, Math.min(newIndex, cards.length - visibleCards));
-      setCurrentIndex(newIndex);
-    });
+    // Calculate target index based on final position
+    let newIndex = Math.round((translateX * -1) / fullCardWidth);
+    newIndex = Math.max(0, Math.min(newIndex, cards.length - visibleCards));
+    setCurrentIndex(newIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [translateX, currentIndex]);
+  };
 
   const handleMove = (
     e:
@@ -183,6 +182,10 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
     return removeEventListener;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDragging]);
+
+  useEffect(() => {
+    console.log({ currentIndex });
+  }, [currentIndex]);
 
   return {
     tags,
