@@ -16,11 +16,13 @@ const ColumnCtaTitle = (title: ColumnCtaTitleProps) => {
           )}
 
           {title.subtitle && (
-            <p className="max-w-[66ch] pb-4 text-base font-normal text-acu-gray">
+            <p className="text-acu-gray max-w-[66ch] pb-4 text-base font-normal">
               {title.subtitle}
             </p>
           )}
-          {title.cta && <ButtonCTA url={title.cta.url} text={title.cta.text} style="mb-6" />}
+          {title.cta && (
+            <ButtonCTA url={title.cta.url} text={title.cta.text} style="mb-6" type="arrow" />
+          )}
         </>
       )}
     </>

@@ -69,7 +69,7 @@ const TwoColumnsCtaWithImg = ({
           <p className={cn('font-semibold text-acu-black-80 @[940px]:w-4/5', descriptionColor)}>
             {description}
           </p>
-          <ButtonCTA text={ctaText} url={ctaUrl} />
+          <ButtonCTA text={ctaText} url={ctaUrl} type="arrow" />
         </div>
         {bottomSeparator && (
           <div className="absolute bottom-0 left-5 right-5 h-[1px] bg-gray-400" />
