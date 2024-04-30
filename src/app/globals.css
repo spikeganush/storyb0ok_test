@@ -44,3 +44,7 @@ a,
 .dotted-focus {
   @apply outline-2 outline-offset-4 outline-acu-purple-100 focus:outline-dotted;
 }
+
+.small-marker::marker {
+  font-size: 0.75em;
+}

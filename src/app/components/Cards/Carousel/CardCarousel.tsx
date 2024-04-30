@@ -1,6 +1,7 @@
 import { cn } from '../../../utils/helper';
 import Image from 'next/image';
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export type TCardCarousel = {
   tag: string;
@@ -15,15 +16,18 @@ export type TCardCarousel = {
 export type TCardCarouselProps = {
   card: TCardCarousel;
   visibleCards: number;
-  onMouseDown: (
-    e:
-      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
-      | React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => void;
+  onMouseDown: (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
+  onTouchStart: (e: React.TouchEvent<HTMLAnchorElement>) => void;
 };
 
-const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) => {
+const CardCarousel = ({ card, visibleCards, onMouseDown, onTouchStart }: TCardCarouselProps) => {
   const { tag, imgUrl, title, subtitle, date, content, url } = card;
+  const [ref, inView] = useInView({
+    threshold: 0.2, // Trigger when 20% of element is visible
+    triggerOnce: true, // Only trigger the effect once
+  });
+
+  const imgSrc = inView ? imgUrl : '/images/placeholder.png';
 
   const handleMouseDown = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault(); // Prevent default action (dragging images or following links)
@@ -35,6 +39,7 @@ const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) =
   return (
     <a
       onMouseDown={handleMouseDown}
+      onTouchStart={onTouchStart}
       href={url}
       className={cn(
         'relative top-0 mb-8 flex-none shadow-[0px_5px_10px_0px_rgba(0,0,0,0.1)] transition-[top] duration-300 hover:-top-4',
@@ -54,7 +59,8 @@ const CardCarousel = ({ card, visibleCards, onMouseDown }: TCardCarouselProps) =
           {tag}
         </span>
         <Image
-          src={imgUrl}
+          ref={ref}
+          src={imgSrc}
           alt={title}
           width={262}
           height={160}
