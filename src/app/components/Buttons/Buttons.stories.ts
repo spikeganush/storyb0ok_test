@@ -11,9 +11,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Arrow: Story = {
   args: {
     url: 'https://www.acu.edu.au/',
     text: 'Learn more',
+    type: 'arrow',
+  },
+};
+
+export const Button: Story = {
+  args: {
+    url: 'https://www.acu.edu.au/',
+    text: 'Learn more',
+    type: 'button',
   },
 };
