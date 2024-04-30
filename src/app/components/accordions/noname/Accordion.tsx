@@ -34,9 +34,12 @@ const Accordion = (props: TAccordionProps) => {
         tabIndex={0}
       >
         <span
-          className={`mr-3 transform text-2xl font-bold leading-none transition-transform duration-300 ${
-            isOpen ? 'rotate-180' : 'rotate-0'
-          }`}
+          className={cn(
+            'mr-3 w-4 transform text-2xl font-bold leading-none transition-transform duration-300',
+            {
+              'rotate-180': isOpen,
+            },
+          )}
         >
           {isOpen ? '-' : '+'}
         </span>
