@@ -19,7 +19,7 @@ const ColumnsCta = (props: ColumnsCtaProps) => {
       </div>
       {cta && (
         <div className="mt-12 flex justify-start">
-          <ButtonCTA url={cta.url} text={cta.text} />
+          <ButtonCTA url={cta.url} text={cta.text} type="arrow" />
         </div>
       )}
       {bottomSeparator && <div className="absolute bottom-0 left-5 right-5 h-[1px] bg-gray-400" />}
