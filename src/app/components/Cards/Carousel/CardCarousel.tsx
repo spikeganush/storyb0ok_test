@@ -52,10 +52,7 @@ const CardCarousel = ({ card, visibleCards, onMouseDown, onTouchStart }: TCardCa
       )}
     >
       <div className="relative">
-        <span
-          className="absolute left-0 top-0 bg-acu-red-100 py-[6px] pl-5 pr-10 text-acu-white
-[clip-path:polygon(0_0,100%_0,calc(100%-2.5rem)_100%,0%_100%)]"
-        >
+        <span className="absolute left-0 top-0 bg-acu-red-100 py-[6px] pl-5 pr-10 text-acu-white [clip-path:polygon(0_0,100%_0,calc(100%-2.25rem)_100%,0%_100%)]">
           {tag}
         </span>
         <Image
