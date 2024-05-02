@@ -91,5 +91,46 @@ export const primary: TTabsWithBgProps = {
         },
       ],
     },
+    {
+      title: 'Living in Australia',
+      subcontents: [
+        {
+          title: 'Public transport',
+          content:
+            'Understand the public transport system in your new city so that you can start exploring as soon as you arrive.',
+          link: {
+            text: 'Public transport in Australia',
+            url: 'https://www.acu.edu.au/international-students/arriving-and-living-in-australia/public-transport',
+          },
+        },
+        {
+          title: 'Stay healthy',
+          content:
+            'Your wellbeing is our priority. Understand Australia’s healthcare system, learn what health insurance you need, and discover our on-campus health services.',
+          link: {
+            text: 'Manage your health',
+            url: 'https://www.acu.edu.au/international-students/arriving-and-living-in-australia/health-in-australia',
+          },
+        },
+        {
+          title: 'Cover your costs',
+          content:
+            'To help you manage your money during your overseas adventure, read our guide to living costs in Australia.',
+          link: {
+            text: 'Estimate your living costs',
+            url: 'https://www.acu.edu.au/international-students/arriving-and-living-in-australia/living-costs',
+          },
+        },
+        {
+          title: 'Reach out for help',
+          content:
+            'Give yourself the best chance of success by contacting our international student services team for advice, support and guidance.',
+          link: {
+            text: 'Meet the student services team',
+            url: 'https://www.acu.edu.au/international-students/arriving-and-living-in-australia/international-student-services',
+          },
+        },
+      ],
+    },
   ],
 };
