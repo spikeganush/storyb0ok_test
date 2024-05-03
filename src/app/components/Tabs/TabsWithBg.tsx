@@ -59,7 +59,7 @@ const TabsWithBg = (props: TTabsWithBgProps) => {
           />
         </div>
         <div className="col-start-1 col-end-[-1] row-start-2 row-end-4 mx-auto flex w-full flex-col px-5 @[998px]:w-10/12 @[998px]:flex-row">
-          <div className="w-full bg-acu-black-15 px-8 pb-4 pt-16 @[998px]:w-1/3 @[998px]:[clip-path:polygon(0_0,calc(100%-4rem)_0,100%_4rem,100%_100%,0_100%)]">
+          <div className="h-max w-full bg-acu-black-15 px-8 pb-4 pt-16 @[998px]:w-1/3 @[998px]:[clip-path:polygon(0_0,calc(100%-4rem)_0,100%_4rem,100%_100%,0_100%)]">
             <h2 className="mb-4 text-[2.625rem] font-bold leading-none text-acu-purple-100">
               {leftTab.title}
             </h2>

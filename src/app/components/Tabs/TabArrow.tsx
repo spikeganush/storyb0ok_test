@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TTab } from './TabsWithBg';
 import { cn } from '../../utils/helper';
+import TabArrowButton from './TabArrowButton';
 
 export type TTabArrowProps = {
   tabs: TTab[];
@@ -8,14 +9,10 @@ export type TTabArrowProps = {
 
 const TabArrow = (props: TTabArrowProps) => {
   const { tabs } = props;
-  const [activeTab, setActiveTab] = useState(() =>
-    Array(tabs.length)
-      .fill(0)
-      .map((_, idx) => (idx === 0 ? 1 : 0)),
-  );
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const handleActiveTab = (index: number) => {
-    setActiveTab((prev) => prev.map((_, i) => (i === index ? 1 : 0)));
+    setActiveTabIndex(index);
   };
 
   useEffect(() => {
@@ -23,59 +20,66 @@ const TabArrow = (props: TTabArrowProps) => {
     handleActiveTab(0); // You can remove this line if you don't want any tab active by default
   }, []); // Ensures this effect runs only once after mount
 
-  const TabComponent = ({ tab, index }: { tab: TTab; index: number }) => {
-    return (
-      <>
-        <button
-          type="button"
-          className={cn(
-            'inline-block border-r border-acu-black-40 bg-acu-white px-6 py-4 text-acu-charcoal-120 duration-500 last-of-type:border-r-0',
-            {
-              'border-r-0 bg-acu-red-100 text-acu-white': activeTab[index] === 1,
-            },
-          )}
-          onClick={() => handleActiveTab(index)}
-        >
-          <h3>{tab.title}</h3>
-        </button>
-      </>
-    );
-  };
-
   return (
     <div className="grid grid-cols-1 grid-rows-[auto_auto]">
-      <div
-        className="col-start-1 row-start-1 row-end-2 grid justify-center shadow-[0_0.1rem_0.5rem_rgba(0,0,0,0.2)]"
-        style={{
-          gridTemplateColumns: `repeat(${tabs.length}, minmax(max-content, 1fr))`,
-        }}
-      >
+      <div className={cn('flex shadow-[0_0.1rem_0.5rem_rgba(0,0,0,0.2)]', {})}>
         {tabs.map((tab, index) => (
-          <TabComponent tab={tab} index={index} key={index} />
+          <TabArrowButton
+            key={index}
+            tab={tab}
+            index={index}
+            isActive={activeTabIndex === index}
+            onClick={handleActiveTab}
+          />
         ))}
       </div>
 
-      <div className="col-start-1 col-end-[-1] row-start-2 row-end-3 ">
-        {tabs.map(
-          (tab, index) =>
-            !!activeTab[index] && (
-              <div
-                className={cn('flex flex-wrap aria-selected:flex')}
-                aria-selected={true}
-                key={index}
-              >
-                {tab.subcontents.map((subcontent, index) => (
-                  <div className="w-full p-4 md:w-1/2" key={`subcontent_${index}`}>
-                    <h4 className="text-acu-red-100">{subcontent.title}</h4>
-                    <p className="text-acu-black-80">{subcontent.content}</p>
-                    <a href={subcontent.link.url} className="text-acu-red-100 underline">
-                      {subcontent.link.text}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            ),
-        )}
+      <div className="col-start-1 col-end-[-1] row-start-2 row-end-3 grid ">
+        {tabs.map((tab, index) => (
+          <div
+            className={cn(
+              'visible col-start-1 col-end-[-1] row-start-2 row-end-3 grid grid-cols-2 gap-x-8 pt-12 opacity-100 duration-500',
+              {
+                'invisible opacity-0': activeTabIndex !== index,
+              },
+            )}
+            aria-disabled={activeTabIndex !== index}
+            key={index}
+            style={{
+              gridTemplateRows: `repeat(${Math.ceil(tab.subcontents.length / 2) * 3}, minmax(max-content, auto))`,
+            }}
+          >
+            {tab.subcontents.map((subcontent, subcontentIndex) => {
+              const cols = 2; // Two columns layout
+              const colStart = (subcontentIndex % cols) + 1;
+              // const totalRows = Math.ceil(tab.subcontents.length / cols) * 3;
+              const rowStart = Math.floor(subcontentIndex / cols) * 3 + 1;
+
+              return (
+                <div
+                  className={cn('grid w-full grid-cols-subgrid grid-rows-subgrid', {})}
+                  key={`subcontent_${subcontentIndex}`}
+                  style={{
+                    gridColumn: `${colStart} / span 1`,
+                    gridRowStart: `${rowStart}`,
+                    gridRowEnd: `span 3`,
+                  }}
+                >
+                  <h4 className="row-start-1 mb-4 text-[2.025rem] font-bold text-acu-purple-100">
+                    {subcontent.title}
+                  </h4>
+                  <p className="row-start-2 mb-6 text-acu-charcoal-100">{subcontent.content}</p>
+                  <a
+                    href={subcontent.link.url}
+                    className="row-start-3 mb-4 text-acu-red-100 underline"
+                  >
+                    {subcontent.link.text}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );
