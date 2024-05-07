@@ -1,4 +1,4 @@
-import { cn, handleEventAndBlur } from '../../utils/helper';
+import { cn } from '../../utils/helper';
 import React, { useRef } from 'react';
 import { TCardCarousel } from '../Cards/Carousel/CardCarousel';
 
@@ -14,19 +14,13 @@ const Button = (props: TButtonProps) => {
   const { direction, currentIndex, cards, visibleCards, setCurrentIndex } = props;
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const navigate = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLButtonElement>,
-    ref: React.RefObject<HTMLButtonElement>,
-    direction: number,
-  ) => {
-    handleEventAndBlur(e, ref, () => {
-      setCurrentIndex((prevIndex) => {
-        let newIndex = prevIndex + direction * visibleCards;
-        // Prevent navigating beyond the start and end of the cards array
-        newIndex =
-          cards && cards.length && Math.max(0, Math.min(newIndex, cards.length - visibleCards));
-        return newIndex;
-      });
+  const navigate = (direction: number) => {
+    setCurrentIndex((prevIndex) => {
+      let newIndex = prevIndex + direction * visibleCards;
+      // Prevent navigating beyond the start and end of the cards array
+      newIndex =
+        cards && cards.length && Math.max(0, Math.min(newIndex, cards.length - visibleCards));
+      return newIndex;
     });
   };
 
@@ -34,14 +28,14 @@ const Button = (props: TButtonProps) => {
     <button
       ref={buttonRef}
       type="button"
-      onMouseDown={(e) => navigate(e, buttonRef, direction === 'prev' ? -1 : 1)}
+      onMouseDown={() => navigate(direction === 'prev' ? -1 : 1)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
-          navigate(e, buttonRef, direction === 'prev' ? -1 : 1);
+          navigate(direction === 'prev' ? -1 : 1);
         }
       }}
       className={cn(
-        'dotted-focus absolute z-10 flex aspect-square w-12 items-center justify-center rounded-[50%] bg-acu-red-100 text-acu-white',
+        'acu-focus absolute z-10 flex aspect-square w-12 items-center justify-center rounded-[50%] bg-acu-red-100 text-acu-white',
         {
           'rotate-180': direction === 'next',
           hidden:

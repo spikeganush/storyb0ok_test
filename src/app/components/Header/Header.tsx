@@ -1,3 +1,4 @@
+import { useIsMobile } from '@/app/utils/useIsMobile';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -21,6 +22,8 @@ const Header = (props: HeaderProps) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const { isMobile } = useIsMobile(1024);
+
   const Links = () => {
     return (
       <>
@@ -33,7 +36,7 @@ const Header = (props: HeaderProps) => {
               className={`mr-0 px-6 py-4 lg:mr-5 lg:px-0 lg:py-0 lg:last-of-type:mr-0`}
               rel={`${link.targetOut ? 'noopener noreferrer' : ''}`}
               target={`${link.targetOut ? '_blank' : ''}`}
-              tabIndex={isMobileMenuOpen ? 0 : -1}
+              tabIndex={isMobile ? (isMobileMenuOpen ? 0 : -1) : 0}
             >
               {link.title}
             </a>
@@ -52,7 +55,7 @@ const Header = (props: HeaderProps) => {
           id="header-container"
         >
           <div className="absolute left-0 right-0 top-0 h-[1px] bg-gray-400" />
-          <a className="" href="https://www.acu.edu.au:443/" title="ACU">
+          <a className="" href="https://www.acu.edu.au/" title="ACU">
             <Image
               src="https://vision2033.acu.edu.au/-/media/feature/identity/acu_masterbrand_no-wording_rgb.svg?la=en&hash=2EE2E4D41692973F59FF714883EBFDE4"
               alt=" ACU_MASTERBRAND_Logo"
