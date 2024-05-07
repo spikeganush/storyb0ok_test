@@ -88,7 +88,7 @@ const TabArrow = (props: TTabArrowProps) => {
                     gridRowEnd: `span 3`,
                   }}
                 >
-                  <h4 className="row-start-1 mb-2 text-[2.025rem] font-bold text-acu-purple-100 @[910px]:mb-4">
+                  <h4 className="row-start-1 mb-2 text-[2.025rem] font-bold leading-[2.025rem] text-acu-purple-100 @[910px]:mb-4">
                     {subcontent.title}
                   </h4>
                   <p className="row-start-2 mb-2 text-acu-charcoal-100 @[910px]:mb-6">
