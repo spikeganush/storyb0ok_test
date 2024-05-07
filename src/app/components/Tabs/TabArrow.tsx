@@ -96,7 +96,7 @@ const TabArrow = (props: TTabArrowProps) => {
                   </p>
                   <a
                     href={subcontent.link.url}
-                    className="row-start-3 mb-4 text-acu-red-100 underline"
+                    className="row-start-3 mb-4 text-acu-red-100 after:ml-4 after:inline-block after:content-['→'] hover:underline focus-visible:underline"
                   >
                     {subcontent.link.text}
                   </a>
