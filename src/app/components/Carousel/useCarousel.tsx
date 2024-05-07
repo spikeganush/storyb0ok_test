@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { TCardCarousel } from '../Cards/Carousel/CardCarousel';
-import { handleEventAndBlur } from '../../utils/helper';
 
 type UseCarouselParams = {
   cards: TCardCarousel[];
@@ -80,15 +79,9 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
       ? cards
       : cards.filter((card) => card.tag === selectedTag);
 
-  const handleTagClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLButtonElement>,
-    index: number,
-    tag: string,
-  ) => {
-    handleEventAndBlur(e, { current: buttonTagsRef.current[index] }, () => {
-      setCurrentIndex(0);
-      setSelectedTag(tag);
-    });
+  const handleTagClick = (tag: string) => {
+    setCurrentIndex(0);
+    setSelectedTag(tag);
   };
 
   const handleSelectChange = (tag: string) => {

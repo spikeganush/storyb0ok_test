@@ -4,7 +4,7 @@
 
 a,
 .acu-focus {
-  @apply outline-2 outline-offset-4 outline-acu-purple-100 focus:outline-dotted;
+  @apply outline-2 outline-offset-4 outline-acu-purple-100 focus-visible:outline-dotted;
 }
 
 #storybook-root,
@@ -39,10 +39,6 @@ a,
   right: -25px;
   top: 47%;
   transform: translateY(-50%);
-}
-
-.dotted-focus {
-  @apply outline-2 outline-offset-4 outline-acu-purple-100 focus:outline-dotted;
 }
 
 .small-marker::marker {

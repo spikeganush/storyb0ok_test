@@ -1,5 +1,5 @@
-import { cn, handleEventAndBlur } from '../../utils/helper';
-import React, { useState, useEffect, useRef, useCallback, use } from 'react';
+import { cn } from '../../utils/helper';
+import React from 'react';
 import CardCarousel, { TCardCarousel } from '../Cards/Carousel/CardCarousel';
 import Button from './CarouselButtons';
 import CarouselDropdown from './CarouselDropdown';
@@ -41,14 +41,14 @@ const Carousel = (props: TCarouselProps) => {
               <button
                 ref={(element) => (buttonTagsRef.current[index] = element)}
                 key={index}
-                onMouseDown={(e) => handleTagClick(e, index, tag)}
+                onMouseDown={(e) => handleTagClick(tag)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
-                    handleTagClick(e, index, tag);
+                    handleTagClick(tag);
                   }
                 }}
                 className={cn(
-                  'dotted-focus border border-acu-red-100 px-4 py-2 text-sm font-bold text-acu-red-100',
+                  'acu-focus border border-acu-red-100 px-4 py-2 text-sm font-bold text-acu-red-100',
                   selectedTag === tag ? 'bg-acu-red-100 text-acu-white' : 'bg-acu-gray-100',
                 )}
               >

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Accordion from './Accordion';
-import { handleEventAndBlur } from '@/app/utils/helper';
 import { TAccordionsProps } from './type';
 
 const Accordions = (props: TAccordionsProps) => {
@@ -37,14 +36,9 @@ const Accordions = (props: TAccordionsProps) => {
     );
   };
 
-  const handleOpenAll = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
-    ref: React.RefObject<HTMLDivElement>,
-  ) => {
-    handleEventAndBlur(e, ref, () => {
-      const newState = buttonText === 'Expand All';
-      toggleAllAccordions(newState);
-    });
+  const handleOpenAll = () => {
+    const newState = buttonText === 'Expand All';
+    toggleAllAccordions(newState);
   };
 
   const handleAccordionToggle = (index: number, isOpen: boolean) => {
@@ -55,11 +49,11 @@ const Accordions = (props: TAccordionsProps) => {
     <>
       <div className="mb-4 flex flex-1 justify-end">
         <div
-          className="dotted-focus cursor-pointer font-semibold text-acu-purple-100 underline underline-offset-2 hover:text-acu-red-100 hover:no-underline focus:text-acu-red-100 focus:no-underline"
-          onMouseDown={(e) => handleOpenAll(e, divOpenAllRef)}
+          className="acu-focus cursor-pointer font-semibold text-acu-purple-100 underline underline-offset-2 hover:text-acu-red-100 hover:no-underline focus:text-acu-red-100 focus:no-underline"
+          onMouseDown={handleOpenAll}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
-              handleOpenAll(e, divOpenAllRef);
+              handleOpenAll();
             }
           }}
           tabIndex={0}

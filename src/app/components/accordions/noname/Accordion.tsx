@@ -1,4 +1,4 @@
-import { cn, handleEventAndBlur } from '../../../utils/helper';
+import { cn } from '../../../utils/helper';
 import React, { useEffect, useRef, useState } from 'react';
 import { TAccordionProps } from './type';
 import Image from 'next/image';
@@ -15,21 +15,16 @@ const Accordion = (props: TAccordionProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  const toggleAccordion = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
-    ref: React.RefObject<HTMLDivElement>,
-  ) => {
-    handleEventAndBlur(e, ref, () => {
-      setIsOpen(!isOpen);
-      onToggle && onToggle(!isOpen);
-    });
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+    onToggle && onToggle(!isOpen);
   };
 
   return (
     <div>
       <div
-        className={cn('dotted-focus flex w-full cursor-pointer py-2')}
-        onMouseDown={(e) => toggleAccordion(e, titleRef)}
+        className={cn('acu-focus flex w-full cursor-pointer py-2')}
+        onMouseDown={toggleAccordion}
         ref={titleRef}
         tabIndex={0}
       >

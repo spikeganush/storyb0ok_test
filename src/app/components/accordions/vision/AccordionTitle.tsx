@@ -33,7 +33,7 @@ const AccordionTitle = ({
 
   return (
     <div
-      className="dotted-focus w-full cursor-pointer py-5 text-left focus:outline-dotted"
+      className="acu-focus w-full cursor-pointer py-5 text-left focus:outline-dotted"
       onClick={(e) => toggleAccordion(e, titleRef)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {

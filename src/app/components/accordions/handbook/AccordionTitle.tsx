@@ -1,4 +1,4 @@
-import { cn, handleEventAndBlur } from '../../../utils/helper';
+import { cn } from '../../../utils/helper';
 import React, { useRef } from 'react';
 import { TAccordionTitleProps } from './type';
 
@@ -12,23 +12,18 @@ const AccordionTitle = ({
   const { title, subtitle, subtitleColor } = titleObject;
   const titleRef = useRef<HTMLDivElement>(null);
 
-  const toggleAccordion = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
-    ref: React.RefObject<HTMLDivElement>,
-  ) => {
-    handleEventAndBlur(e, ref, () => {
-      setIsOpen(!isOpen);
-      onToggle && onToggle(!isOpen);
-    });
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+    onToggle && onToggle(!isOpen);
   };
 
   return (
     <div
-      className={cn('dotted-focus group flex w-full cursor-pointer justify-between py-4', style)}
-      onMouseDown={(e) => toggleAccordion(e, titleRef)}
+      className={cn('acu-focus group flex w-full cursor-pointer justify-between py-4', style)}
+      onMouseDown={toggleAccordion}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-          toggleAccordion(e, titleRef);
+          toggleAccordion();
         }
       }}
       tabIndex={0}

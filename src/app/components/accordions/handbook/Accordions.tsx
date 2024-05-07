@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { TAccordionsProps } from './type';
 import Accordion from './Accordion';
-import { handleEventAndBlur } from '../../../utils/helper';
 
 const Accordions = (props: TAccordionsProps) => {
   const { title, accordion } = props;
@@ -37,14 +36,9 @@ const Accordions = (props: TAccordionsProps) => {
     );
   };
 
-  const handleOpenAll = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>,
-    ref: React.RefObject<HTMLDivElement>,
-  ) => {
-    handleEventAndBlur(e, ref, () => {
-      const newState = buttonText === 'Open All';
-      toggleAllAccordions(newState);
-    });
+  const handleOpenAll = () => {
+    const newState = buttonText === 'Open All';
+    toggleAllAccordions(newState);
   };
 
   const handleAccordionToggle = (index: number, isOpen: boolean) => {
@@ -56,11 +50,11 @@ const Accordions = (props: TAccordionsProps) => {
       <div className="mb-8 flex flex-1 items-start justify-between">
         <div className="text-4xl font-bold text-acu-purple-100">{title}</div>
         <div
-          className="dotted-focus cursor-pointer font-semibold text-acu-purple-100 underline underline-offset-2 hover:text-acu-red-100 hover:no-underline focus:text-acu-red-100 focus:no-underline"
-          onMouseDown={(e) => handleOpenAll(e, divOpenAllRef)}
+          className="acu-focus cursor-pointer font-semibold text-acu-purple-100 underline underline-offset-2 hover:text-acu-red-100 hover:no-underline focus:text-acu-red-100 focus:no-underline"
+          onMouseDown={handleOpenAll}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === 'Space' || e.key === ' ') {
-              handleOpenAll(e, divOpenAllRef);
+              handleOpenAll();
             }
           }}
           tabIndex={0}
