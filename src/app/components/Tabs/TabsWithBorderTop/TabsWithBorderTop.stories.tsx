@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import TabsWithBorderTop from './TabsWithBorderTop';
-// import { primary } from './TabsWithBg.data';
+import { primaryData } from './TabsWithBorderTop.data';
 
 const meta: Meta<typeof TabsWithBorderTop> = {
   title: 'Components/Tabs/TabsWithBorderTop',
@@ -30,5 +30,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    ...primaryData,
+  },
 };
