@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import TabsWithBg from './TabsWithBg';
-import { primary } from './TabsWithBg.data';
+import TabsWithBorderTop from './TabsWithBorderTop';
+// import { primary } from './TabsWithBg.data';
 
-const meta: Meta<typeof TabsWithBg> = {
-  title: 'Components/TabsWithBg',
-  component: TabsWithBg,
+const meta: Meta<typeof TabsWithBorderTop> = {
+  title: 'Components/Tabs/TabsWithBorderTop',
+  component: TabsWithBorderTop,
   parameters: {
     layout: 'fullscreen',
     controls: {
@@ -30,7 +30,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-    ...primary,
-  },
+  args: {},
 };

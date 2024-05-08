@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { TTab } from './TabsWithBg';
-import { cn } from '../../utils/helper';
+import { cn } from '../../../utils/helper';
 import TabArrowButton from './TabArrowButton';
 
 export type TTabArrowProps = {
@@ -12,18 +12,15 @@ const TabArrow = (props: TTabArrowProps) => {
   const { tabs, isMobile } = props;
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [divHeight, setDivHeight] = useState(0);
-  const divRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement[]>(new Array(tabs.length).fill(null) as any);
 
   const handleActiveTab = (index: number) => {
     setActiveTabIndex((prev) => (isMobile ? (prev === index ? -1 : index) : index));
-    setDivHeight(isMobile ? (divRef.current ? divRef.current.scrollHeight : 0) : 0);
   };
 
-  useEffect(() => {
-    // Ensure all buttons are properly aligned when the component mounts
-    handleActiveTab(0); // You can remove this line if you don't want any tab active by default
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Ensures this effect runs only once after mount
+  const getRef = (element: HTMLDivElement, index: number) => {
+    divRef.current[index] = element;
+  };
 
   useEffect(() => {
     if (isMobile) {
@@ -32,6 +29,12 @@ const TabArrow = (props: TTabArrowProps) => {
       setActiveTabIndex(0);
     }
   }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile && divRef.current && divRef.current[activeTabIndex]) {
+      setDivHeight(divRef.current[activeTabIndex].scrollHeight);
+    }
+  }, [activeTabIndex, isMobile, tabs.length]);
 
   return (
     <div className="grid grid-cols-1 grid-rows-[auto_auto]">
@@ -47,7 +50,7 @@ const TabArrow = (props: TTabArrowProps) => {
             tab={tab}
             index={index}
             activeTabIndex={activeTabIndex}
-            divHeight={divHeight + 60}
+            divHeight={divHeight}
             isMobile={isMobile}
             onClick={handleActiveTab}
           />
@@ -57,7 +60,7 @@ const TabArrow = (props: TTabArrowProps) => {
       <div className="absolute inset-0 block px-6 @[570px]:grid @[600px]:relative @[600px]:col-start-1 @[600px]:col-end-[-1] @[600px]:row-start-2 @[600px]:row-end-3 @[600px]:px-0 ">
         {tabs.map((tab, index) => (
           <div
-            ref={divRef}
+            ref={(element) => getRef(element!, index)}
             className={cn(
               'visible gap-x-8 overflow-hidden opacity-100 duration-500 @[570px]:col-start-1 @[570px]:col-end-[-1] @[570px]:row-start-1 @[570px]:row-end-2 @[570px]:grid @[570px]:grid-cols-2 @[600px]:row-start-2 @[600px]:row-end-3 @[600px]:pt-12',
               {
@@ -68,8 +71,8 @@ const TabArrow = (props: TTabArrowProps) => {
             key={index}
             style={{
               gridTemplateRows: `repeat(${Math.ceil(tab.subcontents.length / 2) * 3}, minmax(max-content, auto))`,
-              height: isMobile ? (activeTabIndex === index ? `${divHeight + 60}px` : '0') : 'auto',
-              marginTop: isMobile ? (activeTabIndex === index ? `${index * 56 + 60}px` : '0') : '0',
+              height: isMobile ? (activeTabIndex === index ? `${divHeight}px` : '0') : 'auto',
+              marginTop: isMobile ? (activeTabIndex === index ? `${index * 56 + 65}px` : '0') : '0',
             }}
           >
             {tab.subcontents.map((subcontent, subcontentIndex) => {
@@ -80,23 +83,26 @@ const TabArrow = (props: TTabArrowProps) => {
 
               return (
                 <div
-                  className={cn('grid w-full grid-cols-subgrid grid-rows-subgrid', {})}
+                  className={cn(
+                    'mb-4 w-full @[600px]:mb-0 @[600px]:grid @[600px]:grid-cols-subgrid @[600px]:grid-rows-subgrid',
+                    {},
+                  )}
                   key={`subcontent_${subcontentIndex}`}
                   style={{
-                    gridColumn: `${colStart} / span 1`,
-                    gridRowStart: `${rowStart}`,
-                    gridRowEnd: `span 3`,
+                    gridColumn: isMobile ? 'unset' : `${colStart} / span 1`,
+                    gridRowStart: isMobile ? 'unset' : `${rowStart}`,
+                    gridRowEnd: isMobile ? 'unset' : `span 3`,
                   }}
                 >
-                  <h4 className="row-start-1 mb-2 text-[2.025rem] font-bold leading-[2.025rem] text-acu-purple-100 @[910px]:mb-4">
+                  <h4 className="mb-2 text-[2.025rem] font-bold leading-[2.025rem] text-acu-purple-100 @[600px]:row-start-1 @[910px]:mb-4">
                     {subcontent.title}
                   </h4>
-                  <p className="row-start-2 mb-2 text-acu-charcoal-100 @[910px]:mb-6">
+                  <p className="mb-2 text-acu-charcoal-100 @[600px]:row-start-2 @[910px]:mb-6">
                     {subcontent.content}
                   </p>
                   <a
                     href={subcontent.link.url}
-                    className="row-start-3 mb-4 text-acu-red-100 after:ml-4 after:inline-block after:content-['→'] hover:underline focus-visible:underline"
+                    className="mb-4 text-acu-red-100 after:ml-4 after:inline-block after:content-['→'] hover:underline focus-visible:underline @[600px]:row-start-3"
                   >
                     {subcontent.link.text}
                   </a>
