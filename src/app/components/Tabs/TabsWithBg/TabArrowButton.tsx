@@ -1,6 +1,6 @@
 import React from 'react';
 import { TTab } from './TabsWithBg';
-import { cn } from '../../utils/helper';
+import { cn } from '../../../utils/helper';
 const TabArrowButton = ({
   tab,
   index,
@@ -27,7 +27,7 @@ const TabArrowButton = ({
         },
       )}
       style={{
-        marginBottom: isMobile ? (isActive ? divHeight + 20 : 0) : 0,
+        marginBottom: isMobile ? (isActive ? divHeight : 0) : 0,
       }}
       aria-selected={isActive}
     >
