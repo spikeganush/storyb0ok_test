@@ -54,3 +54,5 @@ export const COLOURS: AcuColors = {
     100: '#F2BB0A',
   },
 };
+
+export const contentMarginBottom = 40;

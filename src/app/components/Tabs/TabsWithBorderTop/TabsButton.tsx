@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import TabsContent from './TabsContent';
 import { cn } from '../../../utils/helper';
+import { contentMarginBottom } from '../../../utils/constants';
 
 export type TabsButtonProps = {
   tabs: {
@@ -53,19 +54,20 @@ const TabsButton = ({ tabs, isMobile }: TabsButtonProps) => {
             <div
               key={index}
               className={cn(
-                'mb-0 rounded-t-[0.25rem] rounded-tr-[0.25rem] border-acu-black-30 bg-acu-white duration-500',
+                'group mb-0 rounded-t-[0.25rem] rounded-tr-[0.25rem] border-acu-black-30 bg-acu-white duration-500',
                 {
                   'mb-[-2px] border-acu-purple-100': tabActiveIndex.includes(index) && !isMobile,
                   'border-l-2 border-r-2 border-t-8 hover:border-acu-purple-100': !isMobile,
                 },
               )}
-              style={{
-                marginBottom: isMobile
-                  ? tabActiveIndex.includes(index)
-                    ? divRef.current[index].scrollHeight
-                    : '0'
-                  : 'auto',
-              }}
+              style={
+                (isMobile && {
+                  marginBottom: tabActiveIndex.includes(index)
+                    ? divRef.current[index].scrollHeight + contentMarginBottom
+                    : '0',
+                }) ||
+                {}
+              }
             >
               <li
                 onClick={() => handleTabClick(index)}
@@ -81,13 +83,15 @@ const TabsButton = ({ tabs, isMobile }: TabsButtonProps) => {
                   'acu-focus last-of-type:mr-0" cursor-pointer px-4 py-2 font-semibold text-acu-charcoal-100',
                   {
                     'text-acu-purple-120': tabActiveIndex.includes(index) && !isMobile,
-                    'flex justify-between border-b border-r-0 py-4 font-bold text-acu-charcoal-120':
+                    'flex justify-between border-b border-r-0 py-4 font-bold text-acu-charcoal-120 after:inline-block after:h-4 after:w-4 after:rotate-45 after:border-b-2 after:border-r-2 after:border-acu-black-80 after:duration-500 after:content-[""]':
                       isMobile,
-                    'last-of-type:border-b': tabActiveIndex.includes(index) && isMobile,
+                    'after:rotate-[225deg] last-of-type:border-b':
+                      tabActiveIndex.includes(index) && isMobile,
+                    'border-t': tabActiveIndex.includes(index - 1) && isMobile,
                   },
                 )}
               >
-                <span className={cn('inline-block', {})}>{tab.title}</span>
+                <span className={cn('inline-block group-hover:underline', {})}>{tab.title}</span>
               </li>
             </div>
           ))}
@@ -97,6 +101,7 @@ const TabsButton = ({ tabs, isMobile }: TabsButtonProps) => {
           <React.Fragment key={index}>
             <TabsContent
               ref={(element) => getRef(element!, index)}
+              refes={divRef.current}
               title={tab.title}
               index={index}
               tabActiveIndex={tabActiveIndex}
