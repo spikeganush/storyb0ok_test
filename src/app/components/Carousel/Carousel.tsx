@@ -1,6 +1,6 @@
 import { cn } from '../../utils/helper';
 import React from 'react';
-import CardCarousel, { TCardCarousel } from '../Cards/Carousel/CardCarousel';
+import CardCarousel, { TCardCarousel } from '../Content/Cards/Carousel/CardCarousel';
 import Button from './CarouselButtons';
 import CarouselDropdown from './CarouselDropdown';
 import { useCarousel } from './useCarousel';

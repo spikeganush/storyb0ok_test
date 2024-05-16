@@ -13,7 +13,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Components',
-          ['Header', 'CTA', '2columnsWith3ColumnsRight', 'Accordions', 'Buttons'],
+          ['Header', 'CTA', 'Content', '2columnsWith3ColumnsRight', 'Accordions', 'Buttons'],
           'Design System',
         ],
       },

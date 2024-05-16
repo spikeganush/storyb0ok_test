@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { TCardCarousel } from '../Cards/Carousel/CardCarousel';
+import { TCardCarousel } from '../Content/Cards/Carousel/CardCarousel';
 
 type UseCarouselParams = {
   cards: TCardCarousel[];

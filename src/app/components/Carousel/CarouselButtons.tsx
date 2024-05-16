@@ -1,6 +1,6 @@
 import { cn } from '../../utils/helper';
 import React, { useRef } from 'react';
-import { TCardCarousel } from '../Cards/Carousel/CardCarousel';
+import { TCardCarousel } from '../Content/Cards/Carousel/CardCarousel';
 
 export type TButtonProps = {
   direction: 'prev' | 'next';
