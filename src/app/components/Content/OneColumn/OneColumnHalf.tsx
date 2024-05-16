@@ -1,23 +1,23 @@
 import React from 'react';
 import Links from '../../Links/Links';
 
-export type TOneColumnProps = {
+export type TOneColumnHalfProps = {
   title: string;
-  pararaphes: string[];
+  paragraphs: string[];
   link?: {
     url: string;
     text: string;
   };
 };
 
-const OneColumn = ({ title, pararaphes, link }: TOneColumnProps) => {
+const OneColumnHalf = ({ title, paragraphs, link }: TOneColumnHalfProps) => {
   return (
     <div className="w-1/2">
       <h1 className="text-4xl font-bold text-acu-purple-100">{title}</h1>
-      {pararaphes?.length > 0 &&
-        pararaphes.map((pararaph, index) => (
+      {paragraphs?.length > 0 &&
+        paragraphs.map((paragraph, index) => (
           <p key={index} className="pt-4 text-[1.25rem] text-acu-purple-100">
-            {pararaph}
+            {paragraph}
           </p>
         ))}
       {link && (
@@ -33,4 +33,4 @@ const OneColumn = ({ title, pararaphes, link }: TOneColumnProps) => {
   );
 };
 
-export default OneColumn;
+export default OneColumnHalf;

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import OneColumn from './OneColumn';
+import OneColumnHalf from './OneColumnHalf';
 
-const meta: Meta<typeof OneColumn> = {
-  title: 'Components/Content/1-Column',
-  component: OneColumn,
+const meta: Meta<typeof OneColumnHalf> = {
+  title: 'Components/Content/1-Column/half-width',
+  component: OneColumnHalf,
   parameters: {
     layout: 'fullscreen',
   },
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     title: 'Melbourne',
-    pararaphes: [
+    paragraphs: [
       'Our St Patrick’s Campus is located in the heart of cosmopolitan Melbourne. The cafes, shops and nightlife of Brunswick and Smith Streets are nearby, as are some of the city’s finest parks.',
       'The campus itself is a mix of historic and modern buildings with plenty of room to study, relax and connect with other students. Exciting development projects are ongoing to enhance our campus for staff and students.',
     ],
