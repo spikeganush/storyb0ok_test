@@ -1,5 +1,5 @@
 import React from 'react';
-import Links from '../../Links/Links';
+import Links from '../../../Links/Links';
 
 export type TOneColumnHalfProps = {
   title: string;

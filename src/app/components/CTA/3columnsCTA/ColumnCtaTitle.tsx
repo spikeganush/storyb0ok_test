@@ -1,6 +1,6 @@
 import React from 'react';
 import { ColumnCtaTitleProps } from './type';
-import ButtonCTA from '../Buttons/CTA';
+import ButtonCTA from '../../Buttons/CTA';
 
 const ColumnCtaTitle = (title: ColumnCtaTitleProps) => {
   return (

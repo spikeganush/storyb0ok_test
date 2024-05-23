@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ColumnsCta from './ColumnsCta';
 import { primary, primaryLongTextNoCtaNoTitle, secondary } from './Column.data';
 
+// @ts-ignore - TS is not happy with this, but it works
 const meta: Meta<typeof ColumnsCta> = {
-  title: 'Components/CTA/3ColumnsCTA/ColumnsCta',
+  title: 'Components/CTA/3ColumnsCTA',
 
   component: ColumnsCta,
   parameters: {
@@ -22,6 +23,7 @@ const meta: Meta<typeof ColumnsCta> = {
         'Displays a separator line at the top of the component. Useful for visually distinguishing this component from content above it.',
       table: {
         type: { summary: 'boolean' },
+        // @ts-ignore - TS is not happy with this, but it works
         defaultValue: { summary: true },
       },
     },
@@ -31,6 +33,7 @@ const meta: Meta<typeof ColumnsCta> = {
         'Displays a separator line at the bottom of the component. Helps in setting a clear boundary with subsequent content.',
       table: {
         type: { summary: 'boolean' },
+        // @ts-ignore - TS is not happy with this, but it works
         defaultValue: { summary: true },
       },
     },

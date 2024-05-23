@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import ButtonCTA from '../Buttons/CTA';
-import { cn } from '../../utils/helper';
+import ButtonCTA from '../../Buttons/CTA';
+import { cn } from '../../../utils/helper';
 
 export type TwoColumnsCtaWithImgProps = {
   /** The top line seperator is visible or not

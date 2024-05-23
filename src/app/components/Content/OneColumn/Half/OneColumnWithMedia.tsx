@@ -1,6 +1,6 @@
-import { cn } from '../../../utils/helper';
+import { cn } from '../../../../utils/helper';
 import React from 'react';
-import Links from '../../Links/Links';
+import Links from '../../../Links/Links';
 
 type TSubPart = {
   title: string;

@@ -3,7 +3,7 @@ import React from 'react';
 import OneColumnHalf from './OneColumnHalf';
 
 const meta: Meta<typeof OneColumnHalf> = {
-  title: 'Components/Content/1-Column/half-width',
+  title: 'Components/Content/1-Column/Half/half-width',
   component: OneColumnHalf,
   parameters: {
     layout: 'fullscreen',

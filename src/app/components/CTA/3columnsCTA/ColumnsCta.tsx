@@ -1,7 +1,7 @@
 import React from 'react';
 import Column from './Column';
 import { ColumnsCtaProps } from './type';
-import ButtonCTA from '../Buttons/CTA';
+import ButtonCTA from '../../Buttons/CTA';
 import ColumnCtaTitle from './ColumnCtaTitle';
 
 const ColumnsCta = (props: ColumnsCtaProps) => {

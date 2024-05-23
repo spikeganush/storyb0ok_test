@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { processColors } from '../../utils/helper';
-import { COLOURS } from '../../utils/constants';
+import { processColors } from '../../../utils/helper';
+import { COLOURS } from '../../../utils/constants';
 import TwoColumnsCtaWithImg from './TwoColumnsCtaWithImg';
 import { primary, primaryWithExample } from './TwoColumnsCtaWithImg.data';
 

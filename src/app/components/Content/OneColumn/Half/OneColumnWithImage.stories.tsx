@@ -4,7 +4,7 @@ import OneColumnWithMedia from './OneColumnWithMedia';
 import { leftExampleData } from './OneColumnWithMedia.data';
 
 const meta: Meta<typeof OneColumnWithMedia> = {
-  title: 'Components/Content/1-Column/with-media',
+  title: 'Components/Content/1-Column/Half/with-media',
   component: OneColumnWithMedia,
   parameters: {
     layout: 'fullscreen',
