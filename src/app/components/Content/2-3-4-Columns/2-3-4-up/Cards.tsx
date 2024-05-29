@@ -3,8 +3,13 @@ import Card from './Card';
 import { cn } from '../../../../utils/helper';
 import { TCardsProps } from './type';
 
-const Cards = (props: TCardsProps) => {
-  const { cards, numberOfCards = 2, showImg, mainTitle, showMainTitle = true } = props;
+const Cards = ({
+  cards,
+  numberOfCards = 2,
+  showImg,
+  mainTitle,
+  showMainTitle = true,
+}: TCardsProps) => {
   return (
     <div className="container mx-auto">
       {showMainTitle && mainTitle && (

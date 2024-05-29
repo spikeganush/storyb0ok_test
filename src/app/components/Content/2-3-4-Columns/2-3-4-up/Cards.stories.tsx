@@ -4,7 +4,7 @@ import Cards from './Cards';
 import { primary, primaryCardsWithContent } from './Card.data';
 
 const meta: Meta<typeof Cards> = {
-  title: 'Components/Content/Cards/2-3-4-up',
+  title: 'Components/Content/2-3-4-column_up',
   component: Cards,
   parameters: {
     layout: 'fullscreen',
