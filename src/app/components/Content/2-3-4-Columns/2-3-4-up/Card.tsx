@@ -3,9 +3,17 @@ import Image from 'next/image';
 import React from 'react';
 import { TCardProps } from './type';
 
-const Card = ({ imgUrl, showImg = true, title, content, cta }: TCardProps) => {
+const Card = ({ imgUrl, showImg = true, title, content, cta, breakpoint = 'md' }: TCardProps) => {
   return (
-    <div className="before:left-0 before:top-0 before:row-[1/2] before:mb-10 before:inline-block before:h-1 before:w-20 before:bg-acu-red-120 before:content-[''] md:row-[1/6] md:grid md:grid-rows-subgrid">
+    <div
+      className={cn(
+        "before:left-0 before:top-0 before:row-[1/2] before:mb-10 before:inline-block before:h-1 before:w-20 before:bg-acu-red-120 before:content-['']",
+        {
+          'md:row-[1/6] md:grid md:grid-rows-subgrid': breakpoint === 'md',
+          'lg:row-[1/6] lg:grid lg:grid-rows-subgrid': breakpoint === 'lg',
+        },
+      )}
+    >
       {imgUrl && showImg && (
         <Image
           className="row-[2/3] aspect-[7/4] w-full object-cover object-center"

@@ -8,6 +8,7 @@ export type TCardProps = {
     url: string;
     transparent?: boolean;
   };
+  breakpoint?: 'md' | 'lg';
 };
 
 export type TCardsProps = {

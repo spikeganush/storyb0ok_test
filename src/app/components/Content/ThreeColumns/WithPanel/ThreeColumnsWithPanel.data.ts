@@ -52,6 +52,7 @@ export const primaryDataStats: TThreeColumnsWithPanelProps = {
       },
     },
   ],
+  onStorybook: true,
 };
 
 export const primaryDataText: TThreeColumnsWithPanelProps = {
@@ -93,4 +94,5 @@ export const primaryDataText: TThreeColumnsWithPanelProps = {
       },
     },
   ],
+  onStorybook: true,
 };

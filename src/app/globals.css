@@ -44,7 +44,3 @@ a,
 .small-marker::marker {
   font-size: 0.75em;
 }
-
-.three-columns-panel {
-  @apply col-start-1 col-end-4 row-start-2 row-end-3 bg-acu-black-30;
-}

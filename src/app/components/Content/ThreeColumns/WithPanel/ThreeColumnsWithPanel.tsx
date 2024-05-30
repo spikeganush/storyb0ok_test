@@ -19,30 +19,44 @@ export type TThreeColumnsWithPanelStats = {
   };
 };
 
-export type TThreeColumnsWithPanelProps =
-  | {
-      image: {
-        src: string;
-        alt: string;
-      };
-      upperPart: TThreeColumnsWithPanelStats;
-      type: 'stats';
-      cards: [TCardProps, TCardProps];
-    }
-  | {
-      image: {
-        src: string;
-        alt: string;
-      };
-      upperPart: TOneColumnHalfProps;
-      type: 'text';
-      cards: [TCardProps, TCardProps];
-    };
-const ThreeColumnsWithPanel = ({ image, upperPart, type, cards }: TThreeColumnsWithPanelProps) => {
+type TImage = {
+  src: string;
+  alt: string;
+};
+
+type TBaseProps = {
+  image: TImage;
+  cards: [TCardProps, TCardProps];
+  onStorybook?: boolean;
+};
+
+type TStatsProps = {
+  upperPart: TThreeColumnsWithPanelStats;
+  type: 'stats';
+};
+
+type TTextProps = {
+  upperPart: TOneColumnHalfProps;
+  type: 'text';
+};
+
+export type TThreeColumnsWithPanelProps = TBaseProps & (TStatsProps | TTextProps);
+
+const ThreeColumnsWithPanel = ({
+  image,
+  upperPart,
+  type,
+  cards,
+  onStorybook = false,
+}: TThreeColumnsWithPanelProps) => {
   return (
-    <div className="three-column-panel w-full @container">
-      <div className="flex flex-col gap-x-4 md:grid md:grid-cols-2 md:grid-rows-2">
-        <div className="stats md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2">
+    <div
+      className={cn('mx-auto w-full @container', {
+        container: onStorybook,
+      })}
+    >
+      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:grid-rows-[repeat(2,_auto)] lg:gap-x-4">
+        <div className="stats mb-8 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:mb-12">
           {upperPart &&
             (type === 'text' ? (
               <OneColumnCard {...upperPart} />
@@ -50,21 +64,30 @@ const ThreeColumnsWithPanel = ({ image, upperPart, type, cards }: TThreeColumnsW
               <ThreeColumnsWithPanelStats {...upperPart} />
             ))}
         </div>
-        <div className="image flex justify-start md:col-start-1 md:col-end-2 md:row-start-1 md:row-end-3 ">
+        <div className="image flex lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 lg:items-start lg:justify-center">
           {image && (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="object-contain" src={image.src} alt={image.alt} />
+              <img
+                className="w-full object-contain lg:z-10 lg:max-w-[470px]"
+                src={image.src}
+                alt={image.alt}
+              />
             </>
           )}
         </div>
-        <div className="2col md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3">
-          <div
-            className={cn(
-              'grid grid-flow-row grid-cols-1 gap-[30px] gap-y-8 md:grid-cols-2 md:grid-rows-[repeat(4,auto)] md:gap-y-0',
-            )}
-          >
-            {cards && cards.map((card, index) => <Card key={index} {...card} />)}
+        <div className="2col bg-acu-black-15 py-12 lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-3rem),calc(100%-3rem)_100%,0_100%)]">
+          <div className="pr-12 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid">
+            <div
+              className={cn(
+                'grid grid-flow-row grid-cols-1 gap-[30px] gap-y-12 lg:grid-cols-2 lg:grid-rows-[repeat(4,_auto)] lg:gap-y-0',
+              )}
+            >
+              {cards &&
+                cards.map((card, index) => (
+                  <Card key={index} {...card} breakpoint="lg" showImg={false} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
