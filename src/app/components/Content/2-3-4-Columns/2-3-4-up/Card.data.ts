@@ -1,9 +1,13 @@
+import { text } from 'stream/consumers';
+
 export const primary = {
   imgUrl: 'https://via.placeholder.com/700x400.png',
   title: 'Card Title',
   content: 'Card Content',
-  ctaText: 'CTA',
-  ctaUrl: '#',
+  cta: {
+    text: 'CTA',
+    url: '#',
+  },
 };
 
 export const primaryWithContent = {
@@ -12,8 +16,11 @@ export const primaryWithContent = {
   title: 'Academic Skills Unit',
   content:
     'The Academic Skills Unit can help you to maximise your learning potential and achieve your academic goals. We can work with you to develop your skills in maths and academic language and learning. Explore our extensive range of resources and services.',
-  ctaText: 'Get help from ASU',
-  ctaUrl: '#',
+
+  cta: {
+    text: 'Get help from ASU',
+    url: '#',
+  },
 };
 
 export const primaryCardsWithContent = [
@@ -23,8 +30,11 @@ export const primaryCardsWithContent = [
     title: 'Academic Skills Unit',
     content:
       'The Academic Skills Unit can help you to maximise your learning potential and achieve your academic goals. We can work with you to develop your skills in maths and academic language and learning. Explore our extensive range of resources and services.',
-    ctaText: 'Get help from ASU',
-    ctaUrl: '#',
+
+    cta: {
+      text: 'Get help from ASU',
+      url: '#',
+    },
   },
   {
     imgUrl:
@@ -32,8 +42,11 @@ export const primaryCardsWithContent = [
     title: 'Student mentoring',
     content:
       'Starting university for the first time can be both exciting and overwhelming. First-year commencing students can now start the semester a step ahead, with ACU’s student mentoring program. Our program is social, informative, and accessible for all students.',
-    ctaText: 'Sign up now',
-    ctaUrl: '#',
+
+    cta: {
+      text: 'Sign up now',
+      url: '#',
+    },
   },
   {
     imgUrl:
@@ -41,8 +54,11 @@ export const primaryCardsWithContent = [
     title: 'Campus Student Associations',
     content:
       'Each ACU campus has its own student association that you can join. Theses groups are committed to enhancing your experience at ACU by providing representation and support. Your association runs regular social events and promotes your interests in relevant ACU forums.',
-    ctaText: 'Get involved',
-    ctaUrl: '#',
+
+    cta: {
+      text: 'Get involved',
+      url: '#',
+    },
   },
   {
     imgUrl:
@@ -50,7 +66,10 @@ export const primaryCardsWithContent = [
     title: 'Student Advocacy Service',
     content:
       'The Student Advocacy Service is an information, advice and referral service that provides you with assistance to navigate university policies and procedures. The service is confidential, free and available to all current students.',
-    ctaText: 'More on Student Advocacy',
-    ctaUrl: '#',
+
+    cta: {
+      text: 'More on Student Advocacy',
+      url: '#',
+    },
   },
 ];

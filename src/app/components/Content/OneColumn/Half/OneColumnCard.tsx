@@ -1,23 +1,15 @@
 import React from 'react';
-import Links from '../../Links/Links';
+import { TOneColumnHalfProps } from './OneColumnHalf';
+import Links from '@/app/components/Links/Links';
 
-export type TOneColumnProps = {
-  title: string;
-  pararaphes: string[];
-  link?: {
-    url: string;
-    text: string;
-  };
-};
-
-const OneColumn = ({ title, pararaphes, link }: TOneColumnProps) => {
+const OneColumnCard = ({ title, paragraphs, link }: TOneColumnHalfProps) => {
   return (
-    <div className="w-1/2">
+    <>
       <h1 className="text-4xl font-bold text-acu-purple-100">{title}</h1>
-      {pararaphes?.length > 0 &&
-        pararaphes.map((pararaph, index) => (
+      {paragraphs?.length > 0 &&
+        paragraphs.map((paragraph, index) => (
           <p key={index} className="pt-4 text-[1.25rem] text-acu-purple-100">
-            {pararaph}
+            {paragraph}
           </p>
         ))}
       {link && (
@@ -29,8 +21,8 @@ const OneColumn = ({ title, pararaphes, link }: TOneColumnProps) => {
           type="arrow"
         />
       )}
-    </div>
+    </>
   );
 };
 
-export default OneColumn;
+export default OneColumnCard;

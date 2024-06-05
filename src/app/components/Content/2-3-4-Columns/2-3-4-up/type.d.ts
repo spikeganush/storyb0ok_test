@@ -1,10 +1,14 @@
 export type TCardProps = {
-  imgUrl: string;
+  imgUrl?: string;
   showImg?: boolean;
   title: string;
   content: string;
-  ctaText: string;
-  ctaUrl: string;
+  cta: {
+    text: string;
+    url: string;
+    transparent?: boolean;
+  };
+  breakpoint?: 'md' | 'lg';
 };
 
 export type TCardsProps = {

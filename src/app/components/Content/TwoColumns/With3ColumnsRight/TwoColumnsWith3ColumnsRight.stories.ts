@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TwoClWith3ClRight from './TwoClWith3ClRight';
 import { primary, primaryWithExample } from './TwoClWith3ClRight.data';
-import { processColors } from '../../utils/helper';
-import { COLOURS } from '../../utils/constants';
+import { processColors } from '../../../../utils/helper';
+import { COLOURS } from '../../../../utils/constants';
 
 const colorOptions = processColors(COLOURS);
 
 const textPresetColors = colorOptions.map((color) => `text-${color.color}`);
 
 const meta: Meta<typeof TwoClWith3ClRight> = {
-  title: 'Components/2columnsWith3ColumnsRight',
+  title: 'Components/Content/2-Columns/With3ColumnsRight',
 
   component: TwoClWith3ClRight,
   parameters: {
