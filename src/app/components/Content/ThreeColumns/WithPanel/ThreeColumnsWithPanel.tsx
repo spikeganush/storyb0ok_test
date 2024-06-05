@@ -26,27 +26,41 @@ type TImage = {
 
 type TBaseProps = {
   image: TImage;
-  cards: [TCardProps, TCardProps];
+  imagePosition?: 'left' | 'right';
   onStorybook?: boolean;
 };
 
-type TStatsProps = {
+type TUpperStatsProps = {
   upperPart: TThreeColumnsWithPanelStats;
-  type: 'stats';
+  upperPartType: 'stats';
 };
 
-type TTextProps = {
+type TUpperTextProps = {
   upperPart: TOneColumnHalfProps;
-  type: 'text';
+  upperPartType: 'text';
 };
 
-export type TThreeColumnsWithPanelProps = TBaseProps & (TStatsProps | TTextProps);
+type TLowerCardsProps = {
+  lowerPart: [TCardProps, TCardProps];
+  lowerPartType: 'cards';
+};
+
+type TLowerTextProps = {
+  lowerPart: TOneColumnHalfProps;
+  lowerPartType: 'text';
+};
+
+export type TThreeColumnsWithPanelProps = TBaseProps &
+  (TUpperStatsProps | TUpperTextProps) &
+  (TLowerCardsProps | TLowerTextProps);
 
 const ThreeColumnsWithPanel = ({
   image,
+  imagePosition = 'left',
   upperPart,
-  type,
-  cards,
+  upperPartType,
+  lowerPart,
+  lowerPartType,
   onStorybook = false,
 }: TThreeColumnsWithPanelProps) => {
   return (
@@ -56,37 +70,68 @@ const ThreeColumnsWithPanel = ({
       })}
     >
       <div className="flex flex-col lg:grid lg:grid-cols-2 lg:grid-rows-[repeat(2,_auto)] lg:gap-x-4">
-        <div className="stats mb-8 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:mb-12">
+        <div
+          className={cn(
+            'stats mb-8 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:mb-12',
+            {
+              'lg:col-start-1 lg:col-end-2 lg:pl-12': imagePosition === 'right',
+            },
+          )}
+        >
           {upperPart &&
-            (type === 'text' ? (
+            (upperPartType === 'text' ? (
               <OneColumnCard {...upperPart} />
             ) : (
-              <ThreeColumnsWithPanelStats {...upperPart} />
+              upperPart.stats && <ThreeColumnsWithPanelStats {...upperPart} />
             ))}
         </div>
-        <div className="image flex lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 lg:items-start lg:justify-center">
+        <div
+          className={cn(
+            'image flex lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 lg:items-start lg:justify-center',
+            {
+              'lg:col-start-2 lg:col-end-3': imagePosition === 'right',
+            },
+          )}
+        >
           {image && (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                className="w-full object-contain lg:z-10 lg:max-w-[470px]"
+                className="mb-12 w-full object-contain lg:z-10 lg:max-w-[470px]"
                 src={image.src}
                 alt={image.alt}
               />
             </>
           )}
         </div>
-        <div className="2col bg-acu-black-15 py-12 lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-3rem),calc(100%-3rem)_100%,0_100%)]">
-          <div className="pr-12 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid">
+        <div
+          className={cn(
+            '2col bg-acu-black-15 px-4 py-12 lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:px-[unset] lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-3rem),calc(100%-3rem)_100%,0_100%)]',
+            {
+              'lg:[clip-path:polygon(0_0,100%_0,100%_100%,3rem_100%,0_calc(100%-3rem))]':
+                imagePosition === 'right',
+            },
+          )}
+        >
+          <div
+            className={cn('pr-12 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid', {
+              'pl-12 pr-0 lg:col-start-1 lg:col-end-2': imagePosition === 'right',
+            })}
+          >
             <div
               className={cn(
                 'grid grid-flow-row grid-cols-1 gap-[30px] gap-y-12 lg:grid-cols-2 lg:grid-rows-[repeat(4,_auto)] lg:gap-y-0',
+                {
+                  block: lowerPartType === 'text',
+                },
               )}
             >
-              {cards &&
-                cards.map((card, index) => (
-                  <Card key={index} {...card} breakpoint="lg" showImg={false} />
-                ))}
+              {lowerPart && lowerPartType === 'cards'
+                ? lowerPart?.length > 0 &&
+                  lowerPart.map((card, index) => (
+                    <Card key={index} {...card} breakpoint="lg" showImg={false} />
+                  ))
+                : lowerPartType === 'text' && <OneColumnCard {...lowerPart} />}
             </div>
           </div>
         </div>

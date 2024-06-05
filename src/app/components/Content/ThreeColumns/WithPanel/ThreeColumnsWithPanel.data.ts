@@ -5,7 +5,8 @@ export const primaryDataStats: TThreeColumnsWithPanelProps = {
     src: 'https://www.acu.edu.au/-/media/feature/pagecontent/imagestatisticswith2uppanel/acuupdate.jpg?h=560&w=440&la=en&hash=FAF85C0B5D1D42344105672171E32AB9',
     alt: 'Student walking in a street in Rome',
   },
-  type: 'stats',
+  imagePosition: 'left',
+  upperPartType: 'stats',
   upperPart: {
     title: 'We’re achieving great things',
     stats: [
@@ -30,7 +31,7 @@ export const primaryDataStats: TThreeColumnsWithPanelProps = {
       text: 'Learn more about excellence at ACU',
     },
   },
-  cards: [
+  lowerPart: [
     {
       title: 'Study at ACU',
       content:
@@ -52,6 +53,7 @@ export const primaryDataStats: TThreeColumnsWithPanelProps = {
       },
     },
   ],
+  lowerPartType: 'cards',
   onStorybook: true,
 };
 
@@ -60,7 +62,8 @@ export const primaryDataText: TThreeColumnsWithPanelProps = {
     src: 'https://www.acu.edu.au/-/media/feature/pagecontent/imagestatisticswith2uppanel/acuupdate.jpg?h=560&w=440&la=en&hash=FAF85C0B5D1D42344105672171E32AB9',
     alt: 'Student walking in a street in Rome',
   },
-  type: 'text',
+  imagePosition: 'left',
+  upperPartType: 'text',
   upperPart: {
     title: 'We’re achieving great things',
     paragraphs: [
@@ -72,7 +75,7 @@ export const primaryDataText: TThreeColumnsWithPanelProps = {
       text: 'Learn more about excellence at ACU',
     },
   },
-  cards: [
+  lowerPart: [
     {
       title: 'Study at ACU',
       content:
@@ -94,5 +97,39 @@ export const primaryDataText: TThreeColumnsWithPanelProps = {
       },
     },
   ],
+  lowerPartType: 'cards',
+  onStorybook: true,
+};
+
+export const longPanelText: TThreeColumnsWithPanelProps = {
+  image: {
+    src: 'https://www.acu.edu.au/-/media/feature/pagecontent/imagewithstatistics/content_2up_3up_with_panel_placeholder_440x560/locations-collaborateplus-440x560.jpg?h=560&w=440&la=en&hash=0A3A74C6D759E7AAF7CD58D56C74E7EB',
+    alt: 'Two women sitting at a table talking to each other',
+  },
+  imagePosition: 'right',
+  upperPartType: 'text',
+  upperPart: {
+    title: 'Community event spaces, sport facilities and venue hire',
+    paragraphs: [
+      `If you have an event, we have a space. Our campuses have galleries, lecture halls, sport facilities and gyms that can be hired for events of all sizes.`,
+    ],
+    link: {
+      url: 'https://www.acu.edu.au/locations/community-event-spaces-and-venue-hire',
+      text: 'Browse venues',
+    },
+  },
+  lowerPart: {
+    title: 'Co-Lab',
+    paragraphs: [
+      `Co-Lab
+Access our business incubator facilities and collaborate with other small businesses and startups by sharing resources, knowledge, research and ideas.`,
+    ],
+    link: {
+      url: 'https://www.acu.edu.au/locations/co-lab',
+      text: 'Innovate now',
+    },
+  },
+
+  lowerPartType: 'text',
   onStorybook: true,
 };
