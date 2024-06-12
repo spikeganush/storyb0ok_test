@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Icons';
+  src: url('../../public/fonts/Icon54-04-01-2018.ttf') format('truetype');
+}
+
 a,
 .acu-focus {
   @apply outline-2 outline-offset-4 outline-acu-purple-100 focus-visible:outline-dotted;
+}
+.acu-focus-white {
+  @apply acu-focus;
+  @apply outline-acu-white;
 }
 
 #storybook-root,

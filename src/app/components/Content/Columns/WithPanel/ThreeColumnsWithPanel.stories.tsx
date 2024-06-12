@@ -3,7 +3,7 @@ import ThreeColumnsWithPanel from './ThreeColumnsWithPanel';
 import { longPanelText, primaryDataStats, primaryDataText } from './ThreeColumnsWithPanel.data';
 
 const meta: Meta<typeof ThreeColumnsWithPanel> = {
-  title: 'Components/Content/3-Columns/WithPanel',
+  title: 'Components/Content/Columns/WithPanel',
 
   component: ThreeColumnsWithPanel,
   parameters: {
