@@ -1,6 +1,7 @@
 import { TAskAcuProps } from './AskAcu';
 
 export const PrimaryData: TAskAcuProps = {
+  version: 'purple',
   leftColumn: {
     title: 'Have a question?',
     paragraphs: [

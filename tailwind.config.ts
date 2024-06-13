@@ -1,5 +1,5 @@
-import { COLOURS, TailwindContent } from '@/app/utils/constants';
 import type { Config } from 'tailwindcss';
+import { COLOURS, TailwindContent } from './src/app/utils/constants';
 const plugin = require('tailwindcss/plugin');
 const containerQuery = require('@tailwindcss/container-queries');
 
