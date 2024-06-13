@@ -1,14 +1,11 @@
-import { cn } from '../../../../utils/helper';
+import { cn, TLink } from '../../../../utils/helper';
 import React from 'react';
 import Links from '../../../Links/Links';
 
 type TSubPart = {
   title: string;
   paragraphs: string[];
-  link?: {
-    url: string;
-    text: string;
-  };
+  link?: TLink;
 };
 
 export type TOneColumnWithImageProps = {
@@ -21,10 +18,7 @@ export type TOneColumnWithImageProps = {
   title: string;
   paragraphs: string[];
   subParts?: TSubPart[];
-  link?: {
-    url: string;
-    text: string;
-  };
+  link?: TLink;
 };
 
 const OneColumnWithMedia = ({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TAskAcuColumnProps } from './AskAcuColumn';
-import { cn } from '@/app/utils/helper';
+import { cn, TLink } from '@/app/utils/helper';
 import AskAcuLeftCol from './AskAcuLeftCol';
 import AskAcuRightCol from './AskAcuRightCol';
 
@@ -15,10 +15,7 @@ export type TLeftColumnProps = {
 export type TContactColumnProps = {
   icon?: 'phone' | 'email';
   title?: string;
-  link: {
-    url: string;
-    text: string;
-  };
+  link: TLink;
 };
 
 export type TAskAcuVersion = 'purple' | 'grey' | 'sand';

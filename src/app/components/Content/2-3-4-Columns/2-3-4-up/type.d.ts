@@ -1,11 +1,11 @@
+import { TLink } from '@/app/utils/helper';
+
 export type TCardProps = {
   imgUrl?: string;
   showImg?: boolean;
   title: string;
   content: string;
-  cta: {
-    text: string;
-    url: string;
+  cta: TLink & {
     transparent?: boolean;
   };
   breakpoint?: 'md' | 'lg';

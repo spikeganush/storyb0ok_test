@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import TabArrow from './TabArrow';
-import { rgbDataURL } from '../../../utils/helper';
+import { rgbDataURL, TLink } from '../../../utils/helper';
 import { useContainerBreakpoint } from '@/app/utils/useIsMobile';
 
 export type TLeftTab = {
@@ -12,10 +12,7 @@ export type TLeftTab = {
 export type TSubcontent = {
   title: string;
   content: string;
-  link: {
-    text: string;
-    url: string;
-  };
+  link: TLink;
 };
 
 export type TTab = {

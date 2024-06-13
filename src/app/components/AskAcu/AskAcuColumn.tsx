@@ -1,4 +1,4 @@
-import { cn } from '@/app/utils/helper';
+import { cn, TLink } from '@/app/utils/helper';
 import React from 'react';
 import { TAskAcuVersion } from './AskAcu';
 
@@ -7,10 +7,7 @@ export type TAskAcuColumnProps = {
   icon: 'chat-bubble-2' | 'question-mark';
   title: string;
   description: string[];
-  link: {
-    url: string;
-    text: string;
-  };
+  link: TLink;
 };
 
 const AskAcuColumn = ({

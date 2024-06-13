@@ -1,3 +1,5 @@
+import { TLink } from '@/app/utils/helper';
+
 /**
  * @param position - 'left' | 'center' | 'right'
  * @param img - string
@@ -82,7 +84,4 @@ export type ColumnCtaTitleProps = {
   cta?: cta;
 };
 
-export type cta = {
-  url: string;
-  text: string;
-};
+export type cta = TLink;
