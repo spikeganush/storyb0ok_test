@@ -1,6 +1,7 @@
 import { TFooterProps } from './Footer';
 
 export const PrimaryData: TFooterProps = {
+  version: 'grey',
   aknowledgement:
     'Australian Catholic University acknowledges the traditional custodians of the lands on which we live and work, and we pay our respects to Elders both past and present.',
   copyRight:

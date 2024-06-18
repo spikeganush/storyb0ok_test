@@ -1,10 +1,19 @@
 import React from 'react';
 import { TFooterRightColLinkImage } from './Footer';
+import { cn } from '@/app/utils/helper';
 
-const FooterLinkImage = ({ title, url, image }: TFooterRightColLinkImage) => {
+const FooterLinkImage = ({ title, url, image, version = 'grey' }: TFooterRightColLinkImage) => {
   return (
     <div>
-      {title && <h2 className="mb-4 text-lg font-bold text-acu-purple-100">{title}</h2>}
+      {title && (
+        <h2
+          className={cn('mb-4 text-lg font-bold text-acu-purple-100', {
+            'text-acu-white': version === 'purple',
+          })}
+        >
+          {title}
+        </h2>
+      )}
       <a href={url}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

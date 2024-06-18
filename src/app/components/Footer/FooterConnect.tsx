@@ -1,12 +1,28 @@
 import React from 'react';
-import { TFooterConnect } from './Footer';
+import { TFooterConnect, TFooterProps } from './Footer';
 import { cn } from '@/app/utils/helper';
 
-const FooterConnect = ({ connect }: { connect: TFooterConnect }) => {
+const FooterConnect = ({
+  connect,
+  version = 'grey',
+}: {
+  connect: TFooterConnect;
+  version?: TFooterProps['version'];
+}) => {
   return (
     <div>
-      <h2 className="mb-4 text-lg font-bold text-acu-purple-100">{connect.title}</h2>
-      <ul className="flex text-acu-purple-100">
+      <h2
+        className={cn('mb-4 text-lg font-bold text-acu-purple-100', {
+          'text-acu-white': version === 'purple',
+        })}
+      >
+        {connect.title}
+      </h2>
+      <ul
+        className={cn('flex text-acu-purple-100', {
+          'text-acu-purple-20': version === 'purple',
+        })}
+      >
         {connect.links.map((link, index) => (
           <li key={index}>
             <a
