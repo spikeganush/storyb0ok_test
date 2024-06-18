@@ -1,7 +1,4 @@
-export type TAccordionLinks = {
-  text: string;
-  url: string;
-};
+import { TLink } from '@/app/utils/helper';
 
 export type TAccordionProps = {
   /**
@@ -20,9 +17,9 @@ export type TAccordionProps = {
   /**
    * Links in the accordion
    * @required
-   * @type TAccordionLinks[]
+   * @type TLink[]
    */
-  links: TAccordionLinks[];
+  links: TLink[];
   /**
    * Image of the accordion
    * @optional

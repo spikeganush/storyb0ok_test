@@ -4,7 +4,7 @@ import { TOneColumnHalfProps } from '../../OneColumn/Half/OneColumnHalf';
 import Card from '../../2-3-4-Columns/2-3-4-up/Card';
 import OneColumnCard from '../../OneColumn/Half/OneColumnCard';
 import ThreeColumnsWithPanelStats from './ThreeColumnsWithPanelStats';
-import { cn } from '../../../../utils/helper';
+import { cn, TLink } from '../../../../utils/helper';
 
 export type TThreeColumnsWithPanelStats = {
   title: string;
@@ -13,10 +13,7 @@ export type TThreeColumnsWithPanelStats = {
     description: string;
     value: string;
   }[];
-  link: {
-    url: string;
-    text: string;
-  };
+  link: TLink;
 };
 
 type TImage = {
