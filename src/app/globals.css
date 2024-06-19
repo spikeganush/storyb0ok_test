@@ -16,6 +16,10 @@ a,
   @apply outline-acu-white;
 }
 
+#storybook-docs .sbdocs-content {
+  max-width: 1200px;
+}
+
 #storybook-root,
 .sb-story {
   padding-block: 15px;

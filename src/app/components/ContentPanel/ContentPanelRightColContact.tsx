@@ -1,13 +1,13 @@
 import React from 'react';
-import { TAskAcuVersion, TContactColumnProps } from './AskAcu';
 import { cn } from '@/app/utils/helper';
+import { TContactColumnProps, TContentPanelVersion } from './type';
 
-const AskAcuRightColContact = ({
+const ContentPanelRightColContact = ({
   contactColumns,
   version,
 }: {
   contactColumns: TContactColumnProps[];
-  version: TAskAcuVersion;
+  version: TContentPanelVersion;
 }) => {
   return (
     <>
@@ -59,4 +59,4 @@ const AskAcuRightColContact = ({
   );
 };
 
-export default AskAcuRightColContact;
+export default ContentPanelRightColContact;

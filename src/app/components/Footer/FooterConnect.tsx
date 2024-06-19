@@ -1,6 +1,6 @@
 import React from 'react';
-import { TFooterConnect, TFooterProps } from './Footer';
 import { cn } from '@/app/utils/helper';
+import { TFooterConnect, TFooterProps } from './type';
 
 const FooterConnect = ({
   connect,

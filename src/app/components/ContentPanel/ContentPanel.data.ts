@@ -1,6 +1,6 @@
-import { TAskAcuProps } from './AskAcu';
+import { TContentPanelProps } from './type';
 
-export const PrimaryData: TAskAcuProps = {
+export const PrimaryData: TContentPanelProps = {
   version: 'purple',
   leftColumn: {
     title: 'Have a question?',
