@@ -1,12 +1,8 @@
+import { TLink } from '@/app/utils/helper';
 import { useIsMobile } from '@/app/utils/useIsMobile';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-type TLink = {
-  title: string;
-  href: string;
-  targetOut?: boolean;
-};
 type HeaderProps = {
   links: TLink[];
   inStorybook?: boolean;
@@ -30,15 +26,15 @@ const Header = (props: HeaderProps) => {
         {links &&
           links.map((link) => (
             <a
-              key={link.title}
-              href={link.href}
-              title={link.title}
+              key={link.text}
+              href={link.url}
+              title={link.text}
               className={`mr-0 px-6 py-4 lg:mr-5 lg:px-0 lg:py-0 lg:last-of-type:mr-0`}
               rel={`${link.targetOut ? 'noopener noreferrer' : ''}`}
               target={`${link.targetOut ? '_blank' : ''}`}
               tabIndex={isMobile ? (isMobileMenuOpen ? 0 : -1) : 0}
             >
-              {link.title}
+              {link.text}
             </a>
           ))}
       </>

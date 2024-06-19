@@ -79,6 +79,7 @@ export const rgbDataURL = (r: number, g: number, b: number) =>
 export type TLink = {
   text: string;
   url: string;
+  targetOut?: boolean;
 };
 
 export const debounce = (func: Function, wait: number, immediate = false) => {

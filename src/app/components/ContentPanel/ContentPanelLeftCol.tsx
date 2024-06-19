@@ -1,13 +1,13 @@
 import { cn } from '@/app/utils/helper';
 import React from 'react';
-import { TAskAcuVersion, TLeftColumnProps } from './AskAcu';
+import { TContentPanelVersion, TLeftColumnProps } from './type';
 
-const AskAcuLeftCol = ({
+const ContentPanelLeftCol = ({
   leftColumn: { title, paragraphs },
   version,
 }: {
   leftColumn: TLeftColumnProps;
-  version: TAskAcuVersion;
+  version: TContentPanelVersion;
 }) => {
   return (
     <div className="w-full md:w-1/3">
@@ -29,4 +29,4 @@ const AskAcuLeftCol = ({
   );
 };
 
-export default AskAcuLeftCol;
+export default ContentPanelLeftCol;

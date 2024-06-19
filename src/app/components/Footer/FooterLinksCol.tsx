@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { TFooterColumns } from './Footer';
 import { cn, debounce } from '@/app/utils/helper';
+import { TFooterColumns } from './type';
 
 const FooterLinksCol = ({ title, links, length, version = 'grey' }: TFooterColumns) => {
   const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 330);

@@ -1,22 +1,14 @@
-import { cn, TLink } from '@/app/utils/helper';
+import { cn } from '@/app/utils/helper';
 import React from 'react';
-import { TAskAcuVersion } from './AskAcu';
+import { TContentPanelColumnProps } from './type';
 
-export type TAskAcuColumnProps = {
-  version?: TAskAcuVersion;
-  icon: 'chat-bubble-2' | 'question-mark';
-  title: string;
-  description: string[];
-  link: TLink;
-};
-
-const AskAcuColumn = ({
+const ContentPanelColumn = ({
   version = 'purple',
   icon,
   title,
   description,
   link,
-}: TAskAcuColumnProps) => {
+}: TContentPanelColumnProps) => {
   return (
     <div className="mt-8 w-full first-of-type:mt-0 min-[560px]:mt-0 min-[560px]:w-1/2">
       <span
@@ -55,4 +47,4 @@ const AskAcuColumn = ({
   );
 };
 
-export default AskAcuColumn;
+export default ContentPanelColumn;

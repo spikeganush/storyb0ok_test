@@ -1,6 +1,6 @@
 import React from 'react';
-import { TFooterRightColLinkImage } from './Footer';
 import { cn } from '@/app/utils/helper';
+import { TFooterRightColLinkImage } from './type';
 
 const FooterLinkImage = ({ title, url, image, version = 'grey' }: TFooterRightColLinkImage) => {
   return (

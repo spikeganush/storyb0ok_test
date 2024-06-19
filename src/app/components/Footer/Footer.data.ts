@@ -1,4 +1,4 @@
-import { TFooterProps } from './Footer';
+import { TFooterProps } from './type';
 
 export const PrimaryData: TFooterProps = {
   version: 'grey',
