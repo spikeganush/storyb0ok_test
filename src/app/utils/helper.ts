@@ -1,8 +1,8 @@
 import { twMerge } from 'tailwind-merge';
-import { AcuColors, COLOURS } from './constants';
+import { AcuColours, COLOURS } from './constants';
 import { clsx, ClassValue } from 'clsx';
 
-export const processColors = (colors: AcuColors) => {
+export const processColors = (colors: AcuColours) => {
   const colorEntries: { color: string; hex: string }[] = [];
   Object.entries(colors).forEach(([colorName, value]) => {
     if (typeof value === 'string') {
@@ -95,4 +95,22 @@ export const debounce = (func: Function, wait: number, immediate = false) => {
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
+};
+
+export const nameColours = (value: string) => {
+  for (const colourName in COLOURS) {
+    const shades = COLOURS[colourName];
+    if (typeof shades === 'string') {
+      if (shades === value) {
+        return colourName;
+      }
+    } else {
+      for (const shade in shades) {
+        if (shades[shade] === value) {
+          return `${colourName}-${shade}`;
+        }
+      }
+    }
+  }
+  return null;
 };

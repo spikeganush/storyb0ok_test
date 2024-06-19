@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/blocks';
+import ColoursWatch from './components/Colours/ColoursWatch';
+import { COLOURS } from './utils/constants';
+import { nameColours } from './utils/helper';
+
+<Meta title="Introduction" />
+<div className="sb-container">
+  <div className='sb-section-title'>
+    # Introduction
+
+    Storybook is here to present you the different components at the content creator disposition!
+
+  </div>
+  <div className='sb-section-title'>
+    # Colours principles
+    ## Text
+    ### Title
+    <div className='sb-unstyled flex'>
+      <ColoursWatch 
+      name={nameColours(COLOURS['acu-charcoal']['100'])}
+      colour={COLOURS['acu-charcoal']['100']}
+      />
+      <ColoursWatch
+      name={nameColours(COLOURS['acu-charcoal']['120'])}
+      colour={COLOURS['acu-charcoal']['120']}
+      />
+    </div>
+  </div>
+</div>

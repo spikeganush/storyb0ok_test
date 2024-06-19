@@ -4,7 +4,7 @@ type AcuBlackShades = 80 | 40 | 30 | 20 | 15 | 10;
 type AcuCharcoalShades = 120 | 100;
 type AcuYellowShades = 100;
 
-export type AcuColors = {
+export type AcuColours = {
   'acu-red': Record<AcuRedShades, string>;
   'acu-purple': Record<AcuPurpleShades, string>;
   'acu-charcoal': Record<AcuCharcoalShades, string>;
@@ -14,9 +14,11 @@ export type AcuColors = {
   'acu-white': string;
   'acu-gold': string;
   'acu-yellow': Record<AcuYellowShades, string>;
+} & {
+  [key: string]: string | Record<number, string>; // Index signature for dynamic keys
 };
 
-export const COLOURS: AcuColors = {
+export const COLOURS: AcuColours = {
   'acu-red': {
     120: '#d00a00',
     100: '#ed0c00',
