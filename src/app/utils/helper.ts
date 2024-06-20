@@ -1,17 +1,17 @@
 import { twMerge } from 'tailwind-merge';
-import { AcuColors, COLOURS } from './constants';
+import { AcuColours, COLOURS, HexColoursValue } from './constants';
 import { clsx, ClassValue } from 'clsx';
 
-export const processColors = (colors: AcuColors) => {
-  const colorEntries: { color: string; hex: string }[] = [];
-  Object.entries(colors).forEach(([colorName, value]) => {
+export const processColors = (colours: AcuColours): { colour: string; hex: string }[] => {
+  const colorEntries: { colour: string; hex: string }[] = [];
+  Object.entries(colours).forEach(([colorName, value]) => {
     if (typeof value === 'string') {
       // console.log(`${colorName}: ${value}`);
-      colorEntries.push({ color: colorName, hex: value });
+      colorEntries.push({ colour: colorName, hex: value });
     } else {
       Object.entries(value).forEach(([shade, hex]) => {
         // console.log(`${colorName}-${shade}: ${hex}`);
-        colorEntries.push({ color: `${colorName}-${shade}`, hex });
+        colorEntries.push({ colour: `${colorName}-${shade}`, hex });
       });
     }
   });
@@ -95,4 +95,23 @@ export const debounce = (func: Function, wait: number, immediate = false) => {
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
+};
+
+// Function to get the colour name based on the value
+export const nameColours = (value: HexColoursValue): string | null => {
+  for (const colourName in COLOURS) {
+    const shades = COLOURS[colourName as keyof typeof COLOURS];
+    if (typeof shades === 'string') {
+      if (shades === value) {
+        return colourName;
+      }
+    } else {
+      for (const shade in shades) {
+        if (shades[shade as keyof typeof shades] === value) {
+          return `${colourName}-${shade}`;
+        }
+      }
+    }
+  }
+  return null; // Return null if no match is found
 };

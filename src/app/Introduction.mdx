@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/blocks';
+import ReturnColours from './components/Colours/ColoursWatch';
+import { COLOURS, IntroductionData } from './utils/constants';
+import { nameColours } from './utils/helper';
+
+<Meta title="Introduction" />
+<div className="sb-container">
+  <div className="sb-section-title">
+    # Introduction 
+    Storybook is here to present you the different components at the content creator disposition!
+  </div>
+  <div className="sb-section-title">
+    ## Example documentation
+    Here you can find a possible future aspect of the documentation. [Examples](?path=/docs/components-contentpanel--docs)
+    </div>
+  <div className="sb-section-title">
+    ## Colours principles 
+    [More colours](?path=/docs/design-system-colours-palette--docs)
+    </div>
+
+    ### Title
+
+    <div className="sb-unstyled flex">
+      {IntroductionData.title.map((colour, index) => {
+        return <ReturnColours colour={colour} key={index} className='w-[112px]'/>;
+      })}
+    </div>
+
+    ### Text
+
+    <div className="sb-unstyled flex">
+      {IntroductionData.text.map((colour, index) => {
+        return <ReturnColours colour={colour} key={index} className='w-[112px]'/>;
+      })}
+    </div>
+
+    ### Alert
+
+    <div className="sb-unstyled flex">
+      {IntroductionData.alert.map((colour, index) => {
+        return <ReturnColours colour={colour} key={index} className='w-[112px]'/>;
+      })}
+    </div>
+
+  </div>

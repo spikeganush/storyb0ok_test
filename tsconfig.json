@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "prettier.config.js",
-    "tailwind.config.ts"
+    "tailwind.config.ts",
+    "src/app/Introduction.mdx"
   ],
   "exclude": ["node_modules"]
 }

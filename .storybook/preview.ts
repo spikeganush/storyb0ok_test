@@ -12,15 +12,14 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
+          'Introduction',
+          'Design System',
           'Components',
           ['Header', 'CTA', 'Content', '2columnsWith3ColumnsRight', 'Accordions', 'Buttons'],
-          'Design System',
         ],
       },
     },
   },
-
-  tags: ['autodocs', 'autodocs', 'autodocs']
 };
 
 export default preview;
