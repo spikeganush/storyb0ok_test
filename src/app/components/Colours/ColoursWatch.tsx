@@ -1,11 +1,24 @@
-import { cn } from '@/app/utils/helper';
+import { HexColoursValue } from '@/app/utils/constants';
+import { cn, nameColours } from '@/app/utils/helper';
 import React from 'react';
 
-const ColoursWatch = ({ name, colour }: { name: string; colour: string }) => {
+const ColoursWatch = ({
+  name,
+  colour,
+  className,
+}: {
+  name: string;
+  colour: string;
+  className?: React.ComponentProps<'div'>['className'];
+}) => {
   return (
-    <div className="m-4 flex flex-col items-center">
+    <div
+      className={cn('m-4 flex flex-col items-center', {
+        [className!]: className,
+      })}
+    >
       <div
-        className={cn('h-24 w-24', {
+        className={cn('aspect-square h-24 rounded-lg', {
           'border border-acu-charcoal-120': name === 'acu-white',
         })}
         style={{ backgroundColor: colour }}
@@ -16,4 +29,14 @@ const ColoursWatch = ({ name, colour }: { name: string; colour: string }) => {
   );
 };
 
-export default ColoursWatch;
+const ReturnColours = ({
+  colour,
+  className,
+}: {
+  colour: HexColoursValue;
+  className?: React.ComponentProps<'div'>['className'];
+}) => {
+  return <ColoursWatch name={nameColours(colour)!} colour={colour} className={className} />;
+};
+
+export default ReturnColours;

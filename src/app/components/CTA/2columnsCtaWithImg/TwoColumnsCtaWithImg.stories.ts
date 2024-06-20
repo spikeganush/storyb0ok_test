@@ -4,9 +4,9 @@ import { COLOURS } from '../../../utils/constants';
 import TwoColumnsCtaWithImg from './TwoColumnsCtaWithImg';
 import { primary, primaryWithExample } from './TwoColumnsCtaWithImg.data';
 
-const colorOptions = processColors(COLOURS);
+const colourOptions = processColors(COLOURS);
 
-const textPresetColors = colorOptions.map((color) => `text-${color.color}`);
+const textPresetColors = colourOptions.map((colour) => `text-${colour.colour}`);
 
 const meta: Meta<typeof TwoColumnsCtaWithImg> = {
   title: 'Components/CTA/2columnsCtaWithImg',

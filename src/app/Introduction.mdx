@@ -1,29 +1,41 @@
 import { Meta } from '@storybook/blocks';
-import ColoursWatch from './components/Colours/ColoursWatch';
-import { COLOURS } from './utils/constants';
+import ReturnColours from './components/Colours/ColoursWatch';
+import { COLOURS, IntroductionData } from './utils/constants';
 import { nameColours } from './utils/helper';
 
 <Meta title="Introduction" />
 <div className="sb-container">
-  <div className='sb-section-title'>
-    # Introduction
-
+  <div className="sb-section-title">
+    # Introduction 
     Storybook is here to present you the different components at the content creator disposition!
-
   </div>
-  <div className='sb-section-title'>
-    # Colours principles
-    ## Text
+  <div className="sb-section-title">
+    ## Colours principles 
+    [More colours](?path=/docs/design-system-colours-palette--docs)
+
     ### Title
-    <div className='sb-unstyled flex'>
-      <ColoursWatch 
-      name={nameColours(COLOURS['acu-charcoal']['100'])}
-      colour={COLOURS['acu-charcoal']['100']}
-      />
-      <ColoursWatch
-      name={nameColours(COLOURS['acu-charcoal']['120'])}
-      colour={COLOURS['acu-charcoal']['120']}
-      />
+
+    <div className="sb-unstyled flex">
+      {IntroductionData.title.map((colour, index) => {
+        return <ReturnColours colour={colour} key={index} className='w-[112px]'/>;
+      })}
     </div>
+
+    ### Text
+
+    <div className="sb-unstyled flex">
+      {IntroductionData.text.map((colour, index) => {
+        return <ReturnColours colour={colour} key={index} className='w-[112px]'/>;
+      })}
+    </div>
+
+    ### Alert
+
+    <div className="sb-unstyled flex">
+      {IntroductionData.alert.map((colour, index) => {
+        return <ReturnColours colour={colour} key={index} className='w-[112px]'/>;
+      })}
+    </div>
+
   </div>
 </div>

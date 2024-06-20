@@ -1,10 +1,9 @@
 import React from 'react';
-import ColoursWatch from './ColoursWatch';
+import ReturnColours from './ColoursWatch';
 import { COLOURS } from '@/app/utils/constants';
-import { nameColours } from '@/app/utils/helper';
 
 export default {
-  title: 'Design System/Colours',
+  title: 'Design System/Palette separate colours',
   // Description of the component
   parameters: {
     layout: 'fullscreen',
@@ -14,11 +13,11 @@ export default {
       },
     },
   },
-  component: ColoursWatch,
+  component: ReturnColours,
   tags: ['autodocs'],
 };
 
-export const ColorPalette = () => (
+export const ColourPalette = () => (
   <div className="p-8">
     {Object.entries(COLOURS).map(([name, value]) => {
       // Render each color group on its own line
@@ -28,10 +27,10 @@ export const ColorPalette = () => (
           <div className="flex">
             {typeof value === 'object' ? (
               Object.entries(value).map(([shade, colour]) => (
-                <ColoursWatch key={`${name}-${shade}`} name={`${name}-${shade}`} colour={colour} />
+                <ReturnColours key={colour} colour={colour} />
               ))
             ) : (
-              <ColoursWatch key={name} name={name} colour={value} />
+              <ReturnColours key={value} colour={value} />
             )}
           </div>
         </div>

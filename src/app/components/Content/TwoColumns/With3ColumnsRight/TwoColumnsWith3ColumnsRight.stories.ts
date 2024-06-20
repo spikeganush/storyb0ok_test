@@ -6,7 +6,7 @@ import { COLOURS } from '../../../../utils/constants';
 
 const colorOptions = processColors(COLOURS);
 
-const textPresetColors = colorOptions.map((color) => `text-${color.color}`);
+const textPresetColors = colorOptions.map((color) => `text-${color.colour}`);
 
 const meta: Meta<typeof TwoClWith3ClRight> = {
   title: 'Components/Content/2-Columns/With3ColumnsRight',
