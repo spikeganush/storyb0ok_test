@@ -1,14 +1,7 @@
 import React from 'react';
 import ButtonCTA from '../Buttons/CTA';
 import { cn } from '../../utils/helper';
-
-export type TPromoPanelProps = {
-  text: string;
-  cta_text: string;
-  cta_url: string;
-  bg_color?: 'red' | 'grey' | 'purple';
-  width?: 'full' | 'content';
-};
+import { TPromoPanelProps } from './type';
 
 const PromoPanel = (props: TPromoPanelProps) => {
   const { text, cta_text, cta_url, bg_color = 'red', width = 'full' } = props;

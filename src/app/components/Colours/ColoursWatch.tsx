@@ -1,16 +1,9 @@
 import { HexColoursValue } from '@/app/utils/constants';
 import { cn, nameColours } from '@/app/utils/helper';
 import React from 'react';
+import { TCouloursWatchProps } from './type';
 
-const ColoursWatch = ({
-  name,
-  colour,
-  className,
-}: {
-  name: string;
-  colour: string;
-  className?: React.ComponentProps<'div'>['className'];
-}) => {
+const ColoursWatch = ({ name, colour, className }: TCouloursWatchProps) => {
   return (
     <div
       className={cn('m-4 flex flex-col items-center', {

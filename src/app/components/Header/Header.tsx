@@ -1,12 +1,7 @@
-import { TLink } from '@/app/utils/helper';
 import { useIsMobile } from '@/app/utils/useIsMobile';
 import Image from 'next/image';
 import React, { useState } from 'react';
-
-type HeaderProps = {
-  links: TLink[];
-  inStorybook?: boolean;
-};
+import { HeaderProps } from './type';
 
 const Header = (props: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

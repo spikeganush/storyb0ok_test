@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { TTab } from './TabsWithBg';
 import { cn } from '../../../utils/helper';
 import TabArrowButton from './TabArrowButton';
-
-export type TTabArrowProps = {
-  tabs: TTab[];
-  isMobile: boolean;
-};
+import { TTabArrowProps } from './type';
 
 const TabArrow = (props: TTabArrowProps) => {
   const { tabs, isMobile } = props;

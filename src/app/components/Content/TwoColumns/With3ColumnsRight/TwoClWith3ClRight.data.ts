@@ -1,4 +1,4 @@
-import { TwoClWith3ClRightProps } from './TwoClWith3ClRight';
+import { TwoClWith3ClRightProps } from './type';
 
 export const primary: TwoClWith3ClRightProps = {
   topSeparator: true,

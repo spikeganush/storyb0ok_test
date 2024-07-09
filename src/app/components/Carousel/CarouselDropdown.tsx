@@ -1,15 +1,8 @@
 import { cn } from '../../utils/helper';
 import React, { useEffect, useRef, useState } from 'react';
+import { TCarouselDropdownProps } from './type';
 
-const CarouselDropdown = ({
-  tags,
-  selectedTag,
-  onSelectTag,
-}: {
-  tags: string[];
-  selectedTag: string | null;
-  onSelectTag: (tag: string) => void;
-}) => {
+const CarouselDropdown = ({ tags, selectedTag, onSelectTag }: TCarouselDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

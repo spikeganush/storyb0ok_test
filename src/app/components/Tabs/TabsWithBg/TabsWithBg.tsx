@@ -1,30 +1,9 @@
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import TabArrow from './TabArrow';
-import { rgbDataURL, TLink } from '../../../utils/helper';
+import { rgbDataURL } from '../../../utils/helper';
 import { useContainerBreakpoint } from '@/app/utils/useIsMobile';
-
-export type TLeftTab = {
-  title: string;
-  content: string;
-};
-
-export type TSubcontent = {
-  title: string;
-  content: string;
-  link: TLink;
-};
-
-export type TTab = {
-  title: string;
-  subcontents: TSubcontent[];
-};
-
-export type TTabsWithBgProps = {
-  image: string;
-  leftTab: TLeftTab;
-  tabs: TTab[];
-};
+import { TTabsWithBgProps } from './type';
 
 const TabsWithBg = (props: TTabsWithBgProps) => {
   const { leftTab, tabs, image } = props;

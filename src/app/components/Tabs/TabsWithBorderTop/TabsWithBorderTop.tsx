@@ -2,13 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import TabsButton from './TabsButton';
 import { useContainerBreakpoint } from '@/app/utils/useIsMobile';
 import { cn } from '../../../utils/helper';
-
-export type TabsWithBorderTopProps = {
-  tabs: {
-    title: string;
-    children: React.ReactNode;
-  }[];
-};
+import { TabsWithBorderTopProps } from './type';
 
 const TabsWithBorderTop = ({ tabs }: TabsWithBorderTopProps) => {
   const divRef = useRef<HTMLDivElement>(null);

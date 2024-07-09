@@ -1,7 +1,7 @@
 import React from 'react';
-import { TThreeColumnsWithPanelStats } from './ThreeColumnsWithPanel';
 import ButtonCTA from '@/app/components/Buttons/CTA';
 import { cn } from '@/app/utils/helper';
+import { TThreeColumnsWithPanelStats } from './type';
 
 const ThreeColumnsWithPanelStats = ({ title, stats, link }: TThreeColumnsWithPanelStats) => {
   return (

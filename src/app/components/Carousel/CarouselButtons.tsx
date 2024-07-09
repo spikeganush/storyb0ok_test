@@ -1,17 +1,15 @@
 import { cn } from '../../utils/helper';
 import React, { useRef } from 'react';
 import { TCardCarousel } from '../Content/Cards/Carousel/CardCarousel';
+import { TButtonProps } from './type';
 
-export type TButtonProps = {
-  direction: 'prev' | 'next';
-  currentIndex: number;
-  cards: TCardCarousel[];
-  visibleCards: number;
-  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-};
-
-const Button = (props: TButtonProps) => {
-  const { direction, currentIndex, cards, visibleCards, setCurrentIndex } = props;
+const Button = ({
+  direction,
+  currentIndex,
+  cards,
+  visibleCards,
+  setCurrentIndex,
+}: TButtonProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const navigate = (direction: number) => {

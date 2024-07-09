@@ -1,10 +1,6 @@
 import React from 'react';
-import CardTile, { TCardTileProps } from './CardTile';
-
-export type TCardsTileProps = {
-  cards: TCardTileProps[];
-  numberOfCards?: number;
-};
+import CardTile from './CardTile';
+import { TCardsTileProps } from './type';
 
 const CardsTile = (props: TCardsTileProps) => {
   const { cards, numberOfCards } = props;

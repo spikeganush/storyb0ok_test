@@ -1,25 +1,7 @@
-import { cn, TLink } from '../../../../utils/helper';
+import { cn } from '../../../../utils/helper';
 import React from 'react';
 import Links from '../../../Links/Links';
-
-type TSubPart = {
-  title: string;
-  paragraphs: string[];
-  link?: TLink;
-};
-
-export type TOneColumnWithImageProps = {
-  textPosition?: 'left' | 'right';
-  media: {
-    mediaType: 'image' | 'video';
-    src: string;
-    alt?: string;
-  };
-  title: string;
-  paragraphs: string[];
-  subParts?: TSubPart[];
-  link?: TLink;
-};
+import { TOneColumnWithImageProps } from './type';
 
 const OneColumnWithMedia = ({
   textPosition = 'left',

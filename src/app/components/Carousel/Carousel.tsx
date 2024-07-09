@@ -1,18 +1,12 @@
 import { cn } from '../../utils/helper';
 import React from 'react';
-import CardCarousel, { TCardCarousel } from '../Content/Cards/Carousel/CardCarousel';
+import CardCarousel from '../Content/Cards/Carousel/CardCarousel';
 import Button from './CarouselButtons';
 import CarouselDropdown from './CarouselDropdown';
 import { useCarousel } from './useCarousel';
+import { TCarouselProps } from './type';
 
-export type TCarouselProps = {
-  cards: TCardCarousel[];
-  title?: string;
-  tagsAll?: boolean;
-};
-
-const Carousel = (props: TCarouselProps) => {
-  const { cards, title, tagsAll = false } = props;
+const Carousel = ({ cards, title, tagsAll = false }: TCarouselProps) => {
   const {
     tags,
     buttonTagsRef,
