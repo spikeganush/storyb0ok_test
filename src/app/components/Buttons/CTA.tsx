@@ -1,13 +1,6 @@
 import { cn } from '../../utils/helper';
 import React from 'react';
-
-type ButtonCTAProps = {
-  url: string;
-  text: string;
-  type: 'arrow' | 'button';
-  button_color?: 'red' | 'grey' | 'purple';
-  style?: string;
-};
+import { ButtonCTAProps } from './type';
 
 const ButtonCTA = ({ url, text, type, button_color = 'red', style }: ButtonCTAProps) => {
   const bgColor =

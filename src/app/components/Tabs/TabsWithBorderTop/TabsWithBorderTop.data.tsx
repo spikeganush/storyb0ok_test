@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabsWithBorderTopProps } from './TabsWithBorderTop';
+import { TabsWithBorderTopProps } from './type';
 
 export const primaryData: TabsWithBorderTopProps = {
   tabs: [

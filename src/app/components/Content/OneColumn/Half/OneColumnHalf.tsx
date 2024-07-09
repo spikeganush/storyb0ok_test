@@ -1,12 +1,6 @@
 import React from 'react';
 import OneColumnCard from './OneColumnCard';
-import { TLink } from '@/app/utils/helper';
-
-export type TOneColumnHalfProps = {
-  title: string;
-  paragraphs: string[];
-  link?: TLink;
-};
+import { TOneColumnHalfProps } from './type';
 
 const OneColumnHalf = ({ title, paragraphs, link }: TOneColumnHalfProps) => {
   return (

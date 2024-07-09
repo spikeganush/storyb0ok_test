@@ -1,15 +1,7 @@
 import { contentMarginBottom } from '../../../utils/constants';
 import { cn } from '../../../utils/helper';
 import React, { forwardRef } from 'react';
-
-type TabsContentProps = {
-  children: React.ReactNode;
-  refes: HTMLDivElement[];
-  title: string;
-  index: number;
-  tabActiveIndex: number[];
-  isMobile: boolean;
-};
+import { TabsContentProps } from './type';
 
 // eslint-disable-next-line react/display-name
 const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>((props, ref) => {

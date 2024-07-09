@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { TCardCarousel } from '../Content/Cards/Carousel/CardCarousel';
-
-type UseCarouselParams = {
-  cards: TCardCarousel[];
-  tagsAll?: boolean;
-};
+import { UseCarouselParams } from './type';
 
 export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
   const threshold = 0.1;

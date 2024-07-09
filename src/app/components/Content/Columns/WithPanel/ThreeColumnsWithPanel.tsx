@@ -1,51 +1,15 @@
 import React from 'react';
-import { TCardProps } from '../../2-3-4-Columns/2-3-4-up/type';
-import { TOneColumnHalfProps } from '../../OneColumn/Half/OneColumnHalf';
 import Card from '../../2-3-4-Columns/2-3-4-up/Card';
 import OneColumnCard from '../../OneColumn/Half/OneColumnCard';
 import ThreeColumnsWithPanelStats from './ThreeColumnsWithPanelStats';
-import { cn, TLink } from '../../../../utils/helper';
-
-export type TThreeColumnsWithPanelStats = {
-  title: string;
-  stats: {
-    title: string;
-    description: string;
-    value: string;
-  }[];
-  link: TLink;
-};
-
-type TImage = {
-  src: string;
-  alt: string;
-};
-
-type TBaseProps = {
-  image: TImage;
-  imagePosition?: 'left' | 'right';
-  onStorybook?: boolean;
-};
-
-type TUpperStatsProps = {
-  upperPart: TThreeColumnsWithPanelStats;
-  upperPartType: 'stats';
-};
-
-type TUpperTextProps = {
-  upperPart: TOneColumnHalfProps;
-  upperPartType: 'text';
-};
-
-type TLowerCardsProps = {
-  lowerPart: [TCardProps, TCardProps];
-  lowerPartType: 'cards';
-};
-
-type TLowerTextProps = {
-  lowerPart: TOneColumnHalfProps;
-  lowerPartType: 'text';
-};
+import { cn } from '../../../../utils/helper';
+import {
+  TBaseProps,
+  TLowerCardsProps,
+  TLowerTextProps,
+  TUpperStatsProps,
+  TUpperTextProps,
+} from './type';
 
 export type TThreeColumnsWithPanelProps = TBaseProps &
   (TUpperStatsProps | TUpperTextProps) &

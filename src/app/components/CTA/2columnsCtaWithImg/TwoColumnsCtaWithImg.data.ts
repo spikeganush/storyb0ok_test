@@ -1,4 +1,4 @@
-import { TwoColumnsCtaWithImgProps } from './TwoColumnsCtaWithImg';
+import { TwoColumnsCtaWithImgProps } from './type';
 
 export const primary: TwoColumnsCtaWithImgProps = {
   imageUrl: 'https://via.placeholder.com/640x400',

@@ -1,9 +1,5 @@
 import React from 'react';
-
-export type TCardTileProps = {
-  title: string;
-  url: string;
-};
+import { TCardTileProps } from './type';
 
 const CardTile = ({ title, url }: TCardTileProps) => {
   return (

@@ -2,14 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import TabsContent from './TabsContent';
 import { cn } from '../../../utils/helper';
 import { contentMarginBottom } from '../../../utils/constants';
-
-export type TabsButtonProps = {
-  tabs: {
-    title: string;
-    children: React.ReactNode;
-  }[];
-  isMobile: boolean;
-};
+import { TabsButtonProps } from './type';
 
 const TabsButton = ({ tabs, isMobile }: TabsButtonProps) => {
   const [tabActiveIndex, setTabActiveIndex] = useState<number[]>([]);

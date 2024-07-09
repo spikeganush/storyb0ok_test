@@ -1,6 +1,7 @@
 import React from 'react';
-import { TTab } from './TabsWithBg';
 import { cn } from '../../../utils/helper';
+import { TTabArrowButtonProps } from './type';
+
 const TabArrowButton = ({
   tab,
   index,
@@ -8,14 +9,7 @@ const TabArrowButton = ({
   divHeight,
   isMobile,
   onClick,
-}: {
-  tab: TTab;
-  index: number;
-  activeTabIndex: number;
-  divHeight: number;
-  isMobile: boolean;
-  onClick: (index: number) => void;
-}) => {
+}: TTabArrowButtonProps) => {
   const isActive = activeTabIndex === index;
   return (
     <div
