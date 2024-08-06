@@ -112,9 +112,15 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
     const { cardWidth, gapSize } = getCardWidth();
     const fullCardWidth = cardWidth + gapSize;
 
+    // Use the current translate value from the ref
+    const currentTranslateX = carouselRef.current ? carouselRef.current.style.transform : '';
+    const match = currentTranslateX.match(/translateX\(([-\d.]+)px\)/);
+    const currentTranslate = match ? parseFloat(match[1]) : 0;
+
     // Calculate target index based on final position
-    let newIndex = Math.round((translateX * -1) / fullCardWidth);
+    let newIndex = Math.round((currentTranslate * -1) / fullCardWidth);
     newIndex = Math.max(0, Math.min(newIndex, cards.length - visibleCards));
+    console.log({ newIndex, currentTranslate });
     setCurrentIndex(newIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
@@ -143,6 +149,8 @@ export const useCarousel = ({ cards, tagsAll = false }: UseCarouselParams) => {
       ),
       0,
     );
+
+    console.log(moveTranslate);
 
     setTranslateX(moveTranslate);
   };
