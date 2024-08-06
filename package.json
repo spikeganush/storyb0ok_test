@@ -9,7 +9,8 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "storybook-staging": "storybook dev -p 6007",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build-storybook-staging": "storybook build -o /storybook-staging"
   },
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
