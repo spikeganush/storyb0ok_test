@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
+    "storybook-staging": "storybook dev -p 6007",
     "build-storybook": "storybook build"
   },
   "dependencies": {
