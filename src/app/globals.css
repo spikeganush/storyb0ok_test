@@ -7,6 +7,16 @@
   src: url('../../public/fonts/Icon54-04-01-2018.ttf') format('truetype');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+
+.open-sans-font {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
+
 a,
 .acu-focus {
   @apply outline-2 outline-offset-4 outline-acu-purple-100 focus-visible:outline-dotted;
@@ -24,6 +34,11 @@ a,
 .sb-story {
   padding-block: 15px;
   overflow: hidden;
+}
+
+#storybook-root:has(.main-header) {
+  padding-top: 0;
+  min-height: 100vh;
 }
 
 .innerZoomElementWrapper {

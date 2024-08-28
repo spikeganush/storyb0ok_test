@@ -2,10 +2,10 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Header from './Header';
 import { PrimaryData } from './Header.data';
-import { Canvas, Controls, Description, Title } from '@storybook/blocks';
+import { Canvas, Controls, Title } from '@storybook/blocks';
 
 const meta = {
-  title: 'Components/Header',
+  title: 'Components/Header/Vision2033',
   component: Header,
   parameters: {
     layout: 'fullscreen',
