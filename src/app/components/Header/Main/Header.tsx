@@ -13,7 +13,7 @@ const Header = ({ mainLinks, topBarLinks, topBarVisible = true }: THeaderProps) 
   return (
     <header className={cn('main-header font-open-sans items-center bg-acu-black-15')}>
       {topBarVisible && <HeaderTopBar links={topBarLinks} />}
-      <nav className="mx-auto mt-[1.2rem] flex max-w-[1170px] justify-between pb-4">
+      <nav className="mx-auto flex max-w-[1170px] justify-between pb-4 pt-[1.2rem]">
         <a href="/">
           <Image
             className="h-[2.9rem] w-auto"

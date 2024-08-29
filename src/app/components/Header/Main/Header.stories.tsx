@@ -13,7 +13,7 @@ const meta = {
       page: () => (
         <>
           <Title />
-          <Canvas className="px-5" />
+          <Canvas />
           <Controls />
         </>
       ),
