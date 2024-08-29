@@ -11,7 +11,7 @@ const Header = ({ mainLinks, topBarLinks, topBarVisible = true }: THeaderProps) 
   const { isMobile } = useIsMobile(1024);
 
   return (
-    <header className={cn('main-header items-center bg-acu-black-15')}>
+    <header className={cn('main-header font-open-sans items-center bg-acu-black-15')}>
       {topBarVisible && <HeaderTopBar links={topBarLinks} />}
       <nav className="mx-auto mt-[1.2rem] flex max-w-[1170px] justify-between pb-4">
         <a href="/">
@@ -39,46 +39,59 @@ const Header = ({ mainLinks, topBarLinks, topBarVisible = true }: THeaderProps) 
                   {link.text}
                 </a>
                 {link.firstLevelSubLinks && (
-                  <ul
+                  <div
                     className={cn(
-                      'absolute -left-24 right-0 top-full z-10 hidden auto-cols-fr bg-acu-white py-2 pt-1 text-acu-charcoal-120 shadow-lg transition-all duration-300 group-hover:grid',
+                      'absolute -left-24 right-0 top-full z-10 hidden auto-cols-fr gap-x-10 bg-acu-white py-10 pl-24 pr-8 text-[0.94rem] text-acu-charcoal-120 shadow-lg transition-all duration-300 group-hover:flex',
                       {},
                     )}
                   >
-                    {(() => {
-                      const columnCounts = [0, 0, 0, 0];
-                      return link.firstLevelSubLinks.map((subLink, subIndex) => {
-                        const column = subLink.column - 1; // 0-based index
-                        const rowStart = columnCounts[column] + 1;
-                        columnCounts[column]++;
-
-                        return (
-                          <li
-                            className={cn('px-4 py-2', {
-                              [`col-start-${subLink.column}`]: true,
-                              [`row-start-${rowStart}`]: true,
-                            })}
-                            key={`${subIndex}-${subLink.text}`}
-                          >
-                            <a href={subLink.url} className="text-acu-charcoal-120">
-                              {subLink.text}
-                            </a>
-                            {subLink.secondLevelSubLinks && (
-                              <ul className="">
-                                {subLink.secondLevelSubLinks.map((secondLink, secondIndex) => (
-                                  <li key={`${secondIndex}-${secondLink.text}`} className="">
-                                    <a href={secondLink.url} className="text-acu-charcoal-120">
-                                      {secondLink.text}
-                                    </a>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
-                        );
-                      });
-                    })()}
-                  </ul>
+                    {Array.from(
+                      {
+                        length: link.firstLevelSubLinks[link.firstLevelSubLinks.length - 1].column,
+                      },
+                      (_, columnIndex) => (
+                        <ul key={columnIndex} className="flex-1">
+                          {link.firstLevelSubLinks &&
+                            link.firstLevelSubLinks
+                              .filter((subLink) => subLink.column === columnIndex + 1)
+                              .map((subLink, subIndex) => (
+                                <li
+                                  key={`${subIndex}-${subLink.text}`}
+                                  className={cn(
+                                    'mb-8 flex flex-col gap-y-[10px] text-pretty last:mb-0',
+                                    {
+                                      'mb-[10px]': !!!subLink.secondLevelSubLinks?.length,
+                                    },
+                                  )}
+                                >
+                                  <a
+                                    href={subLink.url}
+                                    className="font-[650] text-acu-purple-100 icon-after-right-arrow-2 after:ml-[7px] after:inline-block after:text-[12px] hover:underline"
+                                  >
+                                    {subLink.text}
+                                  </a>
+                                  {subLink.secondLevelSubLinks && (
+                                    <ul className="flex flex-col gap-y-[10px]">
+                                      {subLink.secondLevelSubLinks.map(
+                                        (secondLink, secondIndex) => (
+                                          <li key={`${secondIndex}-${secondLink.text}`}>
+                                            <a
+                                              href={secondLink.url}
+                                              className="text-acu-charcoal-120 hover:underline"
+                                            >
+                                              {secondLink.text}
+                                            </a>
+                                          </li>
+                                        ),
+                                      )}
+                                    </ul>
+                                  )}
+                                </li>
+                              ))}
+                        </ul>
+                      ),
+                    )}
+                  </div>
                 )}
               </li>
             ))}
