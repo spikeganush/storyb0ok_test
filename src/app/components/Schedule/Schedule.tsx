@@ -36,6 +36,7 @@ const Schedule = () => {
     new Date(year, month + 1, 0).getDate();
   const getFirstDayOfMonth = (year: number, month: number): number =>
     new Date(year, month, 1).getDay();
+
   const renderCalendar = (): JSX.Element[] => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -74,19 +75,32 @@ const Schedule = () => {
   };
 
   return (
-    <div className="mx-auto mt-8 max-w-md">
+    <div className="container">
       <div className="mb-4 flex items-center justify-between">
-        <button onClick={() => changeMonth(-1)} className="p-2">
-          {'<'}
-        </button>
-        <h2 className="text-xl font-bold">
-          {months[currentDate.getMonth()]} {currentDate.getFullYear()}
-        </h2>
-        <button onClick={() => changeMonth(1)} className="p-2">
-          {'>'}
-        </button>
+        <div className="flex items-center">
+          <button onClick={() => changeMonth(-1)} className="p-2">
+            {'<'}
+          </button>
+          <h2 className="text-xl font-bold text-acu-purple-100">
+            {months[currentDate.getMonth()]} {currentDate.getFullYear()}
+          </h2>
+          <button onClick={() => changeMonth(1)} className="p-2">
+            {'>'}
+          </button>
+        </div>
+        <div className="flex gap-x-8">
+          <button className="relative text-acu-red-100 after:absolute after:bottom-0 after:left-0 after:right-0 after:block after:h-[1px] after:w-full after:bg-acu-red-100 after:opacity-100 after:duration-300 after:content-[''] hover:after:opacity-0">
+            View Colour Key
+          </button>
+          <button
+            className="relative border border-acu-purple-100 px-8 py-2 text-acu-purple-100 icon-add before:absolute before:left-2 before:top-1/2 before:-translate-y-1/2 before:font-bold
+          "
+          >
+            Add event
+          </button>
+        </div>
       </div>
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7">
         {daysOfWeek.map((day) => (
           <div key={day} className="text-center font-bold">
             {day}
