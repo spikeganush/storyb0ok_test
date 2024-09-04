@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { COLOURS, TailwindContent } from './src/app/utils/constants';
+import { COLOURS, SCHEDULE_ADDITIONAL_COLOURS, TailwindContent } from './src/app/utils/constants';
 const plugin = require('tailwindcss/plugin');
 const containerQuery = require('@tailwindcss/container-queries');
 const defaultTheme = require('tailwindcss/defaultTheme');
@@ -13,7 +13,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: COLOURS,
+      colors: { ...COLOURS, ...SCHEDULE_ADDITIONAL_COLOURS },
       fontFamily: {
         miller: ['Miller Font', 'serif'],
         icons: ['Icons', 'sans-serif'],
@@ -39,6 +39,7 @@ const config: Config = {
     {
       pattern: /(icon)-/,
     },
+    ...Object.keys(SCHEDULE_ADDITIONAL_COLOURS).map((color) => `bg-${color}`),
   ],
   plugins: [
     containerQuery,

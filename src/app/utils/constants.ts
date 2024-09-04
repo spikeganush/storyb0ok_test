@@ -16,6 +16,19 @@ export type AcuColours = {
   'acu-white': ValueOf<(typeof COLOURS)['acu-white']>;
   'acu-gold': ValueOf<(typeof COLOURS)['acu-gold']>;
   'acu-yellow': Record<AcuYellowShades, ValueOf<(typeof COLOURS)['acu-yellow']>>;
+} & {
+  [K in keyof typeof SCHEDULE_ADDITIONAL_COLOURS]: ValueOf<(typeof SCHEDULE_ADDITIONAL_COLOURS)[K]>;
+};
+
+export const SCHEDULE_ADDITIONAL_COLOURS = {
+  'acu-schedule-light-blue': '#00cece',
+  'acu-schedule-orange': '#f96400',
+  'acu-schedule-light-green': '#5be516',
+  'acu-schedule-dark-purple': '#b30900',
+  'acu-schedule-dark-megenta': '#b30900',
+  'acu-schedule-blue': '#0080ff',
+  'acu-schedule-olive': '#808000',
+  'acu-schedule-green': '#0c763c',
 };
 
 export const COLOURS = {
@@ -55,6 +68,7 @@ export const COLOURS = {
   'acu-yellow': {
     100: '#F2BB0A',
   },
+  ...SCHEDULE_ADDITIONAL_COLOURS,
 } as const;
 
 // Utility type to extract the literal values
