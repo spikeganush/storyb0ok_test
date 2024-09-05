@@ -1,5 +1,6 @@
 import React from 'react';
 import { RoundArrowButton } from './RoundArrowButton';
+import { months } from '@/app/utils/constants';
 
 type CalendarHeaderProps = {
   currentDate: Date;
@@ -12,21 +13,6 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   onChangeMonth,
   onOpenColorKey,
 }) => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
   return (
     <div className="mb-4 flex items-center justify-between">
       <div className="flex h-full items-center gap-3">

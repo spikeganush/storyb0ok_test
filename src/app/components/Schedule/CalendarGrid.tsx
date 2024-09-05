@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '@/app/utils/helper';
 import { Day } from './Day';
 import { CalendarEvent, CalendarEventsByMonth } from '@/app/utils/eventGenerator';
+import { daysOfWeek } from '@/app/utils/constants';
 
 type CalendarGridProps = {
   currentDate: Date;
@@ -16,8 +17,6 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   onSelectDate,
   events,
 }) => {
-  const daysOfWeek: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
   const getDaysInMonth = (year: number, month: number): number =>
     new Date(year, month + 1, 0).getDate();
 

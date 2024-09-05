@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarGrid } from './CalendarGrid';
 import ColorKeyModal from './ColorKeyModal';
-import { CalendarEventsByMonth, generateEvents } from '@/app/utils/eventGenerator';
+import { CalendarEvent, CalendarEventsByMonth, generateEvents } from '@/app/utils/eventGenerator';
+import DayView from './DayView';
 
 const Schedule: React.FC = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -26,6 +27,18 @@ const Schedule: React.FC = () => {
     });
   };
 
+  const changeDay = (increment: number): void => {
+    const newDate = new Date(selectedDate);
+    newDate.setDate(newDate.getDate() + increment);
+    setSelectedDate(newDate);
+  };
+
+  const getEventsForSelectedDate = (): CalendarEvent[] => {
+    const dateKey = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}`;
+    const fullDate = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+    return events[dateKey]?.filter((event) => event.date === fullDate) || [];
+  };
+
   return (
     <div className="container">
       <CalendarHeader
@@ -40,6 +53,11 @@ const Schedule: React.FC = () => {
         events={events}
       />
       <ColorKeyModal isOpen={isColorKeyOpen} onClose={() => setIsColorKeyOpen(false)} />
+      <DayView
+        selectedDate={selectedDate}
+        onChangeDay={changeDay}
+        events={getEventsForSelectedDate()}
+      />
     </div>
   );
 };

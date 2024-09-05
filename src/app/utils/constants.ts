@@ -95,3 +95,30 @@ export const IntroductionData = {
   text: [COLOURS['acu-charcoal']['100'], COLOURS['acu-charcoal']['120']],
   alert: [COLOURS['acu-red']['100'], COLOURS['acu-red']['120']],
 };
+
+export const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+export const daysOfWeek: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+export const daysOfWeekFull: string[] = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
