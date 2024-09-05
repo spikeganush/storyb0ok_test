@@ -17,7 +17,7 @@ const EventList: React.FC<EventsProps> = ({ events }) => {
           <li
             key={event.id}
             className={cn(
-              'mb-2 ml-2 flex items-center truncate bg-acu-black-30 px-3 py-1 text-xs text-black',
+              'mb-2 ml-2 flex items-center bg-acu-black-30 px-3 py-1 text-xs text-black',
             )}
             title={event.title}
           >
@@ -26,12 +26,12 @@ const EventList: React.FC<EventsProps> = ({ events }) => {
                 [event.color]: event.color,
               })}
             ></span>
-            <span>{event.title}</span>
+            <span className="truncate text-nowrap">{event.title}</span>
           </li>
         ))}
       </ul>
       {hasMoreEvents && (
-        <div className={cn('mb-2 ml-2 flex items-center truncate px-3 py-1 text-xs text-black')}>
+        <div className={cn('mb-2 ml-2 flex items-center px-3 py-1 text-xs text-black')}>
           <span>more...</span>
         </div>
       )}
