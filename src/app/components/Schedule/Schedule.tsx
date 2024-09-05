@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarGrid } from './CalendarGrid';
 import ColorKeyModal from './ColorKeyModal';
@@ -10,13 +10,20 @@ const Schedule: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isColorKeyOpen, setIsColorKeyOpen] = useState(false);
   const [events, setEvents] = useState<CalendarEventsByMonth>({});
+  const dayViewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setEvents(generateEvents(currentDate));
   }, [currentDate]);
 
   const handleDateSelect = (day: number, month: number, year: number) => {
-    setSelectedDate(new Date(year, month, day));
+    const newSelectedDate = new Date(year, month, day);
+    setSelectedDate(newSelectedDate);
+
+    const selectedEvents = getEventsForDate(year, month, day);
+    if (selectedEvents.length > 0 && dayViewRef.current) {
+      dayViewRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const changeMonth = (increment: number): void => {
@@ -33,14 +40,22 @@ const Schedule: React.FC = () => {
     setSelectedDate(newDate);
   };
 
-  const getEventsForSelectedDate = (): CalendarEvent[] => {
-    const dateKey = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}`;
-    const fullDate = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+  const getEventsForDate = (year: number, month: number, day: number): CalendarEvent[] => {
+    const dateKey = `${year}-${String(month + 1).padStart(2, '0')}`;
+    const fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     return events[dateKey]?.filter((event) => event.date === fullDate) || [];
   };
 
+  const getEventsForSelectedDate = (): CalendarEvent[] => {
+    return getEventsForDate(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate(),
+    );
+  };
+
   return (
-    <div className="container">
+    <div className="container mx-auto">
       <CalendarHeader
         currentDate={currentDate}
         onChangeMonth={changeMonth}
@@ -53,11 +68,13 @@ const Schedule: React.FC = () => {
         events={events}
       />
       <ColorKeyModal isOpen={isColorKeyOpen} onClose={() => setIsColorKeyOpen(false)} />
-      <DayView
-        selectedDate={selectedDate}
-        onChangeDay={changeDay}
-        events={getEventsForSelectedDate()}
-      />
+      <div ref={dayViewRef} className="day-view">
+        <DayView
+          selectedDate={selectedDate}
+          onChangeDay={changeDay}
+          events={getEventsForSelectedDate()}
+        />
+      </div>
     </div>
   );
 };
