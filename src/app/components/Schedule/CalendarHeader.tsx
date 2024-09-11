@@ -6,12 +6,14 @@ type CalendarHeaderProps = {
   currentDate: Date;
   onChangeMonth: (increment: number) => void;
   onOpenColorKey: () => void;
+  onOpenAddEvent: () => void;
 };
 
 export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   currentDate,
   onChangeMonth,
   onOpenColorKey,
+  onOpenAddEvent,
 }) => {
   return (
     <div className="mb-4 flex items-center justify-between">
@@ -29,7 +31,10 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
         >
           View Colour Key
         </button>
-        <button className="border border-acu-purple-100 px-8 py-2 text-acu-purple-100 icon-add before:mr-2 before:font-bold">
+        <button
+          onClick={onOpenAddEvent}
+          className="border border-acu-purple-100 px-8 py-2 text-acu-purple-100 icon-add before:mr-2 before:font-bold"
+        >
           Add event
         </button>
       </div>

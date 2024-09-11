@@ -1,3 +1,4 @@
+import { colorKeys } from '@/app/utils/constants';
 import { cn } from '@/app/utils/helper';
 import React, { useEffect, useRef } from 'react';
 
@@ -10,20 +11,6 @@ type ColorKeyModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
-
-export const colorKeys: ColorKey[] = [
-  { color: 'bg-acu-red-100', label: 'Due today (Red)' },
-  { color: 'bg-acu-schedule-light-blue', label: 'Lecture (light blue)' },
-  { color: 'bg-acu-schedule-orange', label: 'Tutorial (orange)' },
-  { color: 'bg-acu-schedule-light-green', label: 'Practical (light green)' },
-  { color: 'bg-acu-schedule-dark-purple', label: 'Seminar (dark purple)' },
-  { color: 'bg-acu-schedule-dark-megenta', label: 'Intensive (dark megenta)' },
-  { color: 'bg-acu-schedule-blue', label: 'Workshop (blue)' },
-  { color: 'bg-acu-schedule-olive', label: 'Exams (olive)' },
-  { color: 'bg-acu-schedule-green', label: 'Study session or conference (green)' },
-  { color: 'bg-acu-purple-100', label: 'Social event or careers workshop (purple)' },
-  { color: 'bg-acu-charcoal-100', label: 'Sport (charcoal)' },
-];
 
 const ColorKeyModal: React.FC<ColorKeyModalProps> = ({ isOpen, onClose }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);

@@ -4,11 +4,13 @@ import { CalendarGrid } from './CalendarGrid';
 import ColorKeyModal from './ColorKeyModal';
 import { CalendarEvent, CalendarEventsByMonth, generateEvents } from '@/app/utils/eventGenerator';
 import DayView from './DayView';
+import AddEventModal from './AddEventModal';
 
 const Schedule: React.FC = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isColorKeyOpen, setIsColorKeyOpen] = useState(false);
+  const [isAddEventOpen, setIsAddEventOpen] = useState(false);
   const [events, setEvents] = useState<CalendarEventsByMonth>({});
   const dayViewRef = useRef<HTMLDivElement>(null);
 
@@ -60,6 +62,7 @@ const Schedule: React.FC = () => {
         currentDate={currentDate}
         onChangeMonth={changeMonth}
         onOpenColorKey={() => setIsColorKeyOpen(true)}
+        onOpenAddEvent={() => setIsAddEventOpen(true)}
       />
       <CalendarGrid
         currentDate={currentDate}
@@ -68,6 +71,7 @@ const Schedule: React.FC = () => {
         events={events}
       />
       <ColorKeyModal isOpen={isColorKeyOpen} onClose={() => setIsColorKeyOpen(false)} />
+      <AddEventModal isOpen={isAddEventOpen} onClose={() => setIsAddEventOpen(false)} />
       <div ref={dayViewRef} className="day-view">
         <DayView
           selectedDate={selectedDate}

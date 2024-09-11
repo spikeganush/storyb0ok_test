@@ -1,4 +1,4 @@
-import { colorKeys } from '../components/Schedule/ColorKeyModal';
+import { colorKeys } from './constants';
 
 export type CalendarEvent = {
   id: string;
