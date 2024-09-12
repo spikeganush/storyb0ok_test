@@ -44,3 +44,12 @@ a,
 .small-marker::marker {
   font-size: 0.75em;
 }
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
