@@ -1,3 +1,5 @@
+import { cn } from '@/app/utils/helper';
+import { s } from 'million/dist/shared/million.9d4df3c1.js';
 import React from 'react';
 
 type CustomInputProps = {
@@ -6,6 +8,7 @@ type CustomInputProps = {
   placeholder: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time';
   required?: boolean;
+  style?: string;
 };
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -14,6 +17,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   placeholder,
   type = 'text',
   required = false,
+  style = '',
 }) => {
   return (
     <>
@@ -26,7 +30,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
         type={type}
         name={name}
         placeholder={placeholder}
-        className="acu-focus mb-8 w-full rounded-sm border border-gray-300 px-4 py-2"
+        className={cn('acu-focus mb-8 w-full rounded-sm border border-gray-300 px-4 py-2', {
+          [style]: style,
+        })}
         required={required}
       />
     </>
