@@ -1,3 +1,4 @@
+import { ColorKey } from '../components/Schedule/ColorKeyModal';
 import { tailwindIcon } from './tailwindIcon';
 
 type AcuRedShades = 120 | 100 | 80 | 60 | 40 | 20;
@@ -16,6 +17,19 @@ export type AcuColours = {
   'acu-white': ValueOf<(typeof COLOURS)['acu-white']>;
   'acu-gold': ValueOf<(typeof COLOURS)['acu-gold']>;
   'acu-yellow': Record<AcuYellowShades, ValueOf<(typeof COLOURS)['acu-yellow']>>;
+} & {
+  [K in keyof typeof SCHEDULE_ADDITIONAL_COLOURS]: ValueOf<(typeof SCHEDULE_ADDITIONAL_COLOURS)[K]>;
+};
+
+export const SCHEDULE_ADDITIONAL_COLOURS = {
+  'acu-schedule-light-blue': '#00cece',
+  'acu-schedule-orange': '#f96400',
+  'acu-schedule-light-green': '#5be516',
+  'acu-schedule-dark-purple': '#b30900',
+  'acu-schedule-dark-megenta': '#b30900',
+  'acu-schedule-blue': '#0080ff',
+  'acu-schedule-olive': '#808000',
+  'acu-schedule-green': '#0c763c',
 };
 
 export const COLOURS = {
@@ -55,6 +69,7 @@ export const COLOURS = {
   'acu-yellow': {
     100: '#F2BB0A',
   },
+  ...SCHEDULE_ADDITIONAL_COLOURS,
 } as const;
 
 // Utility type to extract the literal values
@@ -81,3 +96,44 @@ export const IntroductionData = {
   text: [COLOURS['acu-charcoal']['100'], COLOURS['acu-charcoal']['120']],
   alert: [COLOURS['acu-red']['100'], COLOURS['acu-red']['120']],
 };
+
+export const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+export const daysOfWeek: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+export const daysOfWeekFull: string[] = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
+
+export const colorKeys: ColorKey[] = [
+  { color: 'bg-acu-red-100', label: 'Due today (Red)' },
+  { color: 'bg-acu-schedule-light-blue', label: 'Lecture (light blue)' },
+  { color: 'bg-acu-schedule-orange', label: 'Tutorial (orange)' },
+  { color: 'bg-acu-schedule-light-green', label: 'Practical (light green)' },
+  { color: 'bg-acu-schedule-dark-purple', label: 'Seminar (dark purple)' },
+  { color: 'bg-acu-schedule-dark-megenta', label: 'Intensive (dark megenta)' },
+  { color: 'bg-acu-schedule-blue', label: 'Workshop (blue)' },
+  { color: 'bg-acu-schedule-olive', label: 'Exams (olive)' },
+  { color: 'bg-acu-schedule-green', label: 'Study session or conference (green)' },
+  { color: 'bg-acu-purple-100', label: 'Social event or careers workshop (purple)' },
+  { color: 'bg-acu-charcoal-100', label: 'Sport (charcoal)' },
+];

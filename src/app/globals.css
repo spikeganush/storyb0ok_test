@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,6 +28,12 @@ a,
   overflow: hidden;
 }
 
+#storybook-root:has(.main-header),
+#story--components-header-main--primary:has(.main-header) {
+  padding-top: 0;
+  min-height: 100vh;
+}
+
 .innerZoomElementWrapper {
   @apply @container/main;
 }
@@ -35,4 +43,13 @@ a,
 
 .small-marker::marker {
   font-size: 0.75em;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
