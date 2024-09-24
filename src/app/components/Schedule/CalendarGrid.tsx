@@ -124,18 +124,24 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-7 border-l-[1px]">
+    <div className="grid grid-cols-7 border-l-[1px] border-r-[1px] md:border-r-0">
       {daysOfWeek.map((day, index) => (
         <div
           key={day}
           className={cn(
-            'flex h-[70px] items-center justify-center border-b-[1px] border-r-[1px] border-t-2 border-t-acu-purple-100',
+            'flex h-[70px] items-center justify-center border-b-[1px] border-t-0 md:border-r-[1px] md:border-t-2 md:border-t-acu-purple-100 md:text-base',
             {
-              'bg-acu-black-20': isWeekend(index),
+              'md:bg-acu-black-20': isWeekend(index),
             },
           )}
         >
-          {day}
+          <span
+            className={cn('w-[1ch] overflow-hidden md:w-auto md:overflow-visible', {
+              'w-[1.7ch]': day === 'Mon' || day === 'Wed',
+            })}
+          >
+            {day}
+          </span>
         </div>
       ))}
       {renderCalendar()}

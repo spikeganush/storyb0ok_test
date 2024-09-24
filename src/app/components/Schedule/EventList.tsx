@@ -12,27 +12,28 @@ const EventList: React.FC<EventsProps> = ({ events }) => {
 
   return (
     <>
-      <ul className="mt-2 text-left">
+      <ul className="mt-1 flex justify-center gap-[2px] text-left md:mt-2 md:block md:gap-0">
         {displayedEvents.map((event) => (
           <li
             key={event.id}
             className={cn(
-              'mb-2 ml-2 flex items-center bg-acu-black-30 px-3 py-1 text-xs text-black',
+              'flex items-center text-xs text-black md:mb-2 md:ml-2 md:bg-acu-black-30 md:px-3 md:py-1',
             )}
             title={event.title}
           >
             <span
-              className={cn('mr-2 h-2 w-2 rounded-full', {
+              className={cn('h-[5px] w-[5px] rounded-full md:mr-2 md:h-2 md:w-2', {
                 [event.color]: event.color,
               })}
             ></span>
-            <span className="truncate text-nowrap">{event.title}</span>
+            <span className="hidden truncate text-nowrap md:block">{event.title}</span>
           </li>
         ))}
       </ul>
       {hasMoreEvents && (
-        <div className={cn('mb-2 ml-2 flex items-center px-3 py-1 text-xs text-black')}>
-          <span>more...</span>
+        <div className={cn('flex items-center text-xs text-black md:mb-2 md:ml-2 md:px-3 md:py-1')}>
+          <span className="hidden md:block">more...</span>
+          <span className="block leading-none md:hidden">...</span>
         </div>
       )}
     </>

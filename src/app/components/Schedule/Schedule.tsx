@@ -79,6 +79,12 @@ const Schedule: React.FC = () => {
           events={getEventsForSelectedDate()}
         />
       </div>
+      <button
+        onClick={() => setIsAddEventOpen(true)}
+        className="block w-full border border-acu-purple-100 px-8 py-2 text-acu-purple-100 icon-add before:mr-2 before:font-bold md:hidden"
+      >
+        Add event
+      </button>
     </div>
   );
 };

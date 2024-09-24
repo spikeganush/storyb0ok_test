@@ -168,9 +168,12 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose }) => {
         </div>
         <div
           ref={scrollTrackRef}
-          className={cn('absolute -right-4 top-0 h-full w-2 rounded-full bg-acu-black-20', {
-            'opacity-0': !isScrollable,
-          })}
+          className={cn(
+            '-top-3npm run sto absolute -bottom-3 -right-4 w-2 rounded-full bg-acu-black-20',
+            {
+              'opacity-0': !isScrollable,
+            },
+          )}
         >
           <div
             ref={scrollThumbRef}
