@@ -32,9 +32,9 @@ export const Day: React.FC<DayProps> = ({
   return (
     <div
       className={cn(
-        `h-[130px] cursor-pointer border-b-[1px] border-r-[1px] text-center hover:bg-gray-100 focus-visible:bg-gray-100`,
+        `flex h-[70px] cursor-pointer flex-col items-center text-center hover:bg-gray-100 focus-visible:bg-gray-100 md:block md:h-[130px] md:border-b-[1px] md:border-r-[1px]`,
         {
-          'bg-acu-black-20': isWeekend,
+          'md:bg-acu-black-20': isWeekend,
           'text-acu-charcoal-100': !isCurrentMonth,
         },
       )}
