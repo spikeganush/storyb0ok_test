@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'Icons';
-  src: url('../public/fonts/Icon54-04-01-2018.ttf') format('truetype');
+  src: url('../../public/fonts/Icon54-04-01-2018.ttf') format('truetype');
 }
 
 a,
