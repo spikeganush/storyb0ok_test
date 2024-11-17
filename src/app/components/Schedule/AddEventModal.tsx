@@ -1,9 +1,9 @@
-import { colorKeys } from '@/utils/constants';
+import { colorKeys } from '@/app/utils/constants';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CustomSelect from '../Generic/CustomSelect';
 import CustomInput from '../Generic/CustomInput';
-import { cn } from '@/utils/helper';
 import Switch from './Switch';
+import { cn } from '@/app/utils/helper';
 
 type AddEventModalProps = {
   isOpen: boolean;
@@ -102,7 +102,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose }) => {
         contentRef.current.scrollTop += scrollIncrement;
       }
     },
-    [isDragging, startY, scrollThumbHeight]
+    [isDragging, startY, scrollThumbHeight],
   );
 
   useEffect(() => {

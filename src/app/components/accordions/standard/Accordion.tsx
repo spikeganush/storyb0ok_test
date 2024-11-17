@@ -1,4 +1,4 @@
-import { cn } from '../../../utils/helper';
+import { cn } from '@/app/utils/helper';
 import React, { useEffect, useRef, useState } from 'react';
 import { TAccordionProps } from './type';
 import Image from 'next/image';
@@ -30,10 +30,10 @@ const Accordion: React.FC<TAccordionProps> = ({
     <div className="accordion">
       <div
         className={cn('acu-focus flex w-full cursor-pointer py-2', {
-          'duration-500 justify-between after:bg-acu-black-30 after:h-[1px] after:duration-500  relative after:absolute after:left-0 after:right-0 after:bottom-0 border-t border-acu-black-30 items-center px-4':
+          'relative items-center justify-between border-t border-acu-black-30  px-4 duration-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-acu-black-30 after:duration-500':
             type === 'border',
           'border-t-0': type === 'border' && index === 0,
-          'after:left-4 after:right-4 mb-4': type === 'border' && isOpen,
+          'mb-4 after:left-4 after:right-4': type === 'border' && isOpen,
         })}
         onMouseDown={toggleAccordion}
         ref={titleRef}
@@ -45,7 +45,7 @@ const Accordion: React.FC<TAccordionProps> = ({
               'mr-3 w-4 transform text-2xl font-bold leading-none transition-transform duration-300',
               {
                 'rotate-180': isOpen,
-              }
+              },
             )}
           >
             {isOpen ? '-' : '+'}
@@ -84,7 +84,7 @@ const Accordion: React.FC<TAccordionProps> = ({
           {
             'h-auto': isOpen,
             'mb-4': type === 'border' && isOpen,
-          }
+          },
         )}
         style={{
           height: isOpen ? `${contentRef.current ? contentRef.current.scrollHeight : 0}px` : '0px',
@@ -124,4 +124,3 @@ const Accordion: React.FC<TAccordionProps> = ({
 };
 
 export default Accordion;
-

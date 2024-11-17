@@ -1,4 +1,4 @@
-import { TLink } from '@/utils/helper';
+import { TLink } from '@/app/helper';
 import React from 'react';
 
 export type TAccordionType = 'plus' | 'border';
@@ -76,4 +76,3 @@ export type TAccordionsProps = {
   accordion: TAccordionProps[];
   type?: TAccordionType;
 };
-

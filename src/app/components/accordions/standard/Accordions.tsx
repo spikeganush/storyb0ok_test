@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Accordion from './Accordion';
 import { TAccordionsProps } from './type';
-import { cn } from 'utils/helper';
+import { cn } from '@/app/utils/helper';
 
 const Accordions = (props: TAccordionsProps) => {
   const { accordion, type = 'plus' } = props;
@@ -14,7 +14,7 @@ const Accordions = (props: TAccordionsProps) => {
       ...states,
       [index]: accordion[index].open || false,
     }),
-    {}
+    {},
   );
 
   const [childrenOpen, setChildrenOpen] = useState<{ [key: number]: boolean }>(initialOpenStates);
@@ -29,7 +29,7 @@ const Accordions = (props: TAccordionsProps) => {
           : 'Close all'
         : type === 'plus'
           ? 'Expand All'
-          : 'Open all'
+          : 'Open all',
     );
   }, [childrenOpen]);
 
@@ -40,8 +40,8 @@ const Accordions = (props: TAccordionsProps) => {
           ...acc,
           [key]: open,
         }),
-        {}
-      )
+        {},
+      ),
     );
   };
 
@@ -61,8 +61,8 @@ const Accordions = (props: TAccordionsProps) => {
           className={cn(
             'acu-focus cursor-pointer font-semibold text-acu-purple-100 underline underline-offset-2 hover:text-acu-red-100 hover:no-underline focus:text-acu-red-100 focus:no-underline',
             {
-              'text-acu-red-100 border border-acu-red-100 no-underline p-2': type === 'border',
-            }
+              'border border-acu-red-100 p-2 text-acu-red-100 no-underline': type === 'border',
+            },
           )}
           onMouseDown={handleOpenAll}
           onKeyDown={(e) => {
@@ -97,4 +97,3 @@ const Accordions = (props: TAccordionsProps) => {
 };
 
 export default Accordions;
-

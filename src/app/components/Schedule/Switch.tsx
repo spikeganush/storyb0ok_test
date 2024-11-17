@@ -1,4 +1,4 @@
-import { cn } from '@/utils/helper';
+import { cn } from '@/app/utils/helper';
 import React from 'react';
 
 const Switch: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked, onChange }) => {
@@ -11,7 +11,7 @@ const Switch: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked,
             'absolute right-1.5 top-1/2 -translate-y-1/2 text-xs font-medium text-white opacity-100 transition-opacity',
             {
               'opacity-0': checked,
-            }
+            },
           )}
         >
           No
@@ -21,7 +21,7 @@ const Switch: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked,
             'absolute left-1.5 top-1/2 -translate-y-1/2 text-xs font-medium text-white opacity-0 transition-opacity',
             {
               'opacity-100': checked,
-            }
+            },
           )}
         >
           Yes

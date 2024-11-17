@@ -1,5 +1,5 @@
-import { colorKeys } from '@/utils/constants';
-import { cn } from '@/utils/helper';
+import { colorKeys } from '@/app/utils/constants';
+import { cn } from '@/app/utils/helper';
 import React, { useEffect, useRef } from 'react';
 
 export type ColorKey = {
