@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'Icons';
-  src: url('../../public/fonts/Icon54-04-01-2018.ttf') format('truetype');
+  src: url('../public/fonts/Icon54-04-01-2018.ttf') format('truetype');
 }
 
 a,
@@ -52,4 +52,13 @@ a,
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.accordion-content ul {
+  list-style: disc;
+  margin-left: 1rem;
+}
+
+.accordion-content p {
+  margin-bottom: 0.5rem;
 }
