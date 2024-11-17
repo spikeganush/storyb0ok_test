@@ -1,8 +1,8 @@
 import React from 'react';
-import { cn } from '@/app/utils/helper';
+import { cn } from '@/utils/helper';
 import { Day } from './Day';
-import { CalendarEvent, CalendarEventsByMonth } from '@/app/utils/eventGenerator';
-import { daysOfWeek } from '@/app/utils/constants';
+import { CalendarEvent, CalendarEventsByMonth } from '@/utils/eventGenerator';
+import { daysOfWeek } from '@/utils/constants';
 
 type CalendarGridProps = {
   currentDate: Date;
@@ -70,7 +70,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
           isWeekend={isWeekend(dayIndex)}
           onSelect={onSelectDate}
           events={dayEvents}
-        />,
+        />
       );
     }
 
@@ -89,7 +89,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
           isWeekend={isWeekend(dayIndex)}
           onSelect={onSelectDate}
           events={dayEvents}
-        />,
+        />
       );
     }
 
@@ -115,7 +115,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             isWeekend={isWeekend(dayIndex)}
             onSelect={onSelectDate}
             events={dayEvents}
-          />,
+          />
         );
       }
     }
@@ -132,7 +132,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             'flex h-[70px] items-center justify-center border-b-[1px] border-t-0 md:border-r-[1px] md:border-t-2 md:border-t-acu-purple-100 md:text-base',
             {
               'md:bg-acu-black-20': isWeekend(index),
-            },
+            }
           )}
         >
           <span

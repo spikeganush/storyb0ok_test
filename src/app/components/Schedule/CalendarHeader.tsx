@@ -1,6 +1,6 @@
 import React from 'react';
 import { RoundArrowButton } from './RoundArrowButton';
-import { months } from '@/app/utils/constants';
+import { months } from '@/utils/constants';
 
 type CalendarHeaderProps = {
   currentDate: Date;

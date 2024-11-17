@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from '@/app/utils/helper';
-import { CalendarEvent } from '@/app/utils/eventGenerator';
+import { cn } from '@/utils/helper';
+import { CalendarEvent } from '@/utils/eventGenerator';
 import EventList from './EventList';
 
 type DayProps = {
@@ -36,7 +36,7 @@ export const Day: React.FC<DayProps> = ({
         {
           'md:bg-acu-black-20': isWeekend,
           'text-acu-charcoal-100': !isCurrentMonth,
-        },
+        }
       )}
       tabIndex={0}
       onClick={() => onSelect(day, month, year)}
@@ -47,7 +47,7 @@ export const Day: React.FC<DayProps> = ({
           {
             'bg-acu-purple-100 text-white': isSelected,
             'border border-acu-purple-100': isToday(day, month, year) && !isSelected,
-          },
+          }
         )}
       >
         {day}

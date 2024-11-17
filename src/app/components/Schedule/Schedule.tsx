@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarGrid } from './CalendarGrid';
 import ColorKeyModal from './ColorKeyModal';
-import { CalendarEvent, CalendarEventsByMonth, generateEvents } from '@/app/utils/eventGenerator';
+import { CalendarEvent, CalendarEventsByMonth, generateEvents } from '@/utils/eventGenerator';
 import DayView from './DayView';
 import AddEventModal from './AddEventModal';
 
@@ -52,7 +52,7 @@ const Schedule: React.FC = () => {
     return getEventsForDate(
       selectedDate.getFullYear(),
       selectedDate.getMonth(),
-      selectedDate.getDate(),
+      selectedDate.getDate()
     );
   };
 

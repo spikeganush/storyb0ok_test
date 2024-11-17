@@ -1,5 +1,5 @@
-import { CalendarEvent } from '@/app/utils/eventGenerator';
-import { cn } from '@/app/utils/helper';
+import { CalendarEvent } from '@/utils/eventGenerator';
+import { cn } from '@/utils/helper';
 import React from 'react';
 
 type EventsProps = {
@@ -17,7 +17,7 @@ const EventList: React.FC<EventsProps> = ({ events }) => {
           <li
             key={event.id}
             className={cn(
-              'flex items-center text-xs text-black md:mb-2 md:ml-2 md:bg-acu-black-30 md:px-3 md:py-1',
+              'flex items-center text-xs text-black md:mb-2 md:ml-2 md:bg-acu-black-30 md:px-3 md:py-1'
             )}
             title={event.title}
           >
@@ -26,7 +26,9 @@ const EventList: React.FC<EventsProps> = ({ events }) => {
                 [event.color]: event.color,
               })}
             ></span>
-            <span className="hidden truncate text-nowrap md:block">{event.title}</span>
+            <span className="hidden truncate text-nowrap md:block  md:max-w-[calc(100%-1rem)]">
+              {event.title}
+            </span>
           </li>
         ))}
       </ul>

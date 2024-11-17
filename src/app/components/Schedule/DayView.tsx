@@ -1,8 +1,8 @@
 import React from 'react';
 import { RoundArrowButton } from './RoundArrowButton';
-import { daysOfWeekFull, months } from '@/app/utils/constants';
-import { CalendarEvent } from '@/app/utils/eventGenerator';
-import { cn } from '@/app/utils/helper';
+import { daysOfWeekFull, months } from '@/utils/constants';
+import { CalendarEvent } from '@/utils/eventGenerator';
+import { cn } from '@/utils/helper';
 
 type DayViewProps = {
   selectedDate: Date;
