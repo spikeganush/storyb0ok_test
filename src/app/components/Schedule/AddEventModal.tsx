@@ -1,9 +1,9 @@
 import { colorKeys } from '@/app/utils/constants';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CustomSelect from '../Generic/CustomSelect';
 import CustomInput from '../Generic/CustomInput';
-import { cn } from '@/app/utils/helper';
 import Switch from './Switch';
+import { cn } from '@/app/utils/helper';
 
 type AddEventModalProps = {
   isOpen: boolean;
@@ -32,7 +32,11 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dialogRef.current && !contentRef.current?.contains(event.target as Node)) {
+      if (
+        dialogRef.current &&
+        !contentRef.current?.contains(event.target as Node) &&
+        !scrollTrackRef.current?.contains(event.target as Node)
+      ) {
         onClose();
       }
     };
@@ -80,39 +84,43 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose }) => {
     setIsDragging(false);
   };
 
-  const handleThumbMousemove = (e: MouseEvent) => {
-    if (!isDragging) return;
+  const handleThumbMousemove = useCallback(
+    (e: MouseEvent) => {
+      if (!isDragging) return;
 
-    const deltaY = e.clientY - startY;
-    setStartY(e.clientY);
+      const deltaY = e.clientY - startY;
+      setStartY(e.clientY);
 
-    if (contentRef.current && scrollTrackRef.current && scrollThumbRef.current) {
-      const { scrollHeight, clientHeight } = contentRef.current;
-      const trackHeight = scrollTrackRef.current.clientHeight;
+      if (contentRef.current && scrollTrackRef.current && scrollThumbRef.current) {
+        const { scrollHeight, clientHeight } = contentRef.current;
+        const trackHeight = scrollTrackRef.current.clientHeight;
 
-      const scrollableHeight = scrollHeight - clientHeight;
-      const thumbMovableRange = trackHeight - scrollThumbHeight;
+        const scrollableHeight = scrollHeight - clientHeight;
+        const thumbMovableRange = trackHeight - scrollThumbHeight;
 
-      const scrollIncrement = (deltaY / thumbMovableRange) * scrollableHeight;
-      contentRef.current.scrollTop += scrollIncrement;
-    }
-  };
+        const scrollIncrement = (deltaY / thumbMovableRange) * scrollableHeight;
+        contentRef.current.scrollTop += scrollIncrement;
+      }
+    },
+    [isDragging, startY, scrollThumbHeight],
+  );
 
   useEffect(() => {
-    const handleMouseUp = () => setIsDragging(false);
-    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseup', handleThumbMouseup);
     document.addEventListener('mousemove', handleThumbMousemove);
 
     return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseup', handleThumbMouseup);
       document.removeEventListener('mousemove', handleThumbMousemove);
     };
-  }, [isDragging]);
+  }, [isDragging, handleThumbMousemove]);
 
   return (
     <dialog
       ref={dialogRef}
-      className="hide-scrollbar w-[498px] rounded-lg p-4 shadow-xl backdrop:backdrop-blur-sm"
+      className={cn('hide-scrollbar w-[498px] rounded-lg p-4 shadow-xl backdrop:backdrop-blur-sm', {
+        'select-none': isDragging,
+      })}
       onClose={onClose}
     >
       <div className="hide-scrollbar relative h-[80vh]">
@@ -168,12 +176,9 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose }) => {
         </div>
         <div
           ref={scrollTrackRef}
-          className={cn(
-            '-top-3npm run sto absolute -bottom-3 -right-4 w-2 rounded-full bg-acu-black-20',
-            {
-              'opacity-0': !isScrollable,
-            },
-          )}
+          className={cn('absolute -bottom-3 -right-4 -top-3 w-2 rounded-full bg-acu-black-20', {
+            'opacity-0': !isScrollable,
+          })}
         >
           <div
             ref={scrollThumbRef}

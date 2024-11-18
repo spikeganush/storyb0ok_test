@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarGrid } from './CalendarGrid';
 import ColorKeyModal from './ColorKeyModal';
-import { CalendarEvent, CalendarEventsByMonth, generateEvents } from '@/app/utils/eventGenerator';
 import DayView from './DayView';
 import AddEventModal from './AddEventModal';
+import { CalendarEvent, CalendarEventsByMonth, generateEvents } from '@/app/utils/eventGenerator';
 
 const Schedule: React.FC = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());

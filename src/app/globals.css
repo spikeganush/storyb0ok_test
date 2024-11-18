@@ -53,3 +53,12 @@ a,
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.accordion-content ul {
+  list-style: disc;
+  margin-left: 1rem;
+}
+
+.accordion-content p {
+  margin-bottom: 0.5rem;
+}

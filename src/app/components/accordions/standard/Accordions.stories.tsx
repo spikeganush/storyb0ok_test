@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { primaryData } from './Accordions.data';
+import { borderData, plusData } from './Accordions.data';
 import Accordions from './Accordions';
 
 const meta: Meta<typeof Accordions> = {
-  title: 'Components/Accordions/NoName',
+  title: 'Components/Accordions/Standard',
   component: Accordions,
   parameters: {
     layout: 'fullscreen',
@@ -29,8 +29,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Plus: Story = {
   args: {
-    ...primaryData,
+    ...plusData,
   },
 };
+
+export const Border: Story = {
+  args: {
+    ...borderData,
+  },
+};
+

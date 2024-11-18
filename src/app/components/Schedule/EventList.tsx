@@ -26,7 +26,9 @@ const EventList: React.FC<EventsProps> = ({ events }) => {
                 [event.color]: event.color,
               })}
             ></span>
-            <span className="hidden truncate text-nowrap md:block">{event.title}</span>
+            <span className="hidden truncate text-nowrap md:block  md:max-w-[calc(100%-1rem)]">
+              {event.title}
+            </span>
           </li>
         ))}
       </ul>
