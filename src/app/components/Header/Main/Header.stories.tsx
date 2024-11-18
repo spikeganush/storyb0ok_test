@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Header from './Header';
 import { PrimaryData } from './Header.data';
 import { Canvas, Controls, Title } from '@storybook/blocks';
+import HeaderDescription from './HeaderDescription';
 
 const meta = {
   title: 'Components/Header/Main',
@@ -13,6 +14,7 @@ const meta = {
       page: () => (
         <>
           <Title />
+          <HeaderDescription />
           <Canvas />
           <Controls />
         </>
